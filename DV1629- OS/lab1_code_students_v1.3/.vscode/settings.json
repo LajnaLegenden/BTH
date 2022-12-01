@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "zabbix": "nginx",
+        "stdlib.h": "c",
+        "unistd.h": "c",
+        "semaphore.h": "c",
+        "typeinfo": "c",
+        "pthread.h": "c"
+    }
+}
