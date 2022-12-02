@@ -6,6 +6,7 @@
 int search(int key, int frame_items[], int frame_occupied)
 {
     for (int i = 0; i < frame_occupied; i++)
+        printf("comparing %i = %i", key,frame_items[i1])
         if (frame_items[i] == key)
             return 1;
     return 0;

@@ -3,127 +3,105 @@
 
 #define MAX 99999
 
-struct Page
-{
+struct Page {
     int *data;
     int size;
 };
 
-int hasItem(struct Page page, int item)
-{
-    for (int i = 0; i < page.size; i++)
-    {
-        printf("page.data[i] = %i, item = %i\n", page.data[i], item);
-        if (page.data[i] == item)
-        {
+
+int hasItem(struct Page page, int item) {
+    //Chceks if the page has the item
+    for (int i = 0; i < page.size; i++) {
+        //printf("%i - %i", page.data[i], item);
+        if (page.data[i] == item) {
             return 1;
+        }
+    }
+    return 0;
+
+}
+
+
+int isInMemory(struct Page *memory, int item, int numPages) {
+    for (int frameIndex = 0; frameIndex < numPages; frameIndex++) {
+        for (int itemIndex = 0; itemIndex < memory[frameIndex].size; itemIndex++) {
+            if (memory[frameIndex].data[itemIndex] == item)
+                return 1;
         }
     }
     return 0;
 }
 
-// predict funtion for optimal page replacement
-int predict(int ref_str[], struct Page frame_items[], int refStrLen, int index, int frame_occupied)
-{
-    // For each current occupant in frame item
-    // we try to find the frame item that will not be referenced in
-    // for the longest in future in the upcoming reference string
-    int result = -1, farthest = index;
-    for (int i = 0; i < frame_occupied; i++)
-    {
-        int j;
-        for (j = index; j < refStrLen; j++)
-        {
-            if (hasItem(frame_items[i], ref_str[j]))
-            {
-                if (j > farthest)
-                {
-                    farthest = j;
-                    result = i;
-                }
-                break;
-            }
-        }
 
-        // If we find a page that is never referenced in future,
-        // return it immediately as its the best
-        if (j == refStrLen)
-            return i;
+int addToFrame(struct Page *page, int item, int itemsPerPage) {
+    page->data[page->size] = item;
+    page->size++;
+    return page->size == itemsPerPage - 1 ? 1 : 0;
+}
+
+
+int predict(int *data, struct Page memory[], int _index, int maxAddress, int numPages) {
+    int furthestIndex = -1;
+    int distance[numPages];
+    for (int f = 0; f < numPages; ++f) {
+        distance[f] = -10;
     }
-
-    // If none of the frame items appear in reference string
-    // in the future then we return 0th index. Otherwise we return result
-    return (result == -1) ? 0 : result;
-}
-
-// bool search function for optimal page replacement
-int search(int key, struct Page frame_items[], int frame_occupied)
-{
-    for (int i = 0; i < frame_occupied; i++)
-        if (hasItem(frame_items[i], key))
-            return 1;
-    return 0;
-}
-
-// page replacement function for optimal page replacement
-void optimalPage(int ref_str[], int refStrLen, struct Page frame_items[], int max_frames, int page_size)
-{
-    // initially none of the frames are occupied
-    int frame_occupied = 0;
-    int page_faults = 0;
-    int hit = 0;
-
-    // Traverse through the reference string
-    for (int i = 0; i < refStrLen; i++)
-    {
-        // If the page is not present in the memory, bring it in
-        if (!search(ref_str[i], frame_items, page_size))
-        {
-            int added = 0;
-            for (int j = 0; j < max_frames; j++)
-            {
-                if (frame_items[j].size < page_size)
-                {
-                    frame_items[j].data[frame_items[j].size] = ref_str[i];
-                    frame_items[j].size++;
-                    added = 1;
-                    break;
-                }
+    for(int index = _index; index < maxAddress; index++){
+        for (int pageIndex = 0; pageIndex < numPages; pageIndex++) {
+            if(hasItem(memory[pageIndex], data[index]) == 1){
+                furthestIndex = pageIndex;
+                distance[pageIndex] = index;
             }
-            if (!added)
-            {
-                // Find the page that will not be used in the future
-                int j = predict(ref_str, frame_items, refStrLen, i + 1, frame_occupied);
-
-                struct Page newPage;
-                newPage.size = 1;
-                newPage.data = malloc(sizeof(int) * page_size);
-                newPage.data[0] = ref_str[i];
-                // Replace the page with the new page
-                frame_items[j] = newPage;
-            }
-
-            // Increment the page fault
-            page_faults++;
         }
-        else
-        {
-            // print
-            printf("Page %d already in memory\n", ref_str[i]);
-            hit++;
+    }
+    return furthestIndex;
+}
+
+void optimalPage(int *data, struct Page *memory_pages, int numPages, int pageSize) {
+    int misses = 0, hits = 0, fullPages = 0;
+
+    for (int addressIndex = 0; addressIndex < MAX; addressIndex++) {
+        if (addressIndex % 5000 == 0) {
+            printf("Progress %i/%i\n", addressIndex, MAX);
+            printf("Misses %i\n", misses);
+            fflush(stdout);
+        }
+
+        int currentItem = data[addressIndex];
+        if (isInMemory(memory_pages, currentItem, numPages) == 1) {
+            hits++;
+            continue;
+        }
+
+
+        if (fullPages < numPages) {
+            int full = addToFrame(&memory_pages[fullPages], currentItem, pageSize);
+            if (full == 1)
+                fullPages++;
+        } else {
+            int frameIndexToDelete = predict(data, memory_pages, addressIndex, MAX, numPages);
+            misses++;
+            //printf("Removing page %i\n", frameIndexToDelete);
+            fflush(stdout);
+            struct Page newPage;
+            newPage.data = (int *) malloc(pageSize * sizeof(int));
+            for (int q = 0; q < pageSize; ++q) {
+                newPage.data[q] = -1;
+            }
+            newPage.size = 1;
+            newPage.data[0] = currentItem;
+            memory_pages[frameIndexToDelete] = newPage;
         }
     }
 
-    // Print the number of page faults
-    printf("Number of page faults : %d\n", page_faults);
-    printf("Number of page hits : %d\n", hit);
+    printf("Misses: %i", misses);
+
+
 }
 
-int main(int argc, char *argv[])
-{
-    if (argc != 4)
-    {
-        printf("Usage: no_phys_pages page_size filename");
+int main(int argc, char *argv[]) {
+    if (argc != 4) {
+        printf("Usage: no_phys_pages page_size filename\n");
         return -1;
     }
     // Load file into int array
@@ -137,8 +115,7 @@ int main(int argc, char *argv[])
     FILE *fp = fopen(filename, "r");
     int array[MAX];
     int i = 0;
-    while (fscanf(fp, "%d", &array[i]))
-    {
+    while (fscanf(fp, "%d", &array[i])) {
         i++;
         if (i == MAX)
             break;
@@ -146,11 +123,13 @@ int main(int argc, char *argv[])
     fclose(fp);
     printf("Read %i memory references\n", i + 1);
     struct Page frame_items[no_phys_pages];
-    for (int i = 0; i < no_phys_pages; i++)
-    {
-        frame_items[i].data = (int *)malloc(page_size * sizeof(int));
+    for (int i = 0; i < no_phys_pages; i++) {
+        frame_items[i].data = (int *) malloc(page_size * sizeof(int));
+        for (int q = 0; q < page_size; ++q) {
+            frame_items[i].data[q] = -1;
+        }
         frame_items[i].size = 0;
     }
-    optimalPage(array, MAX, frame_items, no_phys_pages, page_size);
+    optimalPage(array, frame_items, no_phys_pages, page_size);
     return 0;
 }
