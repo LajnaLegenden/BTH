@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lajna/code/newNotes/dv1538/project/Graph.h
+utility
+-
+vector
+-
+map
+-
+queue
+-
+climits
+-
+fstream
+-
+list
+-
+iostream
+-
+string
+-
+sstream
+-
+cctype
+-
+algorithm
+-
+
+/home/lajna/code/newNotes/dv1538/project/main.cpp
+Graph.h
+/home/lajna/code/newNotes/dv1538/project/Graph.h
+iostream
+-
+queue
+-
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$/project">
+    <contentRoot DIR="$PROJECT_DIR$" />
+  </component>
+  <component name="UnattendedHostPersistenceState">
+    <option name="openedFilesInfos">
+      <list>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="93" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/project/README.md" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="329" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/project/src/Game.cpp" />
+        </OpenedFileInfo>
+      </list>
+    </option>
+  </component>
+</project>

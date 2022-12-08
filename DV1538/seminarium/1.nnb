@@ -1,0 +1,25 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "## Linjärsökning och binärsökning\n\n### Uppgifter: För varje påståenden A - D nedan avgör om det är sant eller ej\n\n- A. Linjärsökning kan vara snabbare än binärsökning vid sökning i en sorterad sekvens/array med minst 300 element\n    - Ja, men bara om det finns i början, ex. element 3\n- B. Linjärsökning kräver att sekvensen/arrayen är sorterad\n    - Nej, den kan köras ovavsätt\n- C. Om ett element som söks inte finns i sekvensen/arrayen kommer binärsökning alltid att vara snabbare med att inse detta\n    - Ja, om inte linjärsökning tar hansyn till att listan är sorterad\n- D. Om innehållet i en array är (indexering fr.o.m 0) 13  34  36  40  44  51  56  65   76   78   89  92 \n    - a) krävs 3 jämförelser för att hitta elementet 56 med binärsökning \n        - 3 st, Sann\n    - b) krävs 8 jämförelser för att hitta elementet 76 med linjärsökning\n        - 9 st, Falskt\n    - c) krävs 4 jämförelser för att hitta elementet 34 med binärsökning\n        - 4 st, Sann\n    - d) krävs 10 jämförelser för att inse att elementet 77 inte finns med linjärsökning\n        - Bara om linjärsökning inte tar hänsyn till sorteringen\n    - e) krävs 3 jämförelser för att inse att elementet 77 inte finns med binärsökning\n- E.  Vid binärsökning i en sekvensen/arrayen innehållande n element och krävs i värsta fallet k jämförelser. Om n blir fyra gånger så stort kommer det att krävas\n      k+4 jämförelser\n    -   Nej, det tar k+2, eftersom 4n kan halveras 2 ggr för att få n, vilket binärsökning gör\n\n## Tidskomplexitet\n\n### Förklaring\nFör:\n- O(n): Visa att det finns någon konstant framför n så att T(n) altid är mindre än c * n n > n<sub>1</sub>\n- Ω(n): Visa att det finns någon konstant framför n så att T(n) altid är större än c * n n > n<sub>1</sub>\n- Θ(n): Visa att det finns någon konstant framför n så att T(n) altid är mindre och större än c * n n > n<sub>1</sub>\n\n### Uppgifter\n \n- Vad betyder T(n) = O(f(n))?\n    - f(n)s värsta körtid\n- Vad betyder T(n) = Ω(f(n))?\n    - WTF\n- Vad betyder T(n) = Θ(f(n))?\n    - WTF\n- Vilket/vilka av alternativen nedan är sanna om f(n) = 3.6n2 + 45.8log2n och g(n) = 16n2 + 678 och h(n) = 54.7nlog2n + 23.8n + 79\n1. g(n) = O(nlog2n)\n    - Falskt, n^2 växer mkt snabbare\n2. g(n) = O(n3)\n    -n Ja, n^3 växer snabbare än n^2\n3. h(n) = O(nlog2n)\n    -   Sant\n4. h(n) = Ω(n)\n    - Sant, n är mindre än nlog2n\n5. f(n) = Ω(n2)\n    - Ja, n^2 * konstant blir mindre\n6. f(n) = Θ(n2)\n    - Ja, finns konstaner som gör både mindre och större\n\n- Visa att T(n) = n2 + 4n + 1 är O(n2)\n    - n^2 + 4n + 1 <= n^2 + 4n^2 + n^2 = 6n^2\n- Visa att T(n) = nlog2n + 12n + 65 är Ω(n)\n    - \n- Visa att T(n) = n3 + n = Θ(n3)\n\n\n\n\n- Vad är T(n) för följande pseudokod-avsnitt\nA)\n```\ni = 0\nres = 1\nwhile i<n\n    res = res * i\n    i = i + 1\nreturn res\n```\nB)\n```\nend = n * n\ni = 0\nres = 0\nwhile i < end\n    res = res + i\n    i++\nreturn res\n```\nC)\n```\nA är en array\nfor i = 0 to n - 1\n    index = i\n    for k = i+1 to n\n        if A[k] < A[index]\n            index = k\n            swap A[i] and A[index]\n```\n\n\n## Sorteringsalgoritmerna Insertionsort och Selectionsort \n \n### Insertionsort\n- Vilken är \"principen\"?\n    - Likt hur man sorterar kort, ta ut ett i taget, sen sätt in på rätt plats\n- Hur sorteras följande sekvenser? \n    - 60 40 70 30 80 10 50 90 40\n    - 90 80 70 60 50 40 30 20 10\n    - 10 20 40 30 60 50 70 80 90 \n- Hur många jämförelser utförs i ovan sekvenser vid sorteringen?\n- Vad innebär det för ett generellt värde n på antalet?\n- Vilken tidkomplexitet har insertionsort i värsta fallet?\n### Selectionsort\n- Vilken är \"principen\"?\n- Hur sorteras följande sekvenser? \n    - 60 40 70 30 80 10 50 90 40\n    - 90 80 70 60 50 40 30 20 10\n    - 10 20 40 30 60 50 70 80 90 \n- Hur många jämförelser utförs i ovan sekvenser vid sorteringen?\n- Vad innebär det för ett generellt antal n?\n- Vilken tidkomplexitet har selectionsort i värsta fallet?\n- Kan någon av de båda sorteringsalgoritmerna vara bättre(snabbare) än den andra vid sortering av array med samma innehåll? Motivera"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function main() {\n  let arr = [60, 40, 70, 30, 80, 10, 50, 90, 40];\n\n  //InsertionSort\n  for (i = 1; i < arr.length; i++) {\n    j = i;\n    while (j > 0 && arr[j] < arr[j - 1]) {\n      temp = arr[j];\n      arr[j] = arr[j - 1];\n      arr[j - 1] = temp;\n      j--;\n    }\n  }\n  return arr\n}\n\nconsole.log(main());\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(\"hi\")"
+            ],
+            "outputs": []
+        }
+    ]
+}

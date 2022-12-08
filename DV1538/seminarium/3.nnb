@@ -1,0 +1,78 @@
+{
+    "cells": [
+        {
+            "language": "typescript",
+            "source": [
+                "let arr = [2,5,2,86,4,23,56,64,3,3]"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let count = new Array(arr.length)\n\nfor(let i = 0; i < arr.length; i++) {\n    count[arr[i]]++\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "for (let i = 1; i < count.length; i++) {\n    count[i] += count[i - 1]\n}\n\nconsole.log(count)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[",
+                                "  <1 empty item>, NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN, NaN, NaN, NaN,",
+                                "  NaN,            NaN",
+                                "]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let b = new Array(arr.length).fill(0)\n\nfor(let i = arr.length - 1; i >= 0; i--) {\n    let index = --count[arr[i]]\n    b[index] = arr[i]\n}\n\nconsole.log(arr)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[",
+                                "   2,  5,  2, 86, 4,",
+                                "  23, 56, 64,  3, 3",
+                                "]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

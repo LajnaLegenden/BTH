@@ -1,0 +1,17 @@
+# Fdb version 3
+["pdflatex"] 1650715779 "/home/lajna/code/newNotes/ET1524/code/report.tex" "report.pdf" "report" 1650715779
+  "/home/lajna/code/newNotes/ET1524/code/report.tex" 1650715778 89 52561cbc267476f9705762d88cd484d5 ""
+  "/home/lajna/texLive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/home/lajna/texLive/2022/texmf-dist/tex/latex/base/report.cls" 1636758526 23203 8fbc410e29d3fd675970d5f9698c9c11 ""
+  "/home/lajna/texLive/2022/texmf-dist/tex/latex/base/size10.clo" 1636758526 8448 96f18c76bf608a36ee6fbf021ac1dd32 ""
+  "/home/lajna/texLive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1650483921 31067 89623bb5c412243bea4c601866f5e8c1 ""
+  "/home/lajna/texLive/2022/texmf-dist/web2c/texmf.cnf" 1646502317 40171 cdab547de63d26590bebb3baff566530 ""
+  "/home/lajna/texLive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1650564653 4410338 e8249646e88ce4c22364a97c569d7c00 ""
+  "/home/lajna/texLive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1650564665 2828634 1d65f87fa139ead7e8e2fa7daf765597 ""
+  "/home/lajna/texLive/2022/texmf.cnf" 1650564650 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
+  "report.aux" 1650715779 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "report.tex" 1650715778 89 52561cbc267476f9705762d88cd484d5 ""
+  (generated)
+  "report.aux"
+  "report.log"
+  "report.pdf"

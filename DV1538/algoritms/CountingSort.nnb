@@ -1,0 +1,75 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "## Utför counting sort på 12,15,2,10,1,7,2,15,7,9"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let arr = [12,15,2,10,1,7,2,15,7,9]"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Räkna elementen och skapa array med längden 0 - maxNum"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let countArr = new Array(16).fill(0)\n\nfor(let i = 0; i < arr.length; i++){\n    countArr[arr[i]]++\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Summera"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "for(let i = 1; i < countArr.length; i++){\n    countArr[i] += countArr[i-1]\n}"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[",
+                                "  1,  2,  2,  7,  7,",
+                                "  9, 10, 12, 15, 15",
+                                "]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Räkna array baklänges, ta bort en från räkne arrayn, sen sätt in"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let outArray = new Array(arr.length)\n\nfor(let i = arr.length - 1; i >= 0; i--){\n    let index = --countArr[arr[i]]\n    outArray[index] = arr[i]\n}\n\nconsole.log(outArray)"
+            ],
+            "outputs": []
+        }
+    ]
+}

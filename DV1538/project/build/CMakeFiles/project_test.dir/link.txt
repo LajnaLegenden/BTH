@@ -1,0 +1,1 @@
+/usr/bin/clang++ -g CMakeFiles/project_test.dir/GraphTest.cpp.o -o project_test 

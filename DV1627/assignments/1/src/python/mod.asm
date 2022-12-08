@@ -1,0 +1,7 @@
+JGT R1 R0 #4
+
+SUB R0 R0 R1
+JGT R0 R1 #-1
+JEQ R0 R1 #-2
+
+MOV R1 #0

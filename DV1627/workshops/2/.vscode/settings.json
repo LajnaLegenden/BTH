@@ -1,0 +1,11 @@
+{
+    "cmake.sourceDirectory": "${workspaceFolder}/.",
+    "files.associations": {
+        "typeinfo": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "new": "cpp",
+        "*.tcc": "cpp",
+        "algorithm": "cpp"
+    }
+}

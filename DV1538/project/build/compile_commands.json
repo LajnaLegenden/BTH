@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/lajna/code/newNotes/dv1538/project/build",
+  "command": "/usr/bin/clang++  -I/home/lajna/code/newNotes/dv1538/project/. -g -o CMakeFiles/project.dir/main.cpp.o -c /home/lajna/code/newNotes/dv1538/project/main.cpp",
+  "file": "/home/lajna/code/newNotes/dv1538/project/main.cpp"
+},
+{
+  "directory": "/home/lajna/code/newNotes/dv1538/project/build",
+  "command": "/usr/bin/clang++  -I/home/lajna/code/newNotes/dv1538/project/. -g -o CMakeFiles/project_test.dir/GraphTest.cpp.o -c /home/lajna/code/newNotes/dv1538/project/GraphTest.cpp",
+  "file": "/home/lajna/code/newNotes/dv1538/project/GraphTest.cpp"
+}
+]
