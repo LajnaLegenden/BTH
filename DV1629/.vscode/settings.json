@@ -6,5 +6,6 @@
         "semaphore.h": "c",
         "typeinfo": "c",
         "pthread.h": "c"
-    }
+    },
+    "cmake.sourceDirectory": "${workspaceFolder}/lab2_code_students/optimalcppv2"
 }

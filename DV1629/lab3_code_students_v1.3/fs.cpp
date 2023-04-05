@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <cstring>
 #include "fs.h"
 
 FS::FS()
@@ -27,8 +29,11 @@ FS::format()
     root.type = TYPE_DIR;
     root.size = 0;
     root.first_blk = 0;
+    //Write root to disk
+    this->disk.write(ROOT_BLOCK, (char*)&root);
     // Save fat
     this->fat[1] = FAT_EOF;
+    this->fat[0] = FAT_EOF;
 
     //Save this to disk
     return 0;
@@ -40,6 +45,48 @@ int
 FS::create(std::string filepath)
 {
     std::cout << "FS::create(" << filepath << ")\n";
+     // Find a free entry in the root directory
+    int free_entry_index = -1;
+    for (int i = 0; i < BLOCK_SIZE / sizeof(dir_entry); i++) {
+        dir_entry entry;
+        disk.read(1+ i, (char*)&entry);
+        if (entry.file_name[0] == '\0') {
+            free_entry_index = i;
+            break;
+        }
+    }
+    if (free_entry_index == -1) {
+        // No free entries in the root directory
+        return -1;
+    }
+
+    // Fill in the fields of the new dir_entry struct
+    dir_entry new_entry;
+    strcpy(new_entry.file_name, filepath.c_str());
+    new_entry.size = 0;
+    new_entry.type = 0;
+    new_entry.access_rights = READ + WRITE;
+
+    // Find a free block in the FAT and allocate it for the new file
+    int free_block_index = -1;
+    for (int i = 2; i < BLOCK_SIZE; i++) {
+        if (fat[i] == 0) {
+            free_block_index = i;
+            fat[i] = FAT_EOF;
+            break;
+        }
+    }
+    if (free_block_index == -1) {
+        // No free blocks in the file system
+        return-1;
+    }
+    new_entry.first_blk = free_block_index;
+
+    // Write the new dir_entry struct to the root directory
+    disk.write(ROOT_BLOCK + free_entry_index, (char*)&new_entry);
+
+    // Update the FAT on disk
+    disk.write(0, (char*)fat);
     return 0;
 }
 
@@ -56,6 +103,7 @@ int
 FS::ls()
 {
     std::cout << "FS::ls()\n";
+    
     return 0;
 }
 

@@ -51,7 +51,7 @@ int predict(const std::vector<int> &data, const std::vector<int> &mem, int curre
     int maxElementIndex = std::max_element(distance.begin(), distance.end()) - distance.begin();
     int minElementIndex = std::min_element(distance.begin(), distance.end()) - distance.begin();
     int minElement = *std::min_element(distance.begin(), distance.end());
-
+Ö_
     if (minElement == -1) {
         return minElementIndex;
     }
