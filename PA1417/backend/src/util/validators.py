@@ -10,6 +10,7 @@ def getValidator(collection_name: str):
     returns:
         validator -- dict in the format of a MongoDB collection validator
     """
+    print(f"Getting validator for {collection_name}")
     if collection_name not in validators:
         with open(f'./src/static/validators/{collection_name}.json', 'r') as f:
             validators[collection_name] = json.load(f)
