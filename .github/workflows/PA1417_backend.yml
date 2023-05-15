@@ -31,4 +31,3 @@ jobs:
     - name: Test with pytest
       run: |
         pytest PA1417/backend/test/usercontrollertests.py
-s
