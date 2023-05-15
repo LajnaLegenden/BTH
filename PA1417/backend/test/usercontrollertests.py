@@ -21,6 +21,12 @@ def test_get_user_by_email_with_valid_email():
     returned_user = uc.get_user_by_email(user['email'])
     assert returned_user == user
 
+def test_get_user_by_email_with_no_user():
+    mockDb = MockDao()
+    uc = UserController(dao=mockDb)
+    returned_user = uc.get_user_by_email("hejsanhoppsanb@gmail.com")
+    assert returned_user is None
+
 def test_get_user_by_email_with_more_than_one_entry(capsys):
     mockDb = MockDao()
     uc = UserController(dao=mockDb)
