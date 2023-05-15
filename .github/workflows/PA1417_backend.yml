@@ -30,4 +30,5 @@ jobs:
         if [ -f requirements.pip ]; then pip install -r requirements.pip; fi
     - name: Test with pytest
       run: |
-        pytest test/usercontrollertests.py
+        pytest PA1417/backend/test/usercontrollertests.py
+s
