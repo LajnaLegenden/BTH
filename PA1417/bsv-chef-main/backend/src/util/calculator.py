@@ -12,11 +12,11 @@ def calculate_readiness(receipe: dict, available_items: dict) -> float:
     individual_readiness = []
     for required_ingredient, required_amount in required_ingredients.items():
 
-        individual_readiness: float = 0
+        individual_readiness1: float = 0
         if required_ingredient in list(available_items.keys()):
             available_amount = available_items.get(required_ingredient)
-            individual_readiness = min(1, available_amount/required_amount)
-        individual_readiness.append(individual_readiness)
+            individual_readiness1 = min(1, available_amount/required_amount)
+        individual_readiness.append(individual_readiness1)
 
     overall_coverage: float = sum(
         individual_readiness)/len(individual_readiness)
