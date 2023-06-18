@@ -1,0 +1,1 @@
+My tests did not have any failing tests. But an error is a bug / misstake that the developer caused. A defect is non documented behaviour, something happens that should not, like that the updated pantry values are not corretly stored in the db, resulting in a data loss. Failure is when something does not happen in some enviorments, or runs slow

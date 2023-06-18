@@ -1,0 +1,6 @@
+This would be a non-critical system. This is since if the system is down or has an error, nothing bad will happen. This is a program that user will use as a QoL thing. An error might mean that they accedently buy more or less of a grocey item. If this was used in a comercial kitchen, it could be viewed as a buissnes critical application, but in this case, it sounds like a end user application.
+
+Users are not likley to depend on the system, so failure is not a big deal, more of an annoyance.
+
+Since this program is non critical, the tests and qualtiy checks do not need to be as thurrow. It does not need any backup systems, hot spares, mirrors. 
+User will also accept more errors, hacky workarounds and outages because its not a requirement in their lifes.

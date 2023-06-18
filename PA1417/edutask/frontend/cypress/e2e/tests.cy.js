@@ -8,6 +8,8 @@ describe('Req 8', () => {
     //viewport
     Cypress.config('viewportWidth', 1280)
     Cypress.config('viewportHeight', 720)
+
+    let id;
     //before all
     before(() => {
 
@@ -18,16 +20,19 @@ describe('Req 8', () => {
         email += "@gmail.com";
 
 
-        cy.visit('http://localhost:3000')
-        //click the second a tag
-        cy.get('a').eq(1).click()
-        cy.get('input[name="email"]').type(email)
-        //type fistname
-        cy.get('input[name="firstname"]').type("Max")
-        //type lastname
-        cy.get('input[name="lastname"]').type("Dahlgren")
-        //ckick 
-        cy.get('input[type="submit"]').click()
+        cy.request({
+            method: 'POST',
+            url: 'http://localhost:5000/users/create',
+            form: true,
+            body: {
+                "email": email,
+                "firstName": "Max",
+                "lastName": "Dahlgren"
+            }
+        }).then((response) => {
+            id = response.body._id.$oid
+            expect(response.status).to.eq(200)
+        })
     });
 
     //before each
@@ -42,6 +47,7 @@ describe('Req 8', () => {
     //Describe
     describe('create a task', () => {
         let title = "";
+        let taskId;
 
         //before 
         before(() => {
@@ -50,30 +56,35 @@ describe('Req 8', () => {
             }
         })
 
-        it('create a task with random title', () => {
-            //type anytthing in title
-            //GENERATE RANDOM STRING
+        it('SETUP: Create a task with random title', () => {
+            const data = new URLSearchParams();
+            data.append('title', title);
+            data.append('description', '(add a description here)');
+            data.append('userid', id);
+            data.append('url', "google.se");
+            data.append('todos', ['Watch video']);
+
+            // send a request to the server creating the new task
+            fetch('http://localhost:5000/tasks/create', {
+                method: 'post',
+                body: data
+            }).then(res => {
+                let json = res.json().then(json => {
+                    console.log(json)
+                    taskId = json[0]._id.$oid
+                });
+                expect(res.status).to.eq(200)
+            })
 
 
-            cy.get('input[name="title"]').type(title)
-            //type anything in url
-            cy.get('input[name="url"]').type("asdhjgasd")
-
-            //click submit
-            cy.get('input[type="submit"]').click()
-            //delay
-            cy.wait(1000)
-            //find the task in the container > container-element > title-overlay element
-            cy.get('.title-overlay').contains(title)
         })
 
-        //add todo to task
-        it('add todo to task', () => {
+
+        it('TEST: Add todo to task', () => {
             //click the task with the title
             cy.get('.title-overlay').contains(title).click()
             //type anything in todo
             cy.get('.inline-form > [type="text"]').type("testTask")
-
             //delay
             cy.wait(1000)
             //click submit
@@ -83,22 +94,23 @@ describe('Req 8', () => {
             cy.wait(1000)
             //find all li in todo-list and check if it contains the text
             cy.get('.todo-list > li').contains("testTask")
+        });
 
-        })
+
 
         //button is disabled when no todo text
-        it('button is disabled when no todo text', () => {
+        it('TEST: Button is disabled when no todo text', () => {
             //click the task with the title
             cy.get('.title-overlay').contains(title).click()
             //type anything in todo
-
+            //ensure that text field is empty
+            cy.get('.inline-form > [type="text"]').clear()
             cy.wait(1000)
-
             cy.get('.inline-form > [type="submit"]').should('be.disabled')
         });
 
         //test click todo item, should be marked as done and strikethrough
-        it('test click todo item, should be marked as done and strikethrough', () => {
+        it('TEST: Test click todo item, should be marked as done and strikethrough', () => {
             //click the task with the title
             cy.get('.title-overlay').contains(title).click()
             //type anything in todo
@@ -116,7 +128,7 @@ describe('Req 8', () => {
         });
 
         //test click todo item, should be marked as done and strikethrough
-        it('test click todo item, should NOT BE done anymore', () => {
+        it('TEST: Test click todo item, should NOT BE done anymore', () => {
             //click the task with the title
             cy.get('.title-overlay').contains(title).click()
             //type anything in todo
@@ -133,7 +145,7 @@ describe('Req 8', () => {
 
 
         //test remove todo item
-        describe('test remove todo item', () => {
+        describe('TEST: Test remove todo item', () => {
             let taskName = "";
 
             //before
@@ -172,4 +184,12 @@ describe('Req 8', () => {
 
     });
 
+    after(() => {
+        cy.request({
+            method: 'DELETE',
+            url: `http://localhost:5000/users/${id}`
+        }).then((response) => {
+            cy.log(response.body)
+        })
+    })
 });

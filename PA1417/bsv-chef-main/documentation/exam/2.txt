@@ -1,0 +1,14 @@
+The condition is readiness.
+
+The two methods for selecting the test value is boundry analysis, and equivalence partitioning.
+
+For boundry analysis, we can test some edge values. For example for this example, we can test 0 (no ingredients available), 0.1 (few ingredients available), 1 (all ingredients available) and 0.9 (almost all ingredients available)
+
+For equivalence partitioning, we can select a few ranges to test, like no,low, medium,high,full readiness. Could look something like:
+None: 0
+Low: 0.01 - 0.3
+Medium: 0.31 - 0.6
+High: 0.61 - 0.99
+Full: 1
+
+For this example equivalence partitioning is the better option, since it allows to test some values, representing how the user most likley use the system. It gives us 5 values to test instead for example 100 (0.00 -> 1.00)
