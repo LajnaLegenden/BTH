@@ -191,5 +191,13 @@ describe('Req 8', () => {
         }).then((response) => {
             cy.log(response.body)
         })
+        cy.request({
+            method: 'DELETE',
+            url: `http://localhost:5000/tasks/${taskId}`
+        }).then((response) => {
+            cy.log(response.body)
+        })
+
+        
     })
 });
