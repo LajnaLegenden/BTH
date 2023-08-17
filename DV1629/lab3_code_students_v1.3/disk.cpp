@@ -32,7 +32,7 @@ Disk::disk_file_exists (const std::string& name) {
 
 // writes one block to the disk
 int
-Disk::write(unsigned block_no, char *blk)
+Disk::write(unsigned block_no, uint8_t *blk)
 {
     if (DEBUG)
         std::cout << "Disk::write(" << block_no << ")\n";
@@ -43,14 +43,14 @@ Disk::write(unsigned block_no, char *blk)
     }
     unsigned offset = block_no * BLOCK_SIZE;
     diskfile.seekp(offset, std::ios_base::beg);
-    diskfile.write(blk, BLOCK_SIZE);
+    diskfile.write((char*)blk, BLOCK_SIZE);
     diskfile.flush();
     return 0;
 }
 
 // reads one block from the disk
 int
-Disk::read(unsigned block_no, char *blk)
+Disk::read(unsigned block_no, uint8_t *blk)
 {
     if (DEBUG)
         std::cout << "Disk::read(" << block_no << ")\n";
@@ -61,6 +61,6 @@ Disk::read(unsigned block_no, char *blk)
     }
     unsigned offset = block_no * BLOCK_SIZE;
     diskfile.seekg(offset, std::ios_base::beg);
-    diskfile.read(blk, BLOCK_SIZE);
+    diskfile.read((char*)blk, BLOCK_SIZE);
     return 0;
 }

@@ -10,6 +10,7 @@ describe('Req 8', () => {
     Cypress.config('viewportHeight', 720)
 
     let id;
+    let taskId;
     //before all
     before(() => {
 
@@ -47,7 +48,6 @@ describe('Req 8', () => {
     //Describe
     describe('create a task', () => {
         let title = "";
-        let taskId;
 
         //before 
         before(() => {

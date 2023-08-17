@@ -1,0 +1,180 @@
+65
+113
+(0) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":-6084450011659981436,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/build/CMakeFiles/3.25.1/CompilerIdCXX/CMakeCXXCompilerId.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/build/CMakeFiles/3.25.1/CompilerIdCXX/CMakeCXXCompilerId.cpp",[149,155,146,117,68,89,74,194]]},"PredefinedMacros":[["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":["SIMULATE_VERSION_MAJOR","__clang_major__","__cplusplus","__clang_minor__","COMPILER_VERSION","__clang_patchlevel__","COMPILER_VERSION_TWEAK","__QNXNTO__","COMPILER_VERSION_INTERNAL","SIMULATE_ID"]}
+(3) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/home/lajna/.cache/JetBrains/Fleet/language_server/jbclangd/include/stddef.h":["/home/lajna/.cache/JetBrains/Fleet/language_server/jbclangd/include/stddef.h",[19,194,48,184,1,84,210,211]]},"PredefinedMacros":[],"UsedMacros":["__cplusplus","__has_feature","__SIZE_TYPE__"]}
+(4) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types/clock_t.h":["/usr/include/x86_64-linux-gnu/bits/types/clock_t.h",[96,223,117,118,254,5,242,31]]},"PredefinedMacros":[],"UsedMacros":[]}
+(6) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types.h":["/usr/include/x86_64-linux-gnu/bits/types.h",[152,184,5,4,115,166,207,156]]},"PredefinedMacros":[],"UsedMacros":["__BLKCNT64_T_TYPE","__SYSCALL_SLONG_TYPE","__CLOCKID_T_TYPE","__FSBLKCNT64_T_TYPE","__SUSECONDS_T_TYPE","__DADDR_T_TYPE","__RLIM_T_TYPE","__FSFILCNT64_T_TYPE","__INO_T_TYPE","__ID_T_TYPE","__NLINK_T_TYPE","__FSID_T_TYPE","__KEY_T_TYPE","__SUSECONDS64_T_TYPE","__FSBLKCNT_T_TYPE","__OFF64_T_TYPE","__FSWORD_T_TYPE","__TIME_T_TYPE","__USECONDS_T_TYPE","__UID_T_TYPE","__SSIZE_T_TYPE","__RLIM64_T_TYPE","__OFF_T_TYPE","__GID_T_TYPE","__TIMESIZE","__FSFILCNT_T_TYPE","__BLKCNT_T_TYPE","__MODE_T_TYPE","__DEV_T_TYPE","__PID_T_TYPE","__WORDSIZE","__CLOCK_T_TYPE","__SYSCALL_ULONG_TYPE","__TIMER_T_TYPE","__BLKSIZE_T_TYPE","__INO64_T_TYPE"]}
+(8) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/gnu/stubs-64.h":["/usr/include/x86_64-linux-gnu/gnu/stubs-64.h",[175,227,156,44,55,242,227,149]]},"PredefinedMacros":[],"UsedMacros":["_LIBC"]}
+(17) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/endian.h":["/usr/include/endian.h",[136,68,35,173,143,49,10,37]]},"PredefinedMacros":[],"UsedMacros":["__LITTLE_ENDIAN","__USE_MISC","__PDP_ENDIAN","__BIG_ENDIAN","__BYTE_ORDER"]}
+(18) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/sys/types.h":["/usr/include/x86_64-linux-gnu/sys/types.h",[47,94,129,69,2,28,149,2]]},"PredefinedMacros":[],"UsedMacros":["__USE_LARGEFILE64","__BEGIN_DECLS","__pid_t_defined","__USE_FILE_OFFSET64","__uid_t_defined","__blkcnt_t_defined","__suseconds_t_defined","__nlink_t_defined","__GNUC_MINOR__","__END_DECLS","__ino_t_defined","__mode_t_defined","__GNUC_PREREQ","__dev_t_defined","__gid_t_defined","__fsfilcnt_t_defined","__fsblkcnt_t_defined","__ssize_t_defined","__USE_XOPEN","__useconds_t_defined","__daddr_t_defined","__USE_MISC","__u_char_defined","__off_t_defined","__GNUC__"]}
+(25) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h":["/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h",[46,185,115,166,212,200,99,54]]},"PredefinedMacros":[],"UsedMacros":["__USE_TIME_BITS64"]}
+(28) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/wordsize.h":["/usr/include/x86_64-linux-gnu/bits/wordsize.h",[19,36,62,167,66,35,251,82]]},"PredefinedMacros":[],"UsedMacros":["__x86_64__"]}
+(36) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h":["/usr/include/x86_64-linux-gnu/bits/types/sigset_t.h",[231,139,197,24,221,101,107,130]]},"PredefinedMacros":[],"UsedMacros":[]}
+(47) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/linux/close_range.h":["/usr/include/linux/close_range.h",[99,109,59,26,67,3,47,192]]},"PredefinedMacros":[],"UsedMacros":[]}
+(50) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":1716135407942316256,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script4.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script4.cpp",[213,73,6,217,132,183,195,42]]},"PredefinedMacros":[["TEST_SCRIPT4",""],["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":["O_RDONLY"]}
+(51) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/select.h":["/usr/include/x86_64-linux-gnu/bits/select.h",[115,254,5,227,175,85,222,16]]},"PredefinedMacros":[],"UsedMacros":["_SYS_SELECT_H"]}
+(54) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/features-time64.h":["/usr/include/features-time64.h",[229,243,203,56,75,21,88,187]]},"PredefinedMacros":[],"UsedMacros":[]}
+(59) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":1716135407942316256,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script5.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script5.cpp",[168,233,17,2,139,14,213,248]]},"PredefinedMacros":[["TEST_SCRIPT5",""],["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":["O_RDONLY"]}
+(70) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/getopt_core.h":["/usr/include/x86_64-linux-gnu/bits/getopt_core.h",[180,19,18,236,157,203,131,193]]},"PredefinedMacros":[],"UsedMacros":["__attribute_nonnull__","__BEGIN_DECLS","__END_DECLS","__THROW","__nonnull"]}
+(75) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/stat.h":["/usr/include/x86_64-linux-gnu/bits/stat.h",[27,16,121,98,59,4,220,186]]},"PredefinedMacros":[],"UsedMacros":["_BITS_STAT_H","__USE_ATFILE"]}
+(100) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types/time_t.h":["/usr/include/x86_64-linux-gnu/bits/types/time_t.h",[255,136,32,232,26,177,117,184]]},"PredefinedMacros":[],"UsedMacros":["__USE_TIME_BITS64"]}
+(101) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/features.h":["/usr/include/features.h",[123,91,158,183,106,254,205,43]]},"PredefinedMacros":[],"UsedMacros":["_LOOSE_KERNEL_NAMES","_SYS_CDEFS_H","__GNUC_MINOR__","__clang_minor__","__clang_major__","__ASSEMBLER__","__cplusplus","__USE_FORTIFY_LEVEL","__GNUC__","_GNU_SOURCE"]}
+(107) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":1716135407942316256,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script2.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script2.cpp",[15,82,128,139,197,96,11,209]]},"PredefinedMacros":[["TEST_SCRIPT2",""],["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":["O_RDONLY"]}
+(108) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/endian.h":["/usr/include/x86_64-linux-gnu/bits/endian.h",[48,88,30,110,196,15,99,241]]},"PredefinedMacros":[],"UsedMacros":["__FLOAT_WORD_ORDER","__BYTE_ORDER"]}
+(130) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h":["/usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h",[90,229,128,235,157,251,59,57]]},"PredefinedMacros":[],"UsedMacros":[]}
+(140) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h":["/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h",[223,113,125,224,177,167,16,247]]},"PredefinedMacros":[],"UsedMacros":["__ONCE_ALIGNMENT","__LOCK_ALIGNMENT"]}
+(150) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/getopt_posix.h":["/usr/include/x86_64-linux-gnu/bits/getopt_posix.h",[166,122,53,114,13,217,203,75]]},"PredefinedMacros":[],"UsedMacros":["__BEGIN_DECLS","__END_DECLS"]}
+(157) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/endianness.h":["/usr/include/x86_64-linux-gnu/bits/endianness.h",[62,190,205,238,151,126,130,198]]},"PredefinedMacros":[],"UsedMacros":["__LITTLE_ENDIAN","_BITS_ENDIAN_H"]}
+(183) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":1716135407942316256,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script3.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script3.cpp",[80,125,155,194,116,226,240,115]]},"PredefinedMacros":[["TEST_SCRIPT3",""],["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":["O_RDONLY"]}
+(184) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/stdint-intn.h":["/usr/include/x86_64-linux-gnu/bits/stdint-intn.h",[133,35,27,174,119,58,108,218]]},"PredefinedMacros":[],"UsedMacros":[]}
+(185) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":0,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script.h":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script.h",[148,105,26,147,164,60,175,91]]},"PredefinedMacros":[],"UsedMacros":["__SHELL_H__"]}
+(186) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":1716135407942316256,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp",[220,209,242,81,141,5,238,147]]},"PredefinedMacros":[["TEST_SCRIPT5",""],["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":["BLOCK_SIZE","DEBUG","DISKNAME"]}
+(187) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/sys/select.h":["/usr/include/x86_64-linux-gnu/sys/select.h",[19,47,146,58,9,14,171,241]]},"PredefinedMacros":[],"UsedMacros":["__FD_CLR","__BEGIN_DECLS","__FD_ZERO","__FD_ISSET","__USE_XOPEN2K","__FD_SET","__USE_XOPEN","__USE_TIME_BITS64","__FD_SETSIZE","__suseconds_t_defined","__USE_MISC","__END_DECLS","__USE_FORTIFY_LEVEL"]}
+(188) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/uintn-identity.h":["/usr/include/x86_64-linux-gnu/bits/uintn-identity.h",[131,221,82,145,220,58,187,79]]},"PredefinedMacros":[],"UsedMacros":["_BITS_UINTN_IDENTITY_H"]}
+(189) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types/timer_t.h":["/usr/include/x86_64-linux-gnu/bits/types/timer_t.h",[224,33,56,176,46,165,28,139]]},"PredefinedMacros":[],"UsedMacros":[]}
+(190) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h":["/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h",[70,128,148,17,166,79,227,8]]},"PredefinedMacros":[],"UsedMacros":[]}
+(191) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/unistd_ext.h":["/usr/include/x86_64-linux-gnu/bits/unistd_ext.h",[68,59,149,216,7,176,3,168]]},"PredefinedMacros":[],"UsedMacros":["CLOSE_RANGE_CLOEXEC","__USE_GNU","__has_include","__THROW","CLOSE_RANGE_UNSHARE","_UNISTD_H"]}
+(192) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/byteswap.h":["/usr/include/x86_64-linux-gnu/bits/byteswap.h",[42,143,233,113,60,60,192,169]]},"PredefinedMacros":[],"UsedMacros":["__GNUC_MINOR__","__GNUC_PREREQ","__GNUC__","_BITS_BYTESWAP_H"]}
+(193) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/unistd.h":["/usr/include/unistd.h",[179,198,159,91,136,9,21,43]]},"PredefinedMacros":[],"UsedMacros":["__USE_LARGEFILE64","__BEGIN_DECLS","__pid_t_defined","__attribute_nonnull__","__USE_FILE_OFFSET64","__uid_t_defined","__nonnull","__USE_POSIX199506","__THROWNL","__fortified_attr_access","__attr_access","_STDIO_H","__END_DECLS","__USE_FORTIFY_LEVEL","__socklen_t_defined","__wur","__gid_t_defined","__USE_XOPEN2K8","__ssize_t_defined","__USE_XOPEN2K","__USE_XOPEN","__useconds_t_defined","__attribute_deprecated__","__intptr_t_defined","__USE_GNU","__USE_MISC","__THROW","__USE_POSIX2","__USE_ATFILE","__off_t_defined"]}
+(194) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h":["/usr/include/x86_64-linux-gnu/bits/fcntl-linux.h",[229,177,126,69,26,225,107,30]]},"PredefinedMacros":[],"UsedMacros":["O_CREAT","__USE_LARGEFILE64","__BEGIN_DECLS","O_APPEND","O_NDELAY","__USE_FILE_OFFSET64","O_EXCL","__F_SETOWN_EX","F_GETLK","__F_SETOWN","__O_LARGEFILE","__END_DECLS","__O_NOFOLLOW","__O_TMPFILE","_FCNTL_H","__O_NOATIME","__O_PATH","F_RDLCK","__USE_XOPEN2K8","O_TRUNC","__USE_XOPEN2K","__O_CLOEXEC","O_NOCTTY","O_SYNC","__O_DIRECTORY","__USE_GNU","__O_DIRECT","__USE_MISC","__POSIX_FADV_DONTNEED","F_EXLCK","O_NONBLOCK","__THROW","__F_SETSIG","__O_DSYNC","F_GETLK64","__USE_ATFILE","O_ASYNC"]}
+(195) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":1716135407942316256,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script1.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script1.cpp",[115,38,121,51,33,46,127,31]]},"PredefinedMacros":[["TEST_SCRIPT1",""],["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":["BLOCK_SIZE","O_RDONLY"]}
+(196) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h":["/usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h",[79,110,216,164,220,124,57,166]]},"PredefinedMacros":[],"UsedMacros":[]}
+(197) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/struct_stat.h":["/usr/include/x86_64-linux-gnu/bits/struct_stat.h",[43,255,81,172,7,22,81,215]]},"PredefinedMacros":[],"UsedMacros":["__USE_LARGEFILE64","__USE_XOPEN2K8","_BITS_STRUCT_STAT_H","__USE_TIME_BITS64","__x86_64__"]}
+(198) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/environments.h":["/usr/include/x86_64-linux-gnu/bits/environments.h",[68,38,36,151,52,240,235,54]]},"PredefinedMacros":[],"UsedMacros":["__WORDSIZE","_UNISTD_H"]}
+(199) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h":["/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h",[130,145,177,150,120,183,37,163]]},"PredefinedMacros":[],"UsedMacros":["__WORDSIZE","__x86_64__"]}
+(200) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/struct_mutex.h":["/usr/include/x86_64-linux-gnu/bits/struct_mutex.h",[172,161,22,73,52,215,161,123]]},"PredefinedMacros":[],"UsedMacros":["__x86_64__"]}
+(201) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":1716135407942316256,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp",[141,222,115,170,150,117,57,204]]},"PredefinedMacros":[["TEST_SCRIPT5",""],["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":[]}
+(202) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":1716135407942316256,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp",[242,111,57,60,121,124,211,241]]},"PredefinedMacros":[["TEST_SCRIPT5",""],["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":["BLOCK_SIZE","FAT_EOF","FAT_BLOCK","TYPE_FILE","FAT_FREE","EXECUTE","WRITE","ROOT_BLOCK","TYPE_DIR","READ"]}
+(203) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/posix_opt.h":["/usr/include/x86_64-linux-gnu/bits/posix_opt.h",[121,120,11,162,194,158,234,57]]},"PredefinedMacros":[],"UsedMacros":["__USE_XOPEN2K8"]}
+(204) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/linux/falloc.h":["/usr/include/linux/falloc.h",[94,236,148,113,161,234,105,187]]},"PredefinedMacros":[],"UsedMacros":[]}
+(205) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/gnu/stubs.h":["/usr/include/x86_64-linux-gnu/gnu/stubs.h",[68,120,140,210,149,213,213,117]]},"PredefinedMacros":[],"UsedMacros":[]}
+(206) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":0,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.h":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.h",[169,61,248,87,116,77,119,234]]},"PredefinedMacros":[],"UsedMacros":["BLOCK_SIZE","__FS_H__"]}
+(207) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/sys/cdefs.h":["/usr/include/x86_64-linux-gnu/sys/cdefs.h",[170,50,137,32,133,121,252,7]]},"PredefinedMacros":[],"UsedMacros":["__GNUC__","__attribute_nonnull__","__cplusplus","__clang_minor__","__returns_nonnull","__has_builtin","__has_attribute","__nonnull","__has_extension","__wur","__glibc_clang_prereq","__clang_major__","__GNUC_MINOR__","_FEATURES_H","_Pragma","__SIZE_TYPE__","__USE_FORTIFY_LEVEL","__USER_LABEL_PREFIX__","__GNULIB_CDEFS","__GNUC_PREREQ","__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI"]}
+(208) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h":["/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h",[179,15,246,133,248,75,12,238]]},"PredefinedMacros":[],"UsedMacros":["__WORDSIZE","__TIMESIZE","__SYSCALL_WORDSIZE","__USE_TIME_BITS64"]}
+(209) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":0,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/shell.h":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/shell.h",[148,105,26,147,164,60,175,91]]},"PredefinedMacros":[],"UsedMacros":["__SHELL_H__"]}
+(210) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/long-double.h":["/usr/include/x86_64-linux-gnu/bits/long-double.h",[169,135,200,210,190,18,219,229]]},"PredefinedMacros":[],"UsedMacros":[]}
+(211) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/stdc-predef.h":["/usr/include/stdc-predef.h",[45,200,203,15,112,44,40,198]]},"PredefinedMacros":[],"UsedMacros":["__GCC_IEC_559_COMPLEX","__GCC_IEC_559"]}
+(212) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h":["/usr/include/x86_64-linux-gnu/bits/pthreadtypes.h",[220,48,209,9,76,154,92,153]]},"PredefinedMacros":[],"UsedMacros":["__SIZEOF_PTHREAD_BARRIER_T","__SIZEOF_PTHREAD_CONDATTR_T","__SIZEOF_PTHREAD_RWLOCKATTR_T","__SIZEOF_PTHREAD_MUTEXATTR_T","__SIZEOF_PTHREAD_BARRIERATTR_T","__SIZEOF_PTHREAD_RWLOCK_T","__have_pthread_attr_t","__USE_XOPEN2K","__ONCE_ALIGNMENT","__SIZEOF_PTHREAD_ATTR_T","__SIZEOF_PTHREAD_MUTEX_T","__SIZEOF_PTHREAD_COND_T"]}
+(213) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/time64.h":["/usr/include/x86_64-linux-gnu/bits/time64.h",[22,108,246,54,252,35,196,207]]},"PredefinedMacros":[],"UsedMacros":["__WORDSIZE","_BITS_TIME64_H","_BITS_TYPES_H","__TIMESIZE","__TIME_T_TYPE"]}
+(214) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/fcntl.h":["/usr/include/fcntl.h",[189,68,61,230,117,189,172,229]]},"PredefinedMacros":[],"UsedMacros":["O_CREAT","__USE_LARGEFILE64","__BEGIN_DECLS","__off_t_defined","__attribute_nonnull__","__pid_t_defined","__USE_FILE_OFFSET64","__S_IFDIR","__S_ISVTX","__S_IREAD","__S_IFLNK","__USE_TIME_BITS64","__nonnull","__S_IFMT","__END_DECLS","__O_TMPFILE","__S_IFSOCK","__USE_FORTIFY_LEVEL","__mode_t_defined","__USE_XOPEN2K8","__S_IFREG","__USE_XOPEN2K","R_OK","__S_IFIFO","__S_IFCHR","__S_ISGID","__USE_MISC","__S_IWRITE","__THROW","__S_IEXEC","__S_IFBLK","__USE_ATFILE","__S_ISUID"]}
+(215) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/confname.h":["/usr/include/x86_64-linux-gnu/bits/confname.h",[40,152,8,122,42,18,200,212]]},"PredefinedMacros":[],"UsedMacros":["_UNISTD_H"]}
+(217) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/typesizes.h":["/usr/include/x86_64-linux-gnu/bits/typesizes.h",[77,234,225,17,155,237,189,157]]},"PredefinedMacros":[],"UsedMacros":["__U32_TYPE","__SWORD_TYPE","__S32_TYPE","_BITS_TYPESIZES_H","__ULONGWORD_TYPE","_BITS_TYPES_H","__SLONGWORD_TYPE","__SQUAD_TYPE","__UQUAD_TYPE","__x86_64__"]}
+(218) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/fcntl.h":["/usr/include/x86_64-linux-gnu/bits/fcntl.h",[225,85,192,0,138,213,211,77]]},"PredefinedMacros":[],"UsedMacros":["__USE_LARGEFILE64","__USE_FILE_OFFSET64","_FCNTL_H","__x86_64__"]}
+(219) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":1716135407942316256,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/shell.cpp":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/shell.cpp",[23,35,30,173,170,126,119,100]]},"PredefinedMacros":[["__GCC_HAVE_DWARF2_CFI_ASM","1"]],"UsedMacros":["DEBUG"]}
+(222) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h":["/usr/include/x86_64-linux-gnu/bits/struct_rwlock.h",[104,201,167,177,173,177,145,129]]},"PredefinedMacros":[],"UsedMacros":["__x86_64__","__ILP32__"]}
+(224) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/timesize.h":["/usr/include/x86_64-linux-gnu/bits/timesize.h",[107,133,114,118,126,74,3,109]]},"PredefinedMacros":[],"UsedMacros":["__WORDSIZE"]}
+(225) {"HasHeaderGuard":true,"IsInclFromCL":false,"IsSystemHeader":true,"LangOptsHash":0,"Paths":{"/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h":["/usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h",[48,166,160,253,174,183,188,161]]},"PredefinedMacros":[],"UsedMacros":[]}
+(226) {"HasHeaderGuard":false,"IsInclFromCL":false,"IsSystemHeader":false,"LangOptsHash":0,"Paths":{"/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.h":["/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.h",[133,27,54,209,238,7,21,5]]},"PredefinedMacros":[],"UsedMacros":["__DISK_H__"]}
+(50, 18) {"Ranges":[{"Length":22,"Offset":715}],"Roots":[50]}
+(50, 206) {"Ranges":[{"Length":15,"Offset":785}],"Roots":[50]}
+(50, 214) {"Ranges":[{"Length":18,"Offset":739}],"Roots":[50]}
+(50, 185) {"Ranges":[{"Length":24,"Offset":759}],"Roots":[50]}
+(195, 185) {"Ranges":[{"Length":24,"Offset":761}],"Roots":[195]}
+(195, 206) {"Ranges":[{"Length":15,"Offset":787}],"Roots":[195]}
+(183, 193) {"Ranges":[{"Length":19,"Offset":694}],"Roots":[183]}
+(183, 206) {"Ranges":[{"Length":15,"Offset":785}],"Roots":[183]}
+(195, 214) {"Ranges":[{"Length":18,"Offset":741}],"Roots":[195]}
+(183, 185) {"Ranges":[{"Length":24,"Offset":759}],"Roots":[183]}
+(183, 18) {"Ranges":[{"Length":22,"Offset":715}],"Roots":[183]}
+(183, 214) {"Ranges":[{"Length":18,"Offset":739}],"Roots":[183]}
+(107, 18) {"Ranges":[{"Length":22,"Offset":715}],"Roots":[107]}
+(107, 193) {"Ranges":[{"Length":19,"Offset":694}],"Roots":[107]}
+(214, 75) {"Ranges":[{"Length":23,"Offset":2343}],"Roots":[195,107,50,183,59]}
+(214, 208) {"Ranges":[{"Length":40,"Offset":2245}],"Roots":[195,107,50,183,59]}
+(107, 214) {"Ranges":[{"Length":18,"Offset":739}],"Roots":[107]}
+(59, 214) {"Ranges":[{"Length":18,"Offset":163}],"Roots":[59]}
+(195, 18) {"Ranges":[{"Length":22,"Offset":717}],"Roots":[195]}
+(59, 193) {"Ranges":[{"Length":19,"Offset":118}],"Roots":[59]}
+(59, 18) {"Ranges":[{"Length":22,"Offset":139}],"Roots":[59]}
+(107, 185) {"Ranges":[{"Length":24,"Offset":759}],"Roots":[107]}
+(107, 206) {"Ranges":[{"Length":15,"Offset":785}],"Roots":[107]}
+(195, 193) {"Ranges":[{"Length":19,"Offset":696}],"Roots":[195]}
+(214, 6) {"Ranges":[{"Length":23,"Offset":1044}],"Roots":[195,107,50,183,59]}
+(185, 206) {"Ranges":[{"Length":15,"Offset":21}],"Roots":[195,107,50,183,59]}
+(214, 218) {"Ranges":[{"Length":23,"Offset":1176}],"Roots":[195,107,50,183,59]}
+(214, 101) {"Ranges":[{"Length":21,"Offset":892}],"Roots":[195,107,50,183,59]}
+(194, 196) {"Ranges":[{"Length":37,"Offset":1355}],"Roots":[195,107,50,183,59]}
+(59, 206) {"Ranges":[{"Length":15,"Offset":209}],"Roots":[59]}
+(59, 185) {"Ranges":[{"Length":24,"Offset":183}],"Roots":[59]}
+(218, 194) {"Ranges":[{"Length":29,"Offset":2216}],"Roots":[195,107,50,183,59]}
+(75, 197) {"Ranges":[{"Length":29,"Offset":963}],"Roots":[195,107,50,183,59]}
+(194, 204) {"Ranges":[{"Length":26,"Offset":11575}],"Roots":[195,107,50,183,59]}
+(196, 3) {"Ranges":[{"Length":19,"Offset":887}],"Roots":[195,107,50,183,59]}
+(18, 212) {"Ranges":[{"Length":31,"Offset":5635}],"Roots":[195,107,50,183,59]}
+(50, 193) {"Ranges":[{"Length":19,"Offset":694}],"Roots":[50]}
+(18, 184) {"Ranges":[{"Length":29,"Offset":3495}],"Roots":[195,107,50,183,59]}
+(18, 187) {"Ranges":[{"Length":24,"Offset":4116}],"Roots":[195,107,50,183,59]}
+(18, 17) {"Ranges":[{"Length":20,"Offset":4028}],"Roots":[195,107,50,183,59]}
+(18, 4) {"Ranges":[{"Length":32,"Offset":2845}],"Roots":[195,107,50,183,59]}
+(18, 100) {"Ranges":[{"Length":30,"Offset":2919}],"Roots":[195,107,50,183,59]}
+(18, 189) {"Ranges":[{"Length":31,"Offset":2950}],"Roots":[195,107,50,183,59]}
+(18, 190) {"Ranges":[{"Length":33,"Offset":2885}],"Roots":[195,107,50,183,59]}
+(18, 3) {"Ranges":[{"Length":19,"Offset":3240}],"Roots":[195,107,50,183,59]}
+(150, 70) {"Ranges":[{"Length":29,"Offset":1060}],"Roots":[195,107,50,183,59]}
+(6, 213) {"Ranges":[{"Length":24,"Offset":5219}],"Roots":[195,107,50,183,59]}
+(101, 207) {"Ranges":[{"Length":24,"Offset":16963}],"Roots":[195,107,50,183,59]}
+(101, 205) {"Ranges":[{"Length":22,"Offset":17810}],"Roots":[195,107,50,183,59]}
+(6, 224) {"Ranges":[{"Length":26,"Offset":1026}],"Roots":[195,107,50,183,59]}
+(198, 28) {"Ranges":[{"Length":26,"Offset":884}],"Roots":[195,107,50,183,59]}
+(6, 101) {"Ranges":[{"Length":21,"Offset":977}],"Roots":[195,107,50,183,59]}
+(6, 28) {"Ranges":[{"Length":26,"Offset":999}],"Roots":[195,107,50,183,59]}
+(193, 215) {"Ranges":[{"Length":26,"Offset":23348}],"Roots":[195,107,50,183,59]}
+(193, 3) {"Ranges":[{"Length":19,"Offset":8985}],"Roots":[195,107,50,183,59]}
+(193, 150) {"Ranges":[{"Length":31,"Offset":33527}],"Roots":[195,107,50,183,59]}
+(193, 101) {"Ranges":[{"Length":21,"Offset":892}],"Roots":[195,107,50,183,59]}
+(193, 6) {"Ranges":[{"Length":23,"Offset":8830}],"Roots":[195,107,50,183,59]}
+(191, 47) {"Ranges":[{"Length":32,"Offset":1670}],"Roots":[195,107,50,183,59]}
+(193, 198) {"Ranges":[{"Length":31,"Offset":8547}],"Roots":[195,107,50,183,59]}
+(6, 217) {"Ranges":[{"Length":27,"Offset":5157}],"Roots":[195,107,50,183,59]}
+(193, 203) {"Ranges":[{"Length":27,"Offset":8416}],"Roots":[195,107,50,183,59]}
+(193, 191) {"Ranges":[{"Length":28,"Offset":44901}],"Roots":[195,107,50,183,59]}
+(190, 6) {"Ranges":[{"Length":23,"Offset":59}],"Roots":[195,107,50,183,59]}
+(4, 6) {"Ranges":[{"Length":23,"Offset":55}],"Roots":[195,107,50,183,59]}
+(140, 130) {"Ranges":[{"Length":37,"Offset":1942}],"Roots":[195,107,50,183,59]}
+(54, 224) {"Ranges":[{"Length":26,"Offset":937}],"Roots":[195,107,50,183,59]}
+(140, 199) {"Ranges":[{"Length":35,"Offset":1905}],"Roots":[195,107,50,183,59]}
+(208, 108) {"Ranges":[{"Length":24,"Offset":136}],"Roots":[195,107,50,183,59]}
+(205, 8) {"Ranges":[{"Length":26,"Offset":271}],"Roots":[195,107,50,183,59]}
+(189, 6) {"Ranges":[{"Length":23,"Offset":55}],"Roots":[195,107,50,183,59]}
+(100, 6) {"Ranges":[{"Length":23,"Offset":53}],"Roots":[195,107,50,183,59]}
+(17, 101) {"Ranges":[{"Length":21,"Offset":829}],"Roots":[195,107,50,183,59]}
+(201, 226) {"Ranges":[{"Length":17,"Offset":37}],"Roots":[201]}
+(187, 208) {"Ranges":[{"Length":40,"Offset":1339}],"Roots":[195,107,50,183,59]}
+(186, 226) {"Ranges":[{"Length":17,"Offset":21}],"Roots":[186]}
+(208, 100) {"Ranges":[{"Length":30,"Offset":161}],"Roots":[195,107,50,183,59]}
+(140, 222) {"Ranges":[{"Length":31,"Offset":3377}],"Roots":[195,107,50,183,59]}
+(212, 140) {"Ranges":[{"Length":37,"Offset":990}],"Roots":[195,107,50,183,59]}
+(184, 6) {"Ranges":[{"Length":23,"Offset":873}],"Roots":[195,107,50,183,59]}
+(192, 6) {"Ranges":[{"Length":23,"Offset":1101}],"Roots":[195,107,50,183,59]}
+(224, 28) {"Ranges":[{"Length":26,"Offset":863}],"Roots":[195,107,50,183,59]}
+(187, 25) {"Ranges":[{"Length":38,"Offset":1279}],"Roots":[195,107,50,183,59]}
+(187, 36) {"Ranges":[{"Length":32,"Offset":1157}],"Roots":[195,107,50,183,59]}
+(18, 6) {"Ranges":[{"Length":23,"Offset":946}],"Roots":[195,107,50,183,59]}
+(18, 101) {"Ranges":[{"Length":21,"Offset":908}],"Roots":[195,107,50,183,59]}
+(206, 226) {"Ranges":[{"Length":17,"Offset":41}],"Roots":[195,201,202,219,107,50,183,59]}
+(201, 206) {"Ranges":[{"Length":15,"Offset":20}],"Roots":[201]}
+(101, 54) {"Ranges":[{"Length":28,"Offset":13754}],"Roots":[195,107,50,183,59]}
+(219, 209) {"Ranges":[{"Length":18,"Offset":79}],"Roots":[219]}
+(219, 206) {"Ranges":[{"Length":15,"Offset":99}],"Roots":[219]}
+(209, 206) {"Ranges":[{"Length":15,"Offset":21}],"Roots":[201,219]}
+(17, 188) {"Ranges":[{"Length":33,"Offset":1229}],"Roots":[195,107,50,183,59]}
+(207, 210) {"Ranges":[{"Length":30,"Offset":20857}],"Roots":[195,107,50,183,59]}
+(108, 157) {"Ranges":[{"Length":28,"Offset":1521}],"Roots":[195,107,50,183,59]}
+(101, 211) {"Ranges":[{"Length":24,"Offset":16085}],"Roots":[195,107,50,183,59]}
+(202, 206) {"Ranges":[{"Length":15,"Offset":21}],"Roots":[202]}
+(188, 6) {"Ranges":[{"Length":23,"Offset":1077}],"Roots":[195,107,50,183,59]}
+(187, 6) {"Ranges":[{"Length":23,"Offset":1054}],"Roots":[195,107,50,183,59]}
+(36, 225) {"Ranges":[{"Length":34,"Offset":57}],"Roots":[195,107,50,183,59]}
+(201, 209) {"Ranges":[{"Length":18,"Offset":0}],"Roots":[201]}
+(187, 101) {"Ranges":[{"Length":21,"Offset":986}],"Roots":[195,107,50,183,59]}
+(187, 100) {"Ranges":[{"Length":30,"Offset":1248}],"Roots":[195,107,50,183,59]}
+(17, 192) {"Ranges":[{"Length":27,"Offset":1201}],"Roots":[195,107,50,183,59]}
+(187, 51) {"Ranges":[{"Length":24,"Offset":1110}],"Roots":[195,107,50,183,59]}
+(192, 101) {"Ranges":[{"Length":21,"Offset":1079}],"Roots":[195,107,50,183,59]}
+(207, 28) {"Ranges":[{"Length":27,"Offset":20829}],"Roots":[195,107,50,183,59]}
+(199, 28) {"Ranges":[{"Length":26,"Offset":861}],"Roots":[195,107,50,183,59]}
+(25, 6) {"Ranges":[{"Length":23,"Offset":55}],"Roots":[195,107,50,183,59]}
+(54, 28) {"Ranges":[{"Length":26,"Offset":910}],"Roots":[195,107,50,183,59]}
+(208, 6) {"Ranges":[{"Length":23,"Offset":112}],"Roots":[195,107,50,183,59]}
+(140, 200) {"Ranges":[{"Length":30,"Offset":2870}],"Roots":[195,107,50,183,59]}
+(17, 108) {"Ranges":[{"Length":24,"Offset":932}],"Roots":[195,107,50,183,59]}

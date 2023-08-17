@@ -1,0 +1,122 @@
+[
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11   -g -std=gnu++11 -o CMakeFiles/filesystem.dir/main.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11   -g -std=gnu++11 -o CMakeFiles/filesystem.dir/shell.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/shell.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/shell.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11   -g -std=gnu++11 -o CMakeFiles/filesystem.dir/fs.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11   -g -std=gnu++11 -o CMakeFiles/filesystem.dir/disk.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT1  -g -std=gnu++11 -o CMakeFiles/test1.dir/main.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT1  -g -std=gnu++11 -o CMakeFiles/test1.dir/test_script1.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script1.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script1.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT1  -g -std=gnu++11 -o CMakeFiles/test1.dir/fs.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT1  -g -std=gnu++11 -o CMakeFiles/test1.dir/disk.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT2  -g -std=gnu++11 -o CMakeFiles/test2.dir/main.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT2  -g -std=gnu++11 -o CMakeFiles/test2.dir/test_script2.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script2.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script2.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT2  -g -std=gnu++11 -o CMakeFiles/test2.dir/fs.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT2  -g -std=gnu++11 -o CMakeFiles/test2.dir/disk.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT3  -g -std=gnu++11 -o CMakeFiles/test3.dir/main.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT3  -g -std=gnu++11 -o CMakeFiles/test3.dir/test_script3.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script3.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script3.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT3  -g -std=gnu++11 -o CMakeFiles/test3.dir/fs.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT3  -g -std=gnu++11 -o CMakeFiles/test3.dir/disk.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT4  -g -std=gnu++11 -o CMakeFiles/test4.dir/main.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT4  -g -std=gnu++11 -o CMakeFiles/test4.dir/test_script4.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script4.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script4.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT4  -g -std=gnu++11 -o CMakeFiles/test4.dir/fs.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT4  -g -std=gnu++11 -o CMakeFiles/test4.dir/disk.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT5  -g -std=gnu++11 -o CMakeFiles/test5.dir/main.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/main.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT5  -g -std=gnu++11 -o CMakeFiles/test5.dir/test_script5.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script5.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/test_script5.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT5  -g -std=gnu++11 -o CMakeFiles/test5.dir/fs.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/fs.cpp"
+},
+{
+  "directory": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/build",
+  "command": "/usr/bin/g++-11 -DTEST_SCRIPT5  -g -std=gnu++11 -o CMakeFiles/test5.dir/disk.cpp.o -c /opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp",
+  "file": "/opt/code/BTH/DV1629/lab3_code_students_v1.3/disk.cpp"
+}
+]

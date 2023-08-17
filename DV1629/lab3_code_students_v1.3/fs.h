@@ -16,19 +16,39 @@
 #define WRITE 0x02
 #define EXECUTE 0x01
 
-struct dir_entry {
-    char file_name[56]; // name of the file / sub-directory
-    uint32_t size; // size of the file in bytes
-    uint16_t first_blk; // index in the FAT for the first block of the file
-    uint8_t type; // directory (1) or file (0)
+//define permissions array
+const std::string permissions[8] = {"---", "--x", "-w-", "-wx", "r--", "r-x", "rw-", "rwx"};
+
+struct dir_entry
+{
+    char file_name[56];    // name of the file / sub-directory
+    uint32_t size;         // size of the file in bytes
+    uint16_t first_blk;    // index in the FAT for the first block of the file
+    uint8_t type;          // directory (1) or file (0)
     uint8_t access_rights; // read (0x04), write (0x02), execute (0x01)
 };
 
-class FS {
+class FS
+{
 private:
     Disk disk;
     // size of a FAT entry is 2 bytes
-    int16_t fat[BLOCK_SIZE/2];
+    int16_t fat[BLOCK_SIZE / 2];
+    int currDir;
+    std::string currentDir;
+    void saveDirEntry(int16_t block, dir_entry entry);
+    void saveFat();
+    int findFreeFatBlock();
+    int findSpotInFolder(dir_entry *dir);
+    int resolve(std::string originalPath, bool canBeFolder, std::string &name, std::string &path);
+    int getDirBlock(std::string path);
+    void log(std::string msg);
+    int getPathBlockId(int from, std::string path);
+    std::string getFileName(std::string path);
+    std::string resolveFolderFromString(std::string path, std::string currentDir);
+    int getPathBlockId(std::string path);
+    std::string readFile(std::string dir, std::string file);
+    bool doesFileExistInFolder(int block, std::string name);
 
 public:
     FS();
@@ -67,6 +87,8 @@ public:
     // chmod <accessrights> <filepath> changes the access rights for the
     // file <filepath> to <accessrights>.
     int chmod(std::string accessrights, std::string filepath);
+
+    int writeFile(std::string data, std::string name, std::string filePath);
 };
 
 #endif // __FS_H__
