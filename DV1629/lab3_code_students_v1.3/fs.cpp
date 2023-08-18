@@ -138,8 +138,8 @@ int FS::format()
 {
 
     std::cout << "FS::format()\n";
-    //print sizeof dir_entry
-    // init fat 
+    // print sizeof dir_entry
+    //  init fat
     this->fat[ROOT_BLOCK] = FAT_EOF;
     this->fat[FAT_BLOCK] = FAT_EOF;
     for (int i = 2; i < BLOCK_SIZE / 2; i++)
@@ -183,7 +183,7 @@ int FS::format()
 
     currDir = ROOT_BLOCK;
     currentDir = "/";
-        std::cout << "sizeof dir_entry: " << sizeof(dir_entry) << "\n";
+    std::cout << "sizeof dir_entry: " << sizeof(dir_entry) << "\n";
 
     return 0;
 }
@@ -416,7 +416,7 @@ int FS::resolve(std::string originalPath, bool canBeFolder, std::string &name, s
         int dirBlock = getDirBlock(path);
         if (dirBlock == -1)
             return -1;
-        
+
         dir_entry dir[BLOCK_SIZE];
         this->disk.read(dirBlock, (uint8_t *)dir);
 
@@ -733,12 +733,113 @@ int FS::mv(std::string sourcepath, std::string destpath)
 {
     std::cout << "FS::mv(" << sourcepath << "," << destpath << ")\n";
 
-    // copy
+    std::string sourceName;
+    std::string sourcePath;
 
-    this->cp(sourcepath, destpath);
-    this->rm(sourcepath);
+    int ret = resolve(sourcepath, false, sourceName, sourcePath);
 
-    // delete source
+    std::string destName;
+    std::string destPath;
+
+    ret = resolve(destpath, true, destName, destPath);
+
+    if (destName.empty())
+    {
+        log("dest name is empty, must be a folder");
+        destName = sourceName;
+    }
+    
+
+    int destDirBlock = getDirBlock(destPath);
+
+    if (destDirBlock == -1)
+        return -1;
+
+    // check if destName already exists as a folder
+
+    dir_entry destDir[BLOCK_SIZE];
+    this->disk.read(destDirBlock, (uint8_t *)destDir);
+
+    for (int i = 0; i < BLOCK_SIZE / sizeof(dir_entry); i++)
+    {
+        if (destDir[i].type == TYPE_DIR)
+        {
+            if (destDir[i].file_name == destName)
+            {
+                log("dest name already exists as a folder, so put it inside the file");
+                destPath += destName + "/";
+                destName = sourceName;
+                break;
+            }
+        }
+    }
+
+    // log source and dest
+    log("mv source name is " + sourceName);
+    log("mv source dir is " + sourcePath);
+    log("mv dest name is " + destName);
+    log("mv dest dir is " + destPath);
+
+    int sourceDirBlock = getDirBlock(sourcePath);
+
+    dir_entry sourceDirEntries[BLOCK_SIZE];
+    this->disk.read(sourceDirBlock, (uint8_t *)sourceDirEntries);
+    int fileBlock = -1;
+    int metadatapos = -1;
+
+    // loop through dir
+    for (int i = 0; i < BLOCK_SIZE / sizeof(dir_entry); i++)
+    {
+        // check if file is not empty
+        if (&sourceDirEntries[i].size != 0)
+        {
+            // check if file is a dir
+            if (sourceDirEntries[i].type == TYPE_FILE)
+            {
+                // check if file name matches
+                if (sourceDirEntries[i].file_name == sourceName)
+                {
+                    log("found file");
+                    fileBlock = sourceDirEntries[i].first_blk;
+                    metadatapos = i;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (fileBlock == -1)
+        return -1;
+
+    // copy file to dest
+
+    dir_entry file;
+    file.size = sourceDirEntries[metadatapos].size;
+    file.first_blk = sourceDirEntries[metadatapos].first_blk;
+    file.type = sourceDirEntries[metadatapos].type;
+    file.access_rights = sourceDirEntries[metadatapos].access_rights;
+
+    strcpy(file.file_name, destName.c_str());
+
+    dir_entry blank;
+    blank.size = 0;
+    blank.first_blk = 0;
+    blank.type = 0;
+    blank.access_rights = 0;
+    strcpy(blank.file_name, "");
+
+    sourceDirEntries[metadatapos] = blank;
+
+    this->disk.write(sourceDirBlock, (uint8_t *)sourceDirEntries);
+    // read dest dir
+    dir_entry destDirEntries[BLOCK_SIZE];
+    this->disk.read(destDirBlock, (uint8_t *)destDirEntries);
+
+    int destPos = findSpotInFolder(destDirEntries);
+
+    destDirEntries[destPos] = file;
+
+    this->disk.write(destDirBlock, (uint8_t *)destDirEntries);
 
     return 0;
 }
