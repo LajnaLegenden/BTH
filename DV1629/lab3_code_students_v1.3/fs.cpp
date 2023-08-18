@@ -4,9 +4,11 @@
 #include <iomanip>
 #include <iostream>
 #include <cassert>
+#include <array>
 #include <string>
 #include <cstring>
 #include <vector>
+#include <memory>
 #include <algorithm>
 #include <cctype>
 #include <locale>
@@ -667,6 +669,13 @@ int FS::cp(std::string sourcepath, std::string destpath)
                 break;
             }
         }
+        else
+        {
+            // prtin destfile exists
+
+            printf("dest file exists\n");
+            return -1;
+        }
     }
 
     // log source and dest
@@ -748,7 +757,6 @@ int FS::mv(std::string sourcepath, std::string destpath)
         log("dest name is empty, must be a folder");
         destName = sourceName;
     }
-    
 
     int destDirBlock = getDirBlock(destPath);
 
@@ -771,6 +779,13 @@ int FS::mv(std::string sourcepath, std::string destpath)
                 destName = sourceName;
                 break;
             }
+        }
+        else
+        {
+            // prtin destfile exists
+
+            printf("dest file exists\n");
+            return -1;
         }
     }
 
@@ -972,40 +987,57 @@ int FS::append(std::string filepath1, std::string filepath2)
 {
     std::cout << "FS::append(" << filepath1 << "," << filepath2 << ")\n";
 
-    std::string file1;
-    std::string file2;
+    std::string name1;
+    std::string dir1;
 
-    std::string nonce = std::to_string(rand() % 1000000);
+    int pathOp = resolve(filepath1, false, name1, dir1);
 
-    file1 = readFile(filepath1, nonce);
-    file2 = readFile(filepath2, nonce);
+    if (pathOp == -1)
+    {
+        std::cout << "FS::cat - ERROR: Path resolved failed\n";
+        return -1;
+    }
 
-    if (file1 == nonce + "ERR_FILENOTFOUND")
+    std::string name2;
+    std::string dir2;
+
+    pathOp = resolve(filepath2, false, name2, dir2);
+
+    std::string file1 = readFile(dir1, name1);
+    std::string file2 = readFile(dir2, name2);
+
+    if (pathOp == -1)
+    {
+        std::cout << "FS::cat - ERROR: Path resolved failed\n";
+        return -1;
+    }
+
+    if (file1 == "ERR_FILENOTFOUND")
     {
         std::cout << "FS::append - ERROR: File not found\n";
         return -1;
     }
-    if (file1 == nonce + "ERR_NOFILE")
+    if (file1 == "ERR_NOFILE")
     {
         std::cout << "FS::append - ERROR: File is not a file\n";
         return -1;
     }
-    if (file1 == nonce + "ERR_NOACCESS")
+    if (file1 == "ERR_NOACCESS")
     {
         std::cout << "FS::append - ERROR: No read access\n";
         return -1;
     }
-    if (file2 == nonce + "ERR_FILENOTFOUND")
+    if (file2 == "ERR_FILENOTFOUND")
     {
         std::cout << "FS::append - ERROR: File not found\n";
         return -1;
     }
-    if (file2 == nonce + "ERR_NOFILE")
+    if (file2 == "ERR_NOFILE")
     {
         std::cout << "FS::append - ERROR: File is not a file\n";
         return -1;
     }
-    if (file2 == nonce + "ERR_NOACCESS")
+    if (file2 == "ERR_NOACCESS")
     {
         std::cout << "FS::append - ERROR: No read access\n";
         return -1;
@@ -1025,11 +1057,16 @@ int FS::mkdir(std::string dirpath)
 {
     std::cout << "FS::mkdir(" << dirpath << ")\n";
 
-    // path and name
-    std::string name;
-    std::string path;
+    std::string name1;
+    std::string dir1;
 
-    name = getFileName(dirpath);
+    int pathOp = resolve(dirpath, false, name1, dir1);
+
+    if (pathOp == -1)
+    {
+        std::cout << "FS::cat - ERROR: Path resolved failed\n";
+        return -1;
+    }
 
     if (dirpath.length() > 56)
     {
@@ -1037,8 +1074,16 @@ int FS::mkdir(std::string dirpath)
         return -1;
     }
 
+    log("name is " + name1);
+    log("dir is " + dir1);
+
+    int dirBlock = getDirBlock(dir1);
+
+    if (dirBlock == -1)
+        return -1;
+
     dir_entry currentDirEntrys[BLOCK_SIZE];
-    this->disk.read(currDir, (uint8_t *)currentDirEntrys);
+    this->disk.read(dirBlock, (uint8_t *)currentDirEntrys);
 
     // check if dir already exists
     for (int i = 0; i < BLOCK_SIZE / sizeof(dir_entry); i++)
@@ -1088,7 +1133,7 @@ int FS::mkdir(std::string dirpath)
     folder.first_blk = newBlock;
     folder.type = TYPE_DIR;
     folder.access_rights = READ | WRITE | EXECUTE;
-    strcpy(folder.file_name, name.c_str());
+    strcpy(folder.file_name, name1.c_str());
 
     currentDirEntrys[freeDirEntryIndex] = folder;
 
@@ -1098,7 +1143,7 @@ int FS::mkdir(std::string dirpath)
     // add .. entry
 
     dir_entry parent;
-    parent.first_blk = currDir;
+    parent.first_blk = dirBlock;
     parent.type = TYPE_DIR;
     parent.access_rights = READ | WRITE | EXECUTE;
     parent.size = 1;
@@ -1111,8 +1156,8 @@ int FS::mkdir(std::string dirpath)
     this->disk.write(FAT_BLOCK, (uint8_t *)fat);
     this->disk.write(folder.first_blk, (uint8_t *)newFolder);
     log("writing new folder to disk block " + std::to_string(folder.first_blk));
-    this->disk.write(currDir, (uint8_t *)currentDirEntrys);
-    log("writing current dir to disk block " + std::to_string(currDir));
+    this->disk.write(dirBlock, (uint8_t *)currentDirEntrys);
+    log("writing current dir to disk block " + std::to_string(dirBlock));
 
     return 0;
 }
@@ -1121,6 +1166,13 @@ int FS::mkdir(std::string dirpath)
 int FS::cd(std::string dirpath)
 {
     std::cout << "FS::cd(" << dirpath << ")\n";
+
+    if (dirpath == "/")
+    {
+        currentDir = "/";
+        currDir = ROOT_BLOCK;
+        return 0;
+    }
 
     if (dirpath == "..")
     {
@@ -1143,9 +1195,14 @@ int FS::cd(std::string dirpath)
 
         return 0;
     }
-
-    else
-        dirpath = absolutePath(currentDir, dirpath);
+    // if it starts with / then it is an absolute path
+    if (dirpath[0] == '/')
+    {
+        currDir = ROOT_BLOCK;
+        currentDir = "/";
+        dirpath.erase(0, 1);
+    }
+    dirpath = absolutePath(currentDir, dirpath);
 
     int pathBlock = getPathBlockId(dirpath);
 
