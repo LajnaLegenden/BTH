@@ -28,7 +28,7 @@ function process_log_file() {
         #increment the value of the key if it exists, otherwise set it to 1
         allips[$ip]=$(( ${allips[$ip]} + 1 ))
     done <$logfile
-
+    #sort ips in reverse, numeric sort with key 2, replace : with 4 spaces, print first limit lines
     for k in "${!allips[@]}" ; do
         echo $k ${allips[$k]}
     done | sort -rnk2 | sed 's/[: ]/    /g' | head -n "$limit"
@@ -40,13 +40,14 @@ function process_log_file() {
     while read line; do
         read -a strarr <<< "$line"
         ip=${strarr[0]}
-        #increment the value of the key if it exists, otherwise set it to 1
+        #statuscode is extrated from line using a grep pattern and cut to get the 4th field
         status=$(echo "$line" | grep -o '".*" [0-9]\+ ' | cut -d ' ' -f 4   )
+        #any connection with a status code less than 299 is considered successful
         if [ "$status" -lt 299 ]; then
             allips["$ip"]=$(( ${allips["$ip"]} + 1 ))
         fi
     done <$logfile
-    
+    #sort ips in reverse, numeric sort with key 2, replace : with 4 spaces, print first limit lines
     for k in "${!allips[@]}" ; do
         echo $k ${allips[$k]}
     done | sort -rnk2 | sed 's/[: ]/    /g' | head -n "$limit"
@@ -54,36 +55,36 @@ function process_log_file() {
 
 
     r) # yyy xxx.xxx.xxx.xxx where yyy is the result code, one ip per lin
-
+    #declare 2 maps, one for all ips and one for status codes
     declare -A allips
     declare -A statuscode
 
     IFS=' '
     while read line; do
+    #read each line and split it into an array
         read -a strarr <<< "$line"
         ip=${strarr[0]}
-        #increment the value of the key if it exists, otherwise set it to 1
+        #statuscode is extrated from line using a grep pattern and cut to get the 4th field
         status=$(echo "$line" | grep -o '".*" [0-9]\+ ' | cut -d ' ' -f 4   )
-        
-        #if allips has key status
+        #increment number of status codes and what ip they came from
         allips["$status","$ip"]=$(( ${allips["$status","$ip"]} + 1 ))
         statuscode[$status]=$(( ${statuscode[$status]} + 1 ))
 
     done <$logfile
-
+    #sort the status codes in reverse, numeric sort with key 2, replace : with 4 spaces, and savce to output
     output=$(for k in "${!statuscode[@]}"; do
         echo "$k" "${statuscode[$k]}"
     done | sort -rnk2 | sed 's/[: ]/    /g')
 
     status_codes=()
 
-    # Loop through each line of the output and extract the status code
+    # Loop through each line of the output and extract the status code, that are now in order from most used to least used
     while read -r line; do
         status_code=$(echo "$line" | awk '{print $1}')
         status_codes+=("$status_code")
     done <<< "$output"
    
-
+    #for each code, find the ip that has the most requests and print it
     for code in "${!status_codes[@]}"; do
         #find the highest number of requests for this status code and print the ip
         for k in "${!allips[@]}" ; do
@@ -123,7 +124,7 @@ function process_log_file() {
 
     status_codes=()
 
-    # Loop through each line of the output and extract the status code
+    # Loop through each line of the output and extract the status code, that are now in order from most used to least used
     while read -r line; do
         status_code=$(echo "$line" | awk '{print $1}')
         #if status code is greater than 399, add it to the array
@@ -154,7 +155,7 @@ function process_log_file() {
     while read line; do
         read -a strarr <<< "$line"
         ip=${strarr[0]}
-        #increment the value of the key if it exists, otherwise set it to 1
+        #bytes are extracted from the contentn length field of the log
         bytes=$(echo "$line" | grep -o '".*" [0-9]\+ [0-9]\+' | cut -d ' ' -f 5   )
         if [[ -n "$bytes" ]]; then
             allips[$ip]=$(( ${allips[$ip]} + $bytes ))
