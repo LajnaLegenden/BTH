@@ -185,8 +185,6 @@ int FS::format()
 
     currDir = ROOT_BLOCK;
     currentDir = "/";
-    std::cout << "sizeof dir_entry: " << sizeof(dir_entry) << "\n";
-
     return 0;
 }
 
@@ -305,7 +303,7 @@ void FS::saveFat()
 
 void FS::log(std::string msg)
 {
-    printf("FS::log - %s\n", msg.c_str());
+    //printf("FS::log - %s\n", msg.c_str());
 }
 
 void FS::saveDirEntry(int16_t block, dir_entry entry)
