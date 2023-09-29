@@ -207,11 +207,24 @@ int FS::create(std::string filepath)
     this->log("name is " + name);
     this->log("path is " + absPathToFile);
 
-    // FIXME check duplicate file name
-    if (doesFileExistInFolder(currDir, name))
-    {
-        std::cout << "FS::create - ERROR: File already exists\n";
+    int dirBlock = getDirBlock(absPathToFile);
+
+    if (dirBlock == -1)
         return -1;
+
+
+    dir_entry currentDirEntrys[BLOCK_SIZE];
+    this->disk.read(dirBlock, (uint8_t *)currentDirEntrys);
+
+    // check if dir already exists
+    for (int i = 0; i < BLOCK_SIZE / sizeof(dir_entry); i++)
+    {
+        
+        if (currentDirEntrys[i].file_name == name)
+        {
+            std::cout << "FS::mkdir - ERROR: Name already exists\n";
+            return -1;
+        }
     }
 
     // get input from line
@@ -303,7 +316,9 @@ void FS::saveFat()
 
 void FS::log(std::string msg)
 {
-    //printf("FS::log - %s\n", msg.c_str());
+    if(DEBUG){
+        printf("FS::log - %s\n", msg.c_str());
+    }
 }
 
 void FS::saveDirEntry(int16_t block, dir_entry entry)
@@ -657,22 +672,22 @@ int FS::cp(std::string sourcepath, std::string destpath)
 
     for (int i = 0; i < BLOCK_SIZE / sizeof(dir_entry); i++)
     {
-        if (destDir[i].type == TYPE_DIR)
+        if (destDir[i].file_name == destName)
         {
-            if (destDir[i].file_name == destName)
+            if (destDir[i].type == TYPE_DIR)
             {
                 log("dest name already exists as a folder, so put it inside the file");
                 destPath += destName + "/";
                 destName = sourceName;
                 break;
             }
-        }
-        else
-        {
-            // prtin destfile exists
+            else
+            {
+                // prtin destfile exists
 
-            printf("dest file exists\n");
-            return -1;
+                printf("dest file exists\n");
+                return -1;
+            }
         }
     }
 
@@ -706,6 +721,12 @@ int FS::cp(std::string sourcepath, std::string destpath)
                 }
             }
         }
+    }
+
+    // if path does not start with / add it
+    if (destPath[0] != '/')
+    {
+        destPath = "/" + destPath;
     }
 
     if (fileBlock == -1)
@@ -768,22 +789,22 @@ int FS::mv(std::string sourcepath, std::string destpath)
 
     for (int i = 0; i < BLOCK_SIZE / sizeof(dir_entry); i++)
     {
-        if (destDir[i].type == TYPE_DIR)
+        if (destDir[i].file_name == destName)
         {
-            if (destDir[i].file_name == destName)
+            if (destDir[i].type == TYPE_DIR)
             {
                 log("dest name already exists as a folder, so put it inside the file");
                 destPath += destName + "/";
                 destName = sourceName;
                 break;
             }
-        }
-        else
-        {
-            // prtin destfile exists
+            else
+            {
+                // prtin destfile exists
 
-            printf("dest file exists\n");
-            return -1;
+                printf("dest file exists\n");
+                return -1;
+            }
         }
     }
 
@@ -1086,7 +1107,7 @@ int FS::mkdir(std::string dirpath)
     // check if dir already exists
     for (int i = 0; i < BLOCK_SIZE / sizeof(dir_entry); i++)
     {
-
+        
         if (currentDirEntrys[i].file_name == dirpath)
         {
             std::cout << "FS::mkdir - ERROR: Name already exists\n";
