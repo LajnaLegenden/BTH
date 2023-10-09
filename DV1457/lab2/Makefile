@@ -1,14 +1,17 @@
 CC = gcc
-CFLAGS = -O2
+CFLAGS = -O2 -w
 
 default: all
 
-server: mathserver/src/server.c
-	$(CC) $(CFLAGS) mathserver/src/server.c -lpthread -o server
+mathserver/server: mathserver/src/server.c
+	$(CC) $(CFLAGS) mathserver/src/server.c -lpthread -o mathserver/server
 
-clientProgram: client/client.c
-	$(CC) $(CFLAGS) client/client.c -o clientProgram
+client/client: client/client.c
+	$(CC) $(CFLAGS) client/client.c -o client/client
 
-all: server clientProgram
+mathserver/matinv-par: mathserver/src/matinv-par.c
+	$(CC) $(CFLAGS) mathserver/src/matinv-par.c -lpthread -o mathserver/matinv-par
+
+all: mathserver/server client/client mathserver/matinv-par
 clean:
-	rm server clientProgram
+	rm mathserver/server client/client mathserver/matinv-par

@@ -10,7 +10,7 @@
 #include <stdlib.h>
 
 #define MAX_SIZE 4096
-
+#define CORES 8
 typedef double matrix[MAX_SIZE][MAX_SIZE];
 
 int	N;		/* matrix size		*/
@@ -44,37 +44,77 @@ main(int argc, char** argv)
         Print_Matrix(I, "Inversed");
     }
 }
+#include <sys/shm.h>
+#include <sys/wait.h>
 
 void find_inverse()
 {
-    int row, col, p; // 'p' stands for pivot (numbered from 0 to N-1)
-    double pivalue; // pivot value
+    int row, col, p; 
+    double pivalue; 
+    //flush std
+    fflush(stdout);
+    fflush(stderr);
+    // Create shared memory segments for matrices A and I
+    int shmid_A = shmget(IPC_PRIVATE, sizeof(matrix), IPC_CREAT | 0666);
+    int shmid_I = shmget(IPC_PRIVATE, sizeof(matrix), IPC_CREAT | 0666);
+    matrix* shmA = (matrix*)shmat(shmid_A, NULL, 0);
+    matrix* shmI = (matrix*)shmat(shmid_I, NULL, 0);
 
-    /* Bringing the matrix A to the identity form */
-    for (p = 0; p < N; p++) { /* Outer loop */
-        pivalue = A[p][p];
+    // Copy data to shared memory
+    memcpy(shmA, &A, sizeof(matrix));
+    memcpy(shmI, &I, sizeof(matrix));
+
+    for (p = 0; p < N; p++) { 
+        pivalue = (*shmA)[p][p];
         for (col = 0; col < N; col++)
         {
-            A[p][col] = A[p][col] / pivalue; /* Division step on A */
-            I[p][col] = I[p][col] / pivalue; /* Division step on I */
+            (*shmA)[p][col] = (*shmA)[p][col] / pivalue; 
+            (*shmI)[p][col] = (*shmI)[p][col] / pivalue; 
         }
-        assert(A[p][p] == 1.0);
+        assert((*shmA)[p][p] == 1.0);
 
-        double multiplier;
-        for (row = 0; row < N; row++) {
-            multiplier = A[row][p];
-            if (row != p) // Perform elimination on all except the current pivot row 
-            {
-                for (col = 0; col < N; col++)
-                {
-                    A[row][col] = A[row][col] - A[p][col] * multiplier; /* Elimination step on A */
-                    I[row][col] = I[row][col] - I[p][col] * multiplier; /* Elimination step on I */
-                }      
-                assert(A[row][p] == 0.0);
+        int num_processes = CORES; // Number of child processes to create
+        for (int proc = 0; proc < num_processes; proc++) {
+            pid_t pid = fork();
+            if (pid == 0) { // Child process
+                int start_row = (N / num_processes) * proc;
+                int end_row = (proc == num_processes - 1) ? N : (N / num_processes) * (proc + 1);
+                double multiplier;
+                for (row = start_row; row < end_row; row++) {
+                    if (row != p) 
+                    {
+                        multiplier = (*shmA)[row][p];
+                        for (col = 0; col < N; col++)
+                        {
+                            (*shmA)[row][col] = (*shmA)[row][col] - (*shmA)[p][col] * multiplier; 
+                            (*shmI)[row][col] = (*shmI)[row][col] - (*shmI)[p][col] * multiplier; 
+                        }      
+                        assert((*shmA)[row][p] == 0.0);
+                    }
+                }
+                shmdt(shmA);
+                shmdt(shmI);
+                exit(0); // Child process ends
             }
         }
+
+        // Parent waits for all child processes to finish
+        for (int proc = 0; proc < num_processes; proc++) {
+            wait(NULL);
+        }
     }
+
+    // Copy data back from shared memory
+    memcpy(&A, shmA, sizeof(matrix));
+    memcpy(&I, shmI, sizeof(matrix));
+
+    // Detach and delete shared memory
+    shmdt(shmA);
+    shmdt(shmI);
+    shmctl(shmid_A, IPC_RMID, NULL);
+    shmctl(shmid_I, IPC_RMID, NULL);
 }
+
 
 void
 Init_Matrix()
@@ -119,8 +159,8 @@ Init_Matrix()
     printf("done \n\n");
     if (PRINT == 1)
     {
-        //Print_Matrix(A, "Begin: Input");
-        //Print_Matrix(I, "Begin: Inverse");
+        Print_Matrix(A, "Begin: Input");
+        Print_Matrix(I, "Begin: Inverse");
     }
 }
 

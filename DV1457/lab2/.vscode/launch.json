@@ -1,0 +1,59 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Server",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/mathserver/server",
+            "args": ["-p" , "9999"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/mathserver/",
+            "preLaunchTask": "build server",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Launch Client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/client/client",
+            "args": [
+                "-i", "127.0.0.1", "-p" , "9999"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/client/",
+            "preLaunchTask": "build client",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Launch Server and Client",
+            "configurations": ["Launch Server", "delayedLaunchClient"]
+        }
+    ],
+    "tasks": [
+        { 
+            "label": "delayedLaunchClient",
+            "type": "shell",
+            "command": "bash", // Use the appropriate shell command for your platform (e.g., "cmd" for Windows)
+            "args": ["-c", "sleep 3 && code ."] // Sleep for 5 seconds and then launch the client
+        }
+    ]
+}

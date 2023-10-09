@@ -1,0 +1,16 @@
+{
+  "name": "solver",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@types/puppeteer": "^7.0.4",
+    "pupeteer": "^0.0.1",
+    "puppeteer": "^21.3.8"
+  }
+}

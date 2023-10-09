@@ -2,9 +2,6 @@
     "files.associations": {
         "*.embeddedhtml": "html",
         "stdlib.h": "c",
-        "stdio.h": "c",
-        "matrix.h": "c",
-        "unistd.h": "c",
-        "mman.h": "c"
+        "shm.h": "c"
     }
 }
