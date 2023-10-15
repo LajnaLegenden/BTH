@@ -12,6 +12,9 @@ client/client: client/client.c
 mathserver/matinv-par: mathserver/src/matinv-par.c
 	$(CC) $(CFLAGS) mathserver/src/matinv-par.c -lpthread -o mathserver/matinv-par
 
-all: mathserver/server client/client mathserver/matinv-par
+mathserver/kmeans: mathserver/src/kmeans.c
+	$(CC) $(CFLAGS) mathserver/src/kmeans.c -lpthread -o mathserver/kmeans
+
+all: mathserver/server client/client mathserver/matinv-par mathserver/kmeans
 clean:
-	rm mathserver/server client/client mathserver/matinv-par
+	rm mathserver/server client/client mathserver/matinv-par mathserver/kmeans

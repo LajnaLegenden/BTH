@@ -5,7 +5,9 @@
 #include <limits.h>
 
 #define MAX_POINTS 4096
+#define PATH_MAX 1024
 #define MAX_CLUSTERS 32
+#define CORES 8
 
 typedef struct point
 {
@@ -21,12 +23,20 @@ point cluster[MAX_CLUSTERS]; // The coordinates of each cluster center (also cal
 
 void read_data()
 {
+    char cwd[1024];
+    getcwd(cwd, sizeof(cwd));
+    char *folderName = "mathserver/objects/kmeans-data.txt";
+    char *folderPath = malloc(sizeof(char) * (strlen(cwd) + strlen(folderName) + 2));
+    strcpy(folderPath, cwd);
+    strcat(folderPath, "/");
+    strcat(folderPath, folderName);
     N = 1797;
     k = 9;
-    FILE* fp = fopen("kmeans-data.txt", "r");
+    FILE* fp = fopen(folderPath ,"r");
     if (fp == NULL) {
         perror("Cannot open the file");
         exit(EXIT_FAILURE);
+       
     }
    
     // Initialize points from the data file

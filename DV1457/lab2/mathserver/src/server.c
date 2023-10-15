@@ -205,7 +205,7 @@ int main(int argc, char *argv[])
 
                         printf("Client has requested matinvpar\n");
                         char command[128];
-                        strcpy(command, "./matinv-par ");
+                        strcpy(command, "./mathserver/matinv-par ");
                         strcat(command, getSubString(strData, 10, 128));
                         // output name
                         strcat(command, "> computed_results/");
