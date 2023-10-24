@@ -13,10 +13,10 @@ int ex(nodeType *p)
     switch (p->type)
     {
     case typeCon:
-        printf("\tmov\trax, %d\n", p->con.value);
+        printf("\tpush\t%d\n", p->con.value);
         break;
     case typeId:
-        printf("\tmov\trax, [rbp-%d]\n", (p->id.i + 1) * 4); // Assuming each variable occupies 4 bytes on the stack
+        printf("\tpush\t%c\n", p->id.i + 'a');
         break;
     case typeOpr:
         switch (p->opr.oper)
@@ -24,7 +24,6 @@ int ex(nodeType *p)
         case WHILE:
             printf("L%03d:\n", lbl1 = lbl++);
             ex(p->opr.op[0]);
-            printf("\ttest\trax, rax\n");
             printf("\tjz\tL%03d\n", lbl2 = lbl++);
             ex(p->opr.op[1]);
             printf("\tjmp\tL%03d\n", lbl1);
@@ -35,7 +34,6 @@ int ex(nodeType *p)
             if (p->opr.nops > 2)
             {
                 /* if else */
-                printf("\ttest\trax, rax\n");
                 printf("\tjz\tL%03d\n", lbl1 = lbl++);
                 ex(p->opr.op[1]);
                 printf("\tjmp\tL%03d\n", lbl2 = lbl++);
@@ -46,7 +44,6 @@ int ex(nodeType *p)
             else
             {
                 /* if */
-                printf("\ttest\trax, rax\n");
                 printf("\tjz\tL%03d\n", lbl1 = lbl++);
                 ex(p->opr.op[1]);
                 printf("L%03d:\n", lbl1);
@@ -54,82 +51,61 @@ int ex(nodeType *p)
             break;
         case PRINT:
             ex(p->opr.op[0]);
-            //move rax to rsi
-            printf("\tmov\trsi, rax\n");
-            printf("\tmov\trdi, 1\n"); // stdout file descriptor
-            printf("\tmov\trsi, rsp\n"); // pointer to the string to be printed
-            printf("\tmov\tdl, 4\n"); // length of the string to be printed
-            printf("\tmov\trax, 0x2000004\n"); // write syscall number
-            printf("\tsyscall\n"); // call the syscall
-            printf("\tadd\trsp, 8\n"); // remove the string from the stack
+            printf("\tprint\n");
             break;
         case '=':
             ex(p->opr.op[1]);
-            printf("\tmov\t[rbp-%d], rax\n", (p->opr.op[0]->id.i + 1) * 4);
+            printf("\tpop\t%c\n", p->opr.op[0]->id.i + 'a');
             break;
         case UMINUS:
             ex(p->opr.op[0]);
-            printf("\tneg\trax\n");
+            printf("\tneg\n");
             break;
         case FACT:
             ex(p->opr.op[0]);
-            printf("\tcall\tfact\n"); // Assuming a factorial function exists
+            printf("\tfact\n");
             break;
         case LNTWO:
             ex(p->opr.op[0]);
-            printf("\tcall\tlntwo\n"); // Assuming a log base 2 function exists
+            printf("\lntwo\n");
             break;
         default:
             ex(p->opr.op[0]);
-            printf("\tpush\trax\n");
             ex(p->opr.op[1]);
-            printf("\tpop\trbx\n");
             switch (p->opr.oper)
             {
             case GCD:
-                printf("\tcall\tgcd\n"); // Assuming a gcd function exists
+                printf("\tgcd\n");
                 break;
             case '+':
-                printf("\tadd\trax, rbx\n");
+                printf("\tadd\n");
                 break;
             case '-':
-                printf("\tsub\trax, rbx\n");
+                printf("\tsub\n");
                 break;
             case '*':
-                printf("\timul\trax, rbx\n");
+                printf("\tmul\n");
                 break;
             case '/':
-                printf("\tidiv\trbx\n");
+                printf("\tdiv\n");
                 break;
             case '<':
-                printf("\tcmp\trax, rbx\n");
-                printf("\tsetl\tal\n");
-                printf("\tmovzx\trax, al\n");
+                printf("\tcompLT\n");
                 break;
             case '>':
-                printf("\tcmp\trax, rbx\n");
-                printf("\tsetg\tal\n");
-                printf("\tmovzx\trax, al\n");
+                printf("\tcompGT\n");
                 break;
             case GE:
-                printf("\tcmp\trax, rbx\n");
-                printf("\tsetge\tal\n");
-                printf("\tmovzx\trax, al\n");
+                printf("\tcompGE\n");
                 break;
             case LE:
-                printf("\tcmp\trax, rbx\n");
-                printf("\tsetle\tal\n");
-                printf("\tmovzx\trax, al\n");
+                printf("\tcompLE\n");
                 break;
             case NE:
-                printf("\tcmp\trax, rbx\n");
-                printf("\tsetne\tal\n");
-                printf("\tmovzx\trax, al\n");
+                printf("\tcompNE\n");
                 break;
             case EQ:
-                printf("\tcmp\trax, rbx\n");
-                printf("\tsete\tal\n");
-                printf("\tmovzx\trax, al\n");
+                printf("\tcompEQ\n");
                 break;
             }
         }
