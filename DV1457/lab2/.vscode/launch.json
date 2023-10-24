@@ -21,6 +21,24 @@
             ]
         },
         {
+            "name": "Launch Kmeans",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/mathserver/kmeans",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/mathserver/",
+            "preLaunchTask": "build kmeans",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
             "name": "Launch Client",
             "type": "cppdbg",
             "request": "launch",
