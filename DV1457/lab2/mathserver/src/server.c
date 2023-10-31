@@ -31,7 +31,8 @@ void getHelp(char *argv[])
     printf("-p\tListen to port number port\n");
 }
 
-// function to return substring takes string, pos, and length
+
+// return substring
 char *getSubString(char *str, int pos, int length)
 {
     char *subStr = malloc(sizeof(char) * (length + 1));
@@ -44,6 +45,62 @@ char *getSubString(char *str, int pos, int length)
     }
     subStr[c] = '\0';
     return subStr;
+}
+
+
+char **split_string_on_spaces(const char *str, int *count)
+{
+    int i, j, start;
+    *count = 0;
+
+    // count the number of words
+    for (i = 0; str[i]; i++)
+    {
+        if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+        {
+            (*count)++;
+        }
+    }
+
+    // allocate memory for the result
+    char **result = (char **)malloc((*count) * sizeof(char *));
+    if (!result)
+    {
+        return NULL; // Memory allocation failed
+    }
+
+    j = 0;
+    for (i = 0; str[i];)
+    {
+        if (str[i] != ' ')
+        {
+            start = i;
+            while (str[i] && str[i] != ' ')
+                i++;
+
+            result[j] = (char *)malloc(i - start + 1);
+            if (!result[j])
+            {
+                // Memory allocation failed, free previously allocated memory
+                for (--j; j >= 0; j--)
+                {
+                    free(result[j]);
+                }
+                free(result);
+                return NULL;
+            }
+
+            strncpy(result[j], str + start, i - start);
+            result[j][i - start] = '\0'; // Null-terminate the string
+            j++;
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    return result;
 }
 
 void handle_sigint(int sig)
@@ -74,13 +131,28 @@ int main(int argc, char *argv[])
     // seed rgn
     srand(time(NULL));
     // create folder if not exists in pwd
-    char *folderName = "computed_results";
-    char *folderPath = malloc(sizeof(char) * (strlen(cwd) + strlen(folderName) + 2));
-    strcpy(folderPath, cwd);
-    strcat(folderPath, "/");
-    strcat(folderPath, folderName);
-    printf("Folder path: %s\n", folderPath);
-    if (mkdir(folderPath, 0777) == -1)
+    char *folderName1 = "computed_results";
+    char *folderPath1 = malloc(sizeof(char) * (strlen(cwd) + strlen(folderName1) + 2));
+    strcpy(folderPath1, cwd);
+    strcat(folderPath1, "/");
+    strcat(folderPath1, folderName1);
+    printf("Folder path: %s\n", folderPath1);
+    if (mkdir(folderPath1, 0777) == -1)
+    {
+        printf("Folder already exists\n");
+    }
+    else
+    {
+        printf("Folder created\n");
+    }
+
+    char *folderName2 = "working_files";
+    char *folderPath2 = malloc(sizeof(char) * (strlen(cwd) + strlen(folderName2) + 2));
+    strcpy(folderPath2, cwd);
+    strcat(folderPath2, "/");
+    strcat(folderPath2, folderName2);
+    printf("Folder path: %s\n", folderPath2);
+    if (mkdir(folderPath2, 0777) == -1)
     {
         printf("Folder already exists\n");
     }
@@ -253,10 +325,120 @@ int main(int argc, char *argv[])
                         free(randomLetters);
                         free(fileBuf);
                     }
-                    else if (strncmp(strData, "kmeans", 7) == 0)
+                    else if (strncmp(strData, "kmeans", 6) == 0)
                     {
+                        // This section of code handles the kmeans request from the client
                         printf("Client has requested kmeans\n");
-                        send(cd, "running kmeans", 15, 0);
+
+                        // Send the client an "INPUT" message
+                        send(cd, "INPUT", 6, 0);
+
+                        // Allocate memory for 8 random letters
+                        char *letters = "abcdefghijklmnopqrstuvwxyz";
+                        char *randomLetters = (char *)malloc(sizeof(char) * 9);
+                        if (randomLetters == NULL)
+                        {
+                            perror("Failed to allocate memory for randomLetters");
+                            exit(EXIT_FAILURE);
+                        }
+
+                        // Generate 8 random letters
+                        for (int i = 0; i < 8; i++)
+                        {
+                            randomLetters[i] = letters[rand() % 26];
+                        }
+                        randomLetters[8] = '\0'; // Null-terminate the string
+
+                        // Receive file from client
+                        char fileBuf[RESPONSE_LIMIT];
+                        int nbytes = recv(cd, fileBuf, sizeof(fileBuf), 0);
+                        if (nbytes == -1)
+                        {
+                            perror("recv");
+                            exit(EXIT_FAILURE);
+                        }
+                        fileBuf[nbytes] = '\0';
+                        printf("File received from client\n");
+
+                        // Write file to disk
+                        printf("Writing file to disk\n");
+                        FILE *fp;
+                        char workingFileName[64];
+
+                        // Split the input string
+                        int count;
+                        char **words = split_string_on_spaces(strData, &count);
+
+                        if (words)
+                        {
+                            for (int i = 0; i < count; i++)
+                            {
+                                if (strcmp(words[i], "-f") == 0)
+                                {
+                                    strcpy(workingFileName, words[i + 1]);
+                                }
+                                free(words[i]);
+                            }
+                            free(words);
+                        }
+
+                        fp = fopen(workingFileName, "w");
+                        fprintf(fp, "%s", fileBuf);
+                        fclose(fp);
+
+                        // Generate 8 new random letters
+                        printf("Saved file to %s\n", workingFileName);
+                        for (int i = 0; i < 8; i++)
+                        {
+                            randomLetters[i] = letters[rand() % 26];
+                        }
+                        randomLetters[8] = '\0'; // Null-terminate the string
+
+                        // Build the command to run kmeans
+                        char command[256];
+                        strcpy(command, "./mathserver/kmeans ");
+                        strcat(command, getSubString(strData, 7, 256));
+                        char buf[RESPONSE_LIMIT];
+
+                        // Run kmeans
+                        system(command);
+
+                        // Read the output file into a buffer
+                        char outPutFileName[32];
+                        strcpy(outPutFileName, "kmeans-results.txt");
+                        printf("Opening file %s\n", outPutFileName);
+
+                        FILE *fp2;
+                        fp2 = fopen(outPutFileName, "rb");
+                        if (fp2 == NULL)
+                        {
+                            perror("Error while opening the file.\n");
+                            exit(EXIT_FAILURE);
+                        }
+                        char *fileBuffer = (char *)malloc(sizeof(char) * RESPONSE_LIMIT);
+                        if (fileBuffer == NULL)
+                        {
+                            perror("Failed to allocate memory for fileBuf");
+                            exit(EXIT_FAILURE);
+                        }
+
+                        int i = 0;
+                        char c;
+                        while ((c = fgetc(fp)) != EOF && i < RESPONSE_LIMIT - 1) // Ensure not to overflow buffer
+                        {
+                            fileBuffer[i++] = c;
+                        }
+                        fileBuffer[i] = '\0';
+                        fclose(fp2);
+
+                        // Send the output file to the client
+                        printf("Sending file to client\n");
+                        send(cd, fileBuffer, RESPONSE_LIMIT, 0);
+                        system("rm kmeans-results.txt");
+
+                        // Free allocated memory
+                        free(randomLetters);
+                        free(fileBuffer);
                     }
                 }
             }

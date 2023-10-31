@@ -12,11 +12,16 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#define RESPONSE_LIMIT 16384
 
 int matSol = 1;
 int kmeansSol = 1;
 
-//function to trim a string
+// function to trim a string
 char *trim(char *str)
 {
     char *end;
@@ -37,6 +42,61 @@ char *trim(char *str)
     *(end + 1) = 0;
 
     return str;
+}
+
+char **split_string_on_spaces(const char *str, int *count)
+{
+    int i, j, start;
+    *count = 0;
+
+    // First, count the number of words
+    for (i = 0; str[i]; i++)
+    {
+        if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+        {
+            (*count)++;
+        }
+    }
+
+    // Allocate memory for the result
+    char **result = (char **)malloc((*count) * sizeof(char *));
+    if (!result)
+    {
+        return NULL; // Memory allocation failed
+    }
+
+    j = 0;
+    for (i = 0; str[i];)
+    {
+        if (str[i] != ' ')
+        {
+            start = i;
+            while (str[i] && str[i] != ' ')
+                i++;
+
+            result[j] = (char *)malloc(i - start + 1);
+            if (!result[j])
+            {
+                // Memory allocation failed, free previously allocated memory
+                for (--j; j >= 0; j--)
+                {
+                    free(result[j]);
+                }
+                free(result);
+                return NULL;
+            }
+
+            strncpy(result[j], str + start, i - start);
+            result[j][i - start] = '\0'; // Null-terminate the string
+            j++;
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    return result;
 }
 
 int main(int argc, char *argv[])
@@ -83,6 +143,27 @@ int main(int argc, char *argv[])
     printf("IP Address: %s\n", ip_address);
     printf("Port: %d\n", port);
 
+        char cwd[1024];
+    getcwd(cwd, sizeof(cwd));
+    printf("Current working dir: %s\n", cwd);
+    // seed rgn
+    srand(time(NULL));
+    // create folder if not exists in pwd
+    char *folderName1 = "results";
+    char *folderPath1 = malloc(sizeof(char) * (strlen(cwd) + strlen(folderName1) + 2));
+    strcpy(folderPath1, cwd);
+    strcat(folderPath1, "/");
+    strcat(folderPath1, folderName1);
+    printf("Folder path: %s\n", folderPath1);
+    if (mkdir(folderPath1, 0777) == -1)
+    {
+        printf("Folder already exists\n");
+    }
+    else
+    {
+        printf("Folder created\n");
+    }
+
     // Your code to use ip_address and port for client functionality goes here
 
     // connect to socket at port
@@ -107,7 +188,9 @@ int main(int argc, char *argv[])
         perror("Connection failed");
         close(client_socket);
         exit(EXIT_FAILURE);
-    } else {
+    }
+    else
+    {
         printf("Connected to server\n");
     }
 
@@ -133,7 +216,7 @@ int main(int argc, char *argv[])
         trim(input);
         printf("%zu characters were read.\n", characters);
         printf("You typed: '%s'\n", input);
-       
+
         if (strncmp(input, "matinvpar", 9) == 0)
         {
             printf("Requesting mathinvpar\n");
@@ -148,21 +231,105 @@ int main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
             }
             buffer[nbytes] = '\0';
-            
+
             printf("Received a message (%d bytes) from the server!\n\n", nbytes);
 
-            //write buffer to file
+            // write buffer to file
             FILE *fp;
-            //filename should be matinv_client1_soln(matSol++).txt
-
             char filename[50];
-            sprintf(filename, "matinv_client%d_soln%d.txt", getpid(), matSol++);
+            sprintf(filename, "results/matinv_client%d_soln%d.txt", getpid(), matSol++);
             printf("Writing to file %s\n", filename);
             fp = fopen(filename, "w");
             fprintf(fp, "%s", buffer);
             fclose(fp);
+        }
+        else if (strncmp(input, "kmeans", 5) == 0)
+        {
+
+            printf("Requesting kmeans\n");
+            const char delimiter = ' '; // Delimiter is a space
+            char fileName[32];
+            int count;
+            char **words = split_string_on_spaces(input, &count);
+
+            if (words)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    if (strcmp(words[i], "-f") == 0)
+                    {
+                        strcpy(fileName, words[i + 1]);
+                    }
+                    free(words[i]);
+                }
+                free(words);
+            }
+            printf("Opening file %s\n", fileName);
+            // read entire file to buffer
+            FILE *fp;
+            fp = fopen(fileName, "rb");
+            if (fp == NULL)
+            {
+                perror("Error while opening the file.\n");
+                exit(EXIT_FAILURE);
+            }
+            char *fileBuf = (char *)malloc(sizeof(char) * RESPONSE_LIMIT);
+            if (fileBuf == NULL)
+            {
+                perror("Failed to allocate memory for fileBuf");
+                exit(EXIT_FAILURE);
+            }
+            int i = 0;
+            char c;
+            while ((c = fgetc(fp)) != EOF && i < RESPONSE_LIMIT - 1) // Ensure not to overflow buffer
+            {
+                fileBuf[i++] = c;
+            }
+            fileBuf[i] = '\0';
+            fclose(fp);
+            printf("File read successfully\n");
+            printf("Sending file to server\n");
+            // send input to server
+            send(client_socket, input, characters, 0);
+
+            char instruction[128];
+            int nrbytes = recv(client_socket, instruction, sizeof(instruction), 0);
+            if (nrbytes == -1)
+            {
+                perror("recv");
+                exit(EXIT_FAILURE);
+            }
+
+            instruction[nrbytes] = '\0';
+
+            printf("Received a message (%d bytes) from the server!\n\n", nrbytes);
+
+            
 
 
+            printf("Sending file to server\n");
+            send(client_socket, fileBuf, RESPONSE_LIMIT, 0);
+            // revice data
+            char buffer[4096];
+            int nbytes = recv(client_socket, buffer, sizeof(buffer), 0);
+            if (nbytes == -1)
+            {
+                perror("recv");
+                exit(EXIT_FAILURE);
+            }
+            buffer[nbytes] = '\0';
+
+            printf("Received a message (%d bytes) from the server!\n\n", nbytes);
+
+            // write buffer to file
+           
+
+            char filename[50];
+            sprintf(filename, "results/kmeans_client%d_soln%d.txt", getpid(), matSol++);
+            printf("Writing to file %s\n", filename);
+            fp = fopen(filename, "w");
+            fprintf(fp, "%s", buffer);
+            fclose(fp);
         }
         else if (strncmp(input, "exit", 4) == 0)
         {
@@ -171,7 +338,6 @@ int main(int argc, char *argv[])
             break;
         }
     }
-
     close(client_socket);
 
     return 0;

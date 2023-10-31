@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O2 -w
+CFLAGS = -w
 
 default: all
 
@@ -17,4 +17,4 @@ mathserver/kmeans: mathserver/src/kmeans.c
 
 all: mathserver/server client/client mathserver/matinv-par mathserver/kmeans
 clean:
-	rm mathserver/server client/client mathserver/matinv-par mathserver/kmeans
+	rm -rf mathserver/server client/client mathserver/matinv-par mathserver/kmeans mathserver/computed_results client/results kmeans_**.txt **/matinv_client**.txt

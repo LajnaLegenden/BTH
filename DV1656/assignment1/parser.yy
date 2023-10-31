@@ -18,7 +18,7 @@
   
 }
 // definition of set of tokens. All tokens are of type string
-%token <std::string> PUBLIC CLASS VOID MAIN STRING INT STATIC BOOLEAN IF ELSE WHILE PRINT TRUE FALSE THIS NEW NOT AND ERROR OR COMMA IDENTIFIER INTEGER_LITERAL COMMENT LESS_THAN GREATER_THAN EQUAL ADD SUBTRACT MULTIPLY DIVIDE LENGTH LEFT_BRACE RIGHT_BRACE LEFT_PARENTHESIS RIGHT_PARENTHESIS LEFT_BRACKET RIGHT_BRACKET DOT SEMICOLON ASSIGN
+%token <std::string>  PUBLIC CLASS VOID MAIN STRING INT BOOLEAN IF ELSE WHILE PRINT TRUE FALSE THIS NEW NOT AND OR LESS_THAN GREATER_THAN EQUAL ADD SUBTRACT MULTIPLY DIVIDE LENGTH LEFT_BRACE RIGHT_BRACE LEFT_PARENTHESIS RIGHT_PARENTHESIS LEFT_BRACKET RIGHT_BRACKET DOT COMMA SEMICOLON ASSIGN IDENTIFIER INTEGER_LITERAL COMMENT ERROR
 %token END 0 "end of file"
 
 //definition of operator precedence. See https://www.gnu.org/software/bison/manual/bison.html#Precedence-Decl
@@ -27,85 +27,85 @@
 
 // definition of the production rules. All production rules are of type Node
 %type <Node *> root expression factor
+%{
+#include <stdio.h>
+%}
 
 %%
-root:       expression {root = $1;};
+
+Goal:
+    MainClass: MainClass ClassDeclaration | EOF ;
 
 
-expression: expression ADD expression {      /*
-Create a subtree that corresponds to the AddExpression
-The root of the subtree is AddExpression
-The childs of the AddExpression subtree are the left hand side (expression accessed through $1) and right hand side of the expression (expression accessed through $3)
-*/
-$$ = new Node("AddExpression", "", yylineno);
-$$->children.push_back($1);
-$$->children.push_back($3);
-/* printf("r1 "); */
-}
-| expression SUBTRACT expression {
-$$ = new Node("SubExpression", "", yylineno);
-$$->children.push_back($1);
-$$->children.push_back($3);
-/* printf("r2 "); */
-}
-| expression MULTIPLY expression {
-$$ = new Node("MultExpression", "", yylineno);
-$$->children.push_back($1);
-$$->children.push_back($3);
-/* printf("r3 "); */
-}
-| expression DIVIDE expression {
-$$ = new Node("DevideExpression", "", yylineno);
-$$->children.push_back($1);
-$$->children.push_back($3);
-/* printf("r4 "); */
-}
-| factor 
-{$$ = $1; /* printf("r5 ");*/}
-;
+MainClass:
+    PUBLIC CLASS IDENTIFIER '{' PUBLIC STATIC VOID MAIN '(' STRING '[' ']' IDENTIFIER ')' '{' Statement '}' '}' ;
 
-factor:INT{  $$ = new Node("Int", $1, yylineno); }| LEFT_PARENTHESIS expression RIGHT_PARENTHESIS { $$ = $2; };
+ClassDeclaration:
+    CLASS IDENTIFIER '{' VarDeclaration* MethDeclaration* '}' ;
 
-MainClass: PUBLIC CLASS IDENTIFIER LEFT_BRACE PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET IDENTIFIER RIGHT_PARENTHESIS LEFT_BRACE statement RIGHT_BRACE RIGHT_BRACE { $$ = new Node("MainClass", "", yylineno);
- $$->children.push_back($3);
-  $$->children.push_back($11);
-    $$->children.push_back($15); };
+VarDeclaration:
+    Type IDENTIFIER ';' ;
 
-ClassDeclaration: 
-    CLASS IDENTIFIER LEFT_BRACE VarDeclarationList MethodDeclarationList RIGHT_BRACE { 
-        /* Create a ClassDeclaration node */
-        $$ = new Node("ClassDeclaration", "", yylineno);
-        /* Add children nodes for Identifier, VarDeclarationList, and MethodDeclarationList */
-        $$->children.push_back(new Node("Identifier", $2, yylineno));
-        $$->children.push_back($4);
-        $$->children.push_back($5);
-    };
+MethDefinition : PUBLIC Type IDENTIFIER '(' ParamList ')' '{' VarStatements RETURN Expression ';' '}' ;
 
-VarDeclarationList: 
-    /* Empty */ { $$ = new Node("VarDeclarationList", "", yylineno); }
-    | VarDeclarationList VarDeclaration { 
-        $$ = $1;
-        $$->children.push_back($2);
-    };
+ParamList:
+    /* empty */
+    | Type IDENTIFIER ParamRest* ;
 
-method_declaration: 
-  PUBLIC type IDENTIFIER LEFT_PARENTHESIS 
-    (type IDENTIFIER (COMMA type IDENTIFIER)*)? 
-  RIGHT_PARENTHESIS LEFT_BRACE 
-    (var_declaration | statement)* 
-    RETURN expression SEMICOLON RIGHT_BRACE 
-  { 
-    /*
-      Create a subtree that corresponds to the MethodDeclaration
-      The root of the subtree is MethodDeclaration
-      The child nodes of the MethodDeclaration subtree are the various components of the method declaration such as its return type, identifier, parameter list, and the body of the method.
-    */
-    $$ = new Node("MethodDeclaration", "", yylineno);
-    $$->children.push_back(new Node("ReturnType", $2, yylineno));
-    $$->children.push_back(new Node("Identifier", $3, yylineno));
-    $$->children.push_back($5);
-    $$->children.push_back($9);
-  };
+ParamRests : ParamRest ParamRests
+           | /* empty */ ;
+VarStatements : VarStatement VarStatements
+              | /* empty */ ;
 
+Type:
+    INT '[' ']'
+    | BOOLEAN
+    | INT
+    | IDENTIFIER ;
 
-goal: MAIN LEFT_PARENTHESIS CLASS RIGHT_PARENTHESIS LEFT_BRACE expression RIGHT_BRACE { $$ = $5; };
+Statement:
+    '{' Statement* '}'
+    | IF '(' Expression ')' Statement ELSEopt
+    | WHILE '(' Expression ')' Statement
+    | SYSTEM_OUT_PRINTLN '(' Expression ')' ';'
+    | IDENTIFIER '=' Expression ';'
+    | IDENTIFIER '[' Expression ']' '=' Expression ';' ;
+
+ELSEopt:
+    /* empty */
+    | ELSE Statement ;
+
+Expression:
+    Expression OP Expression
+    | Expression '[' Expression ']'
+    | Expression '.' LENGTH
+    | Expression '.' IDENTIFIER '(' ExpList ')'
+    | INTEGER_LITERAL
+    | TRUE
+    | FALSE
+    | IDENTIFIER
+    | THIS
+    | NEW INT '[' Expression ']'
+    | NEW IDENTIFIER '(' ')'
+    | '!' Expression
+    | '(' Expression ')' ;
+
+OP:
+    "&&"
+    | "||"
+    | "<"
+    | ">"
+    | "=="
+    | "+"
+    | "-"
+    | "*"
+    | "/" ;
+
+ExpList:
+    /* empty */
+    | Expression ExpRest* ;
+
+ExpRest:
+    ',' Expression ;
+
+%%
