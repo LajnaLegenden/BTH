@@ -105,33 +105,11 @@ class Solver {
             //update board
             await this.updateBoard();
 
-            for(let x = 1; x<=this.x; x++){
-                for (let y = 1; y <= this.y; y++) {
-                    if(this.board[`${x}_${y}`] == BoardState.ONE){
-                         //cehck if only one unreavealed square aournd
-                            let count = 0;
-                            if(this.board[`${x-1}_${y-1}`] == BoardState.UNREVEALED)
-                                count++;
-                            if(this.board[`${x-1}_${y}`] == BoardState.UNREVEALED)
-                                count++;
-                            if(this.board[`${x-1}_${y+1}`] == BoardState.UNREVEALED)    
-                                count++;
-                            if(this.board[`${x}_${y-1}`] == BoardState.UNREVEALED)
-                                count++;
-                            if(this.board[`${x}_${y+1}`] == BoardState.UNREVEALED)
-                                count++;
-                            if(this.board[`${x+1}_${y-1}`] == BoardState.UNREVEALED)
-                                count++;
-                            if(this.board[`${x+1}_${y}`] == BoardState.UNREVEALED)
-                                count++;
-                            if(this.board[`${x+1}_${y+1}`] == BoardState.UNREVEALED)
-                                count++;
-                            if(count == 1){
-                                
-
-                    }
-                }
-            }
+            //click on a random square
+            let x = Math.floor(Math.random() * 16 + 1);
+            let y = Math.floor(Math.random() * 30 + 1);
+            await this.clickSquare(x, y);
+            this.guessesMade++;
 
         }
         await this.page?.waitForTimeout(5000);

@@ -31,7 +31,6 @@ void getHelp(char *argv[])
     printf("-p\tListen to port number port\n");
 }
 
-
 // return substring
 char *getSubString(char *str, int pos, int length)
 {
@@ -46,7 +45,6 @@ char *getSubString(char *str, int pos, int length)
     subStr[c] = '\0';
     return subStr;
 }
-
 
 char **split_string_on_spaces(const char *str, int *count)
 {
@@ -238,7 +236,7 @@ int main(int argc, char *argv[])
             while (1)
             {
                 // receive data from client
-                char strData[64];
+                char strData[32];
                 int nbytes = recv(cd, strData, sizeof(strData), 0);
                 if (nbytes == -1)
                 {
@@ -284,7 +282,11 @@ int main(int argc, char *argv[])
                         strcat(command, randomLetters);
                         strcat(command, ".txt");
                         char buf[RESPONSE_LIMIT];
+                        printf("Running command: %s\n", command);
                         system(command);
+
+                        printf("Sleeping for 1 second\n");
+                        sleep(1);
 
                         // read file and send to client
                         char fileName[32];
@@ -319,7 +321,9 @@ int main(int argc, char *argv[])
 
                         printf("Sending file to client\n");
 
-                        send(cd, fileBuf, RESPONSE_LIMIT, 0);
+                        // print fileBuf
+                        printf("Sending 326");
+                        send(cd, fileBuf, 4096, 0);
 
                         // Free allocated memory
                         free(randomLetters);
@@ -331,6 +335,7 @@ int main(int argc, char *argv[])
                         printf("Client has requested kmeans\n");
 
                         // Send the client an "INPUT" message
+                        printf("Sending 339");
                         send(cd, "INPUT", 6, 0);
 
                         // Allocate memory for 8 random letters
@@ -433,12 +438,17 @@ int main(int argc, char *argv[])
 
                         // Send the output file to the client
                         printf("Sending file to client\n");
+                        printf("Sending 442");
                         send(cd, fileBuffer, RESPONSE_LIMIT, 0);
                         system("rm kmeans-results.txt");
 
                         // Free allocated memory
                         free(randomLetters);
                         free(fileBuffer);
+                    }
+                    else
+                    {
+                        printf("Invalid command: %s \n", strData);
                     }
                 }
             }

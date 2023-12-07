@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
     printf("IP Address: %s\n", ip_address);
     printf("Port: %d\n", port);
 
-        char cwd[1024];
+    char cwd[1024];
     getcwd(cwd, sizeof(cwd));
     printf("Current working dir: %s\n", cwd);
     // seed rgn
@@ -304,9 +304,6 @@ int main(int argc, char *argv[])
 
             printf("Received a message (%d bytes) from the server!\n\n", nrbytes);
 
-            
-
-
             printf("Sending file to server\n");
             send(client_socket, fileBuf, RESPONSE_LIMIT, 0);
             // revice data
@@ -322,7 +319,6 @@ int main(int argc, char *argv[])
             printf("Received a message (%d bytes) from the server!\n\n", nbytes);
 
             // write buffer to file
-           
 
             char filename[50];
             sprintf(filename, "results/kmeans_client%d_soln%d.txt", getpid(), matSol++);
