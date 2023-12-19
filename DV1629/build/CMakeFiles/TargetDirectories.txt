@@ -1,3 +1,0 @@
-/home/lajna/code/BTH/DV1629/build/CMakeFiles/main.dir
-/home/lajna/code/BTH/DV1629/build/CMakeFiles/edit_cache.dir
-/home/lajna/code/BTH/DV1629/build/CMakeFiles/rebuild_cache.dir

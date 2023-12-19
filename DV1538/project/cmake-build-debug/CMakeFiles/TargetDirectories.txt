@@ -1,4 +1,0 @@
-/home/lajna/code/newNotes/dv1538/project/cmake-build-debug/CMakeFiles/project.dir
-/home/lajna/code/newNotes/dv1538/project/cmake-build-debug/CMakeFiles/project_test.dir
-/home/lajna/code/newNotes/dv1538/project/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/lajna/code/newNotes/dv1538/project/cmake-build-debug/CMakeFiles/rebuild_cache.dir

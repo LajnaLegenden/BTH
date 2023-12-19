@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -w
+CFLAGS = -O2 -w
 
 default: all
 
@@ -12,9 +12,12 @@ client/client: client/client.c
 mathserver/matinv-par: mathserver/src/matinv-par.c
 	$(CC) $(CFLAGS) mathserver/src/matinv-par.c -lpthread -o mathserver/matinv-par
 
+mathserver/matinv: mathserver/src/matinv.c
+	$(CC) $(CFLAGS) mathserver/src/matinv.c -lpthread -o mathserver/matinv
+
 mathserver/kmeans: mathserver/src/kmeans.c
 	$(CC) $(CFLAGS) mathserver/src/kmeans.c -lpthread -o mathserver/kmeans
 
-all: mathserver/server client/client mathserver/matinv-par mathserver/kmeans
+all: mathserver/server client/client mathserver/matinv-par mathserver/kmeans mathserver/matinv
 clean:
-	rm -rf mathserver/server client/client mathserver/matinv-par mathserver/kmeans mathserver/computed_results client/results kmeans_**.txt **/matinv_client**.txt
+	rm mathserver/server client/client mathserver/matinv-par mathserver/kmeans mathserver/matinv

@@ -19,8 +19,7 @@ struct sharedMemoryStruct
 #define SHMSIZE 128
 #define SHM_R 0400
 #define SHM_W 0200
-#define RESPONSE_LIMIT 16384
-
+#define RESPONSE_LIMIT 16384 * 16
 volatile struct sharedMemoryStruct *sharedMemoryPointer = NULL;
 int sharedMemoryId;
 
@@ -236,7 +235,7 @@ int main(int argc, char *argv[])
             while (1)
             {
                 // receive data from client
-                char strData[32];
+                char strData[64];
                 int nbytes = recv(cd, strData, sizeof(strData), 0);
                 if (nbytes == -1)
                 {
@@ -278,7 +277,7 @@ int main(int argc, char *argv[])
                         strcpy(command, "./mathserver/matinv-par ");
                         strcat(command, getSubString(strData, 10, 128));
                         // output name
-                        strcat(command, "> computed_results/");
+                        strcat(command, " > computed_results/");
                         strcat(command, randomLetters);
                         strcat(command, ".txt");
                         char buf[RESPONSE_LIMIT];
@@ -323,7 +322,7 @@ int main(int argc, char *argv[])
 
                         // print fileBuf
                         printf("Sending 326");
-                        send(cd, fileBuf, 4096, 0);
+                        send(cd, fileBuf, RESPONSE_LIMIT, 0);
 
                         // Free allocated memory
                         free(randomLetters);
@@ -335,8 +334,8 @@ int main(int argc, char *argv[])
                         printf("Client has requested kmeans\n");
 
                         // Send the client an "INPUT" message
-                        printf("Sending 339");
-                        send(cd, "INPUT", 6, 0);
+                        printf("Sending 339\n");
+                        send(cd, "INPUT", 128, 0);
 
                         // Allocate memory for 8 random letters
                         char *letters = "abcdefghijklmnopqrstuvwxyz";
@@ -356,14 +355,15 @@ int main(int argc, char *argv[])
 
                         // Receive file from client
                         char fileBuf[RESPONSE_LIMIT];
-                        int nbytes = recv(cd, fileBuf, sizeof(fileBuf), 0);
+                        int nbytes = recv(cd, fileBuf, RESPONSE_LIMIT, 0);
                         if (nbytes == -1)
                         {
                             perror("recv");
                             exit(EXIT_FAILURE);
                         }
                         fileBuf[nbytes] = '\0';
-                        printf("File received from client\n");
+
+                        printf("Received file (%d bytes) from the client!\n\n", nbytes);
 
                         // Write file to disk
                         printf("Writing file to disk\n");
@@ -387,7 +387,7 @@ int main(int argc, char *argv[])
                             free(words);
                         }
 
-                        fp = fopen(workingFileName, "w");
+                        fp = fopen(workingFileName, "r");
                         fprintf(fp, "%s", fileBuf);
                         fclose(fp);
 
@@ -420,7 +420,7 @@ int main(int argc, char *argv[])
                             perror("Error while opening the file.\n");
                             exit(EXIT_FAILURE);
                         }
-                        char *fileBuffer = (char *)malloc(sizeof(char) * RESPONSE_LIMIT);
+                        char fileBuffer[RESPONSE_LIMIT];
                         if (fileBuffer == NULL)
                         {
                             perror("Failed to allocate memory for fileBuf");
@@ -444,11 +444,10 @@ int main(int argc, char *argv[])
 
                         // Free allocated memory
                         free(randomLetters);
-                        free(fileBuffer);
                     }
                     else
                     {
-                        printf("Invalid command: %s \n", strData);
+                        // printf("Invalid command: %s \n", strData);
                     }
                 }
             }

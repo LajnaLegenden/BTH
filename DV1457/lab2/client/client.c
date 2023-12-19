@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#define RESPONSE_LIMIT 16384
+#define RESPONSE_LIMIT 16384 * 16
 
 int matSol = 1;
 int kmeansSol = 1;
@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
     {
         // listen for input
         char *input;
-        size_t bufsize = 32;
+        size_t bufsize = 64;
         size_t characters;
 
         input = (char *)malloc(bufsize * sizeof(char));
@@ -223,7 +223,7 @@ int main(int argc, char *argv[])
             send(client_socket, input, characters, 0);
 
             // revice data
-            char buffer[4096];
+            char buffer[RESPONSE_LIMIT];
             int nbytes = recv(client_socket, buffer, sizeof(buffer), 0);
             if (nbytes == -1)
             {
@@ -273,7 +273,7 @@ int main(int argc, char *argv[])
                 perror("Error while opening the file.\n");
                 exit(EXIT_FAILURE);
             }
-            char *fileBuf = (char *)malloc(sizeof(char) * RESPONSE_LIMIT);
+            char fileBuf[RESPONSE_LIMIT];
             if (fileBuf == NULL)
             {
                 perror("Failed to allocate memory for fileBuf");
@@ -285,13 +285,12 @@ int main(int argc, char *argv[])
             {
                 fileBuf[i++] = c;
             }
-            fileBuf[i] = '\0';
             fclose(fp);
             printf("File read successfully\n");
-            printf("Sending file to server\n");
+            printf("Sending input to server\n");
             // send input to server
-            send(client_socket, input, characters, 0);
-
+            int sent = send(client_socket, input, characters, 0);
+            printf("Sent %d bytes\n", sent);
             char instruction[128];
             int nrbytes = recv(client_socket, instruction, sizeof(instruction), 0);
             if (nrbytes == -1)
@@ -305,9 +304,10 @@ int main(int argc, char *argv[])
             printf("Received a message (%d bytes) from the server!\n\n", nrbytes);
 
             printf("Sending file to server\n");
-            send(client_socket, fileBuf, RESPONSE_LIMIT, 0);
+            sent = send(client_socket, fileBuf, RESPONSE_LIMIT, 0);
+            printf("Sent %d bytes\n", sent);
             // revice data
-            char buffer[4096];
+            char buffer[RESPONSE_LIMIT];
             int nbytes = recv(client_socket, buffer, sizeof(buffer), 0);
             if (nbytes == -1)
             {
@@ -320,10 +320,10 @@ int main(int argc, char *argv[])
 
             // write buffer to file
 
-            char filename[50];
-            sprintf(filename, "results/kmeans_client%d_soln%d.txt", getpid(), matSol++);
-            printf("Writing to file %s\n", filename);
-            fp = fopen(filename, "w");
+            char newFileName[50];
+            sprintf(newFileName, "results/kmeans_client%d_soln%d.txt", getpid(), matSol++);
+            printf("Writing to file %s\n", newFileName);
+            fp = fopen(newFileName, "w");
             fprintf(fp, "%s", buffer);
             fclose(fp);
         }

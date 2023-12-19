@@ -1,3 +1,0 @@
-/home/lajna/code/BTH/DV1629- OS/lab2_code_students/lrucpp/cmake-build-debug/CMakeFiles/main.dir
-/home/lajna/code/BTH/DV1629- OS/lab2_code_students/lrucpp/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/lajna/code/BTH/DV1629- OS/lab2_code_students/lrucpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir

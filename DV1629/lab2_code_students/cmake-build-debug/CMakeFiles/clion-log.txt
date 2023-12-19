@@ -1,1 +1,0 @@
-CMakeLists.txt not found in /home/lajna/code/BTH/DV1629- OS/lab2_code_students Select CMakeLists.txt
