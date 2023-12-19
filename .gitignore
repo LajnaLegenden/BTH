@@ -1,3 +1,7 @@
 node_modules
 cmake-build-debug
 CMakeFiles
+.cache
+computed_results
+**/lab2/results
+DV1629/lab3_code_students_v1.3/.cache/**/*
