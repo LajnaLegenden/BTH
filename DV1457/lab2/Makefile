@@ -21,3 +21,4 @@ mathserver/kmeans: mathserver/src/kmeans.c
 all: mathserver/server client/client mathserver/matinv-par mathserver/kmeans mathserver/matinv
 clean:
 	rm mathserver/server client/client mathserver/matinv-par mathserver/kmeans mathserver/matinv
+	rm -rf computed_results results

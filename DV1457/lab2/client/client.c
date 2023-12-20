@@ -99,6 +99,32 @@ char **split_string_on_spaces(const char *str, int *count)
     return result;
 }
 
+ssize_t receiveFullBuffer(int client_socket, char *buffer, size_t buffer_size)
+{
+    size_t total_received = 0;
+    ssize_t bytes_received;
+
+    while (total_received < buffer_size)
+    {
+        bytes_received = recv(client_socket, buffer + total_received, buffer_size - total_received, 0);
+
+        if (bytes_received == -1)
+        {
+            perror("recv");
+            exit(EXIT_FAILURE);
+        }
+        else if (bytes_received == 0)
+        {
+            // Connection has been closed
+            break;
+        }
+
+        total_received += bytes_received;
+    }
+
+    return total_received; // Return the total number of bytes received
+}
+
 int main(int argc, char *argv[])
 {
     /**
@@ -308,12 +334,11 @@ int main(int argc, char *argv[])
             printf("Sent %d bytes\n", sent);
             // revice data
             char buffer[RESPONSE_LIMIT];
-            int nbytes = recv(client_socket, buffer, sizeof(buffer), 0);
-            if (nbytes == -1)
-            {
-                perror("recv");
-                exit(EXIT_FAILURE);
-            }
+
+
+            ssize_t nbytes = receiveFullBuffer(client_socket, buffer, RESPONSE_LIMIT);
+
+            
             buffer[nbytes] = '\0';
 
             printf("Received a message (%d bytes) from the server!\n\n", nbytes);

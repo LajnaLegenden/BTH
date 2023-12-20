@@ -14,7 +14,7 @@
 struct sharedMemoryStruct
 {
     int pCount;
-    pid_t pids[10];
+    pid_t pids[100];
 };
 #define SHMSIZE 128
 #define SHM_R 0400
@@ -111,6 +111,33 @@ void handle_sigint(int sig)
     }
     exit(0);
 }
+
+ssize_t receiveFullBuffer(int client_socket, char *buffer, size_t buffer_size)
+{
+    size_t total_received = 0;
+    ssize_t bytes_received;
+
+    while (total_received < buffer_size)
+    {
+        bytes_received = recv(client_socket, buffer + total_received, buffer_size - total_received, 0);
+
+        if (bytes_received == -1)
+        {
+            perror("recv");
+            exit(EXIT_FAILURE);
+        }
+        else if (bytes_received == 0)
+        {
+            // Connection has been closed
+            break;
+        }
+
+        total_received += bytes_received;
+    }
+
+    return total_received; // Return the total number of bytes received
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -267,9 +294,8 @@ int main(int argc, char *argv[])
                         }
 
                         for (int i = 0; i < 8; i++)
-                        {
                             randomLetters[i] = letters[rand() % 26];
-                        }
+
                         randomLetters[8] = '\0'; // Null-terminate the string
 
                         printf("Client has requested matinvpar\n");
@@ -355,7 +381,7 @@ int main(int argc, char *argv[])
 
                         // Receive file from client
                         char fileBuf[RESPONSE_LIMIT];
-                        int nbytes = recv(cd, fileBuf, RESPONSE_LIMIT, 0);
+                        int nbytes = receiveFullBuffer(cd, fileBuf, RESPONSE_LIMIT);
                         if (nbytes == -1)
                         {
                             perror("recv");
