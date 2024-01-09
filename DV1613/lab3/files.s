@@ -158,19 +158,6 @@ outimage:
     movq $0, oIndex # reset oIndex
     ret
 # ___________________________________
-
-/**
- * .global Function
-Function: putInt
- * .global Description
-Description: This function converts an integer to a string and stores it in the output buffer.
- * .global Parameters
-Parameters:
- *   - %.global rdi
-rdi: The input integer to be converted.
- * Return .global Value
-Value: None
- */
 .global putint
 putint:
     movq %rdi, %rax

@@ -8,41 +8,18 @@
 .text
 
 print_string:
-/*
--------------------------------------------------------
-Prints a null terminated string.
--------------------------------------------------------
-Parameters:
-  r0 - address of string
-Uses:
-  r1 - holds character to print
-  r2 - address of UART
--------------------------------------------------------
-*/
   PUSH {r0-r1, r4, lr}
   LDR r2, =UART_BASE
 _ps_loop:
   LDRB r1, [r0], #1 // load a single byte from the string
   CMP r1, #0
   BEQ _print_string // stop when the null character is found
-  STR r1, [r2] // copy the character to the UART DATA field
+  STR r1, [r2]// copy the character to the UART DATA field
   B _ps_loop
 _print_string:
   POP {r0-r1, r4, pc}
 
 idiv:
-/*
--------------------------------------------------------
-Performs integer division
--------------------------------------------------------
-Parameters:
-  r0 - numerator
-  r1 - denominator
-Returns:
-  r0 - quotient r0/r1
-  r1 - modulus r0%r1
--------------------------------------------------------
-*/
   MOV r2, r1
   MOV r1, r0
   MOV r0, #0
@@ -56,17 +33,6 @@ _loop_check:
   BX lr
 
 print_number:
-/*
--------------------------------------------------------
-Prints a decimal number followed by newline.
--------------------------------------------------------
-Parameters:
-  r0 - number
-Uses:
-  r1 - 10 (decimal base)
-  r2 - address of UART
--------------------------------------------------------
-*/
   PUSH {r0-r5, lr}
   MOV r5, #0 //digit counter
 _div_loop:
@@ -106,7 +72,7 @@ _factorial_end:
 _start:
   MOV sp, #STACK_BASE // Initialize stack pointer
 
-  // Main loop to print factorial of numbers 10 to 1
+// Main loop to print factorial of numbers 10 to 1
   MOV r0, #10 // Start with 10
 _main_loop:
   PUSH {r0}             // S14ave current number
@@ -116,5 +82,5 @@ _main_loop:
   SUBS r0, r0, #1       // Decrement number
   BNE _main_loop        // If not zero, loop again
 
-  // End of program, hang
+// End of program, hang
   B .
