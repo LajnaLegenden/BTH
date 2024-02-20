@@ -13,10 +13,10 @@ int ex(nodeType *p)
     switch (p->type)
     {
     case typeCon:
-        printf("\tpush\t%d\n", p->con.value);
+        printf("\tpush\t%d ; typecon\n", p->con.value);
         break;
     case typeId:
-        printf("\tpush\t%c\n", p->id.i + 'a');
+        printf("\tpush\t%c ; typeid\n", p->id.i + 'a');
         break;
     case typeOpr:
         switch (p->opr.oper)
@@ -67,7 +67,7 @@ int ex(nodeType *p)
             break;
         case LNTWO:
             ex(p->opr.op[0]);
-            printf("\lntwo\n");
+            printf("\tlntwo\n");
             break;
         default:
             ex(p->opr.op[0]);

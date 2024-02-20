@@ -16,7 +16,7 @@ SRC_FILE=""
 BIN_FILE=""
 
 # test files
-LOOP_TEST="looptest"		# grade D
+LOOP_TEST="pi"		# grade D
 
 
 # run_test <driver> <file ending> <test path> <result path> <test>
