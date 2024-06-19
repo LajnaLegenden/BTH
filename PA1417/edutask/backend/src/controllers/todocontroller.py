@@ -28,6 +28,8 @@ class TodoController(Controller):
 
                 if 'done' in data:
                     if isinstance(data['done'], str):
+                        print("HAS DONE")
+                        print(data)
                         data['done'] = (data['done'].lower() == 'true')
 
                 todo = self.dao.create(data)
