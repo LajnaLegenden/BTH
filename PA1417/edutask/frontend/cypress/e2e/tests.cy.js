@@ -1,6 +1,7 @@
 const chars = "abcdefghijklmnopqrstuvwxyz";
 let email = "";
-
+import user from "../fixtures/cypress/fixtures/user.json";
+import tasks from "../fixtures/cypress/fixtures/tasks.json";
 Cypress.config("defaultCommandTimeout", 10000);
 
 //viewport
@@ -14,14 +15,8 @@ describe("Req 8", () => {
   before(() => {
     //timeout
 
-    //genegate random email
-    for (var i = 0; i < 10; i++) {
-      email += chars[Math.floor(Math.random() * chars.length)];
-    }
-    email += "@gmail.com";
-    for (var i = 0; i < 10; i++) {
-      title += chars[Math.floor(Math.random() * chars.length)];
-    }
+    email = user.email;
+    title = "Test Task";
   });
 
   //before each
@@ -32,8 +27,8 @@ describe("Req 8", () => {
       form: true,
       body: {
         email: email,
-        firstName: "Max",
-        lastName: "Dahlgren",
+        firstName: user.firstName,
+        lastName: user.lastName,
       },
     }).then((response) => {
       id = response.body._id.$oid;
@@ -44,12 +39,18 @@ describe("Req 8", () => {
       // send a request to the server creating the new task
       cy.wrap(null).then(() => {
         const data = new URLSearchParams();
-        data.append("title", title);
-        data.append("description", "(add a description here)");
+        data.append("title", tasks.tasks[0].title);
+        data.append("description", tasks.tasks[0].description);
         data.append("userid", id);
-        data.append("url", "google.se");
-        data.append("todos", ["testTask"]);
-        data.append("todos", ["anotherOne"]);
+        data.append("url", tasks.tasks[0].url);
+        for (let i = 0; i < tasks.tasks[0].todos.length; i++) {
+          data.append("todos", tasks.tasks[0].todos[i]);
+        }
+
+        fetch("http://localhost:5000/tasks/create", {
+          method: "post",
+          body: data,
+        })
 
         fetch("http://localhost:5000/tasks/create", {
           method: "post",
@@ -69,7 +70,7 @@ describe("Req 8", () => {
 
       cy.wait(1000);
 
-      cy.get(".title-overlay").contains(title).click();
+      cy.get(".title-overlay").contains(tasks.tasks[0].title).click();
     });
   });
 
@@ -78,7 +79,7 @@ describe("Req 8", () => {
     it("Create todo", () => {
       //click the task with the title
       //type anything in todo
-      cy.get('.inline-form > [type="text"]').type("anotherTestTask");
+      cy.get('.inline-form > [type="text"]').type("Input 1");
       //delay
       cy.wait(1000);
       //click submit
@@ -87,17 +88,18 @@ describe("Req 8", () => {
       //delay
       cy.wait(1000);
       //find all li in todo-list and check if it contains the text
-      cy.get(".todo-list > li").contains("anotherTestTask");
+      cy.get(".todo-list > li").contains("Input 1");
     });
 
     it("Dont create todo when input is empty", () => {
+      cy.get('.inline-form > [type="text"]').should("have.value", "");
       cy.get('.inline-form > [type="submit"]').should("be.disabled");
     });
     describe("R8UC2", () => {
       it("Mark todo as done", () => {
         //click .checker element within li with text testTask
         cy.get(".todo-list > li")
-          .contains("testTask")
+          .contains(tasks.tasks[0].todos[0])
           .parent()
           .find(".checker")
           .click();
@@ -105,7 +107,7 @@ describe("Req 8", () => {
         cy.wait(1000);
         //should have css  class checked
         cy.get(".todo-list > li")
-          .contains("testTask")
+          .contains(tasks.tasks[0].todos[0])
           .parent()
           .find(".checker")
           .should("have.class", "checked");
@@ -121,7 +123,7 @@ describe("Req 8", () => {
           }).then((response) => {
             console.log("THE TASK", response.body);
             const todo = response.body.todos.filter(
-              (todo) => todo.description === "anotherOne",
+              (todo) => todo.description === tasks.tasks[0].todos[1],
             );
             console.log(todo);
             todoId = todo[0]._id.$oid;
@@ -158,7 +160,7 @@ describe("Req 8", () => {
         //delay
         cy.wait(3000);
         //reopen the task
-        cy.get(".title-overlay").contains(title).click();
+        cy.get(".title-overlay").contains(tasks.tasks[0].title).click();
 
         //click .close-btn
         cy.get(".close-btn").click();
@@ -167,12 +169,12 @@ describe("Req 8", () => {
         //delay
 
         //reopen the task
-        cy.get(".title-overlay").contains(title).click();
+        cy.get(".title-overlay").contains(tasks.tasks[0].title).click();
 
         cy.wait(5555);
 
         cy.get(".todo-list > li")
-          .contains("anotherOne")
+          .contains(tasks.tasks[0].todos[1])
           .parent()
           .find(".checker")
           .click();
@@ -180,13 +182,13 @@ describe("Req 8", () => {
         cy.wait(1000);
 
         cy.get(".todo-list > li")
-          .contains("anotherOne")
+          .contains(tasks.tasks[0].todos[1])
           .parent()
           .find(".checker")
           .should("not.have.class", "checked");
 
         cy.get(".todo-list > li")
-          .contains("anotherOne")
+          .contains(tasks.tasks[0].todos[1])
           .parent()
           .find(".editable")
           //should have text-decoration line-through
@@ -201,14 +203,14 @@ describe("Req 8", () => {
   describe("R8UC3", () => {
     it("Remove todo", () => {
       cy.get(".todo-list > li")
-        .contains("anotherOne")
+        .contains(tasks.tasks[0].todos[1])
         .parent()
         .find(".remover")
         .click();
 
       cy.wait(5000);
 
-      cy.get(".todo-list > li").should("not.contain", "anotherOne");
+      cy.get(".todo-list > li").should("not.contain", tasks.tasks[0].todos[1]);
     });
   });
   afterEach(() => {
