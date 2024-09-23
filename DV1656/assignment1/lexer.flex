@@ -33,7 +33,8 @@ int lexical_errors = 0;
 "*"                {if(USE_LEX_ONLY) {printf("MULTIPLY");} else {return yy::parser::make_MULTIPLY(yytext);}}
 "/"                {if(USE_LEX_ONLY) {printf("DIVIDE");} else {return yy::parser::make_DIVIDE(yytext);}}
 "length"           {if(USE_LEX_ONLY) {printf("LENGTH");} else {return yy::parser::make_LENGTH(yytext);}}
-
+"static"           {if(USE_LEX_ONLY) {printf("STATIC");} else {return yy::parser::make_STATIC(yytext);}}
+"return"           {if(USE_LEX_ONLY) {printf("RETURN");} else {return yy::parser::make_RETURN(yytext);}}
 "{"                {if(USE_LEX_ONLY) {printf("LEFT_BRACE");} else {return yy::parser::make_LEFT_BRACE(yytext);}}
 "}"                {if(USE_LEX_ONLY) {printf("RIGHT_BRACE");} else {return yy::parser::make_RIGHT_BRACE(yytext);}}
 "("                {if(USE_LEX_ONLY) {printf("LEFT_PARENTHESIS");} else {return yy::parser::make_LEFT_PARENTHESIS(yytext);}}
@@ -53,5 +54,5 @@ int lexical_errors = 0;
 [ \t\r\n]+         /* ignore whitespace */;
 .                  {if(USE_LEX_ONLY) {printf("ERROR");} else {return yy::parser::make_ERROR(yytext);}}
 
-<<EOF>>                 {if(USE_LEX_ONLY) {printf("EOF");} else {return yy::parser::make_END(yytext);}}
+<<EOF>>                 {if(USE_LEX_ONLY) {printf("EOF");} else {return yy::parser::make_END();}}
 %%
