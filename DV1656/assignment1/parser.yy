@@ -24,6 +24,7 @@
 %token <std::string> LEFT_PARENTHESIS RIGHT_PARENTHESIS LEFT_BRACKET RIGHT_BRACKET
 %token <std::string> DOT COMMA SEMICOLON ASSIGN IDENTIFIER INTEGER_LITERAL
 %token <std::string> STATIC RETURN SYSTEM_OUT_PRINTLN
+%token <std::string> COMMENT ERROR
 %token END 0 "end of file"
 
 %type <Node *> Goal MainClass ClassDeclarationList ClassDeclaration VarDeclarationList MethodDeclarationList
