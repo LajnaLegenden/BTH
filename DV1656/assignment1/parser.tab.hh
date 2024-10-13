@@ -48,10 +48,11 @@
 #line 7 "parser.yy"
 
   #include <string>
+  #include <list>
   #include "Node.h"
-  #define USE_LEX_ONLY false //change this macro to true if you want to isolate the lexer from the parser.
+  #define USE_LEX_ONLY false
 
-#line 55 "parser.tab.hh"
+#line 56 "parser.tab.hh"
 
 
 # include <cstdlib> // std::abort
@@ -182,11 +183,11 @@
 
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+# define YYDEBUG 1
 #endif
 
 namespace yy {
-#line 190 "parser.tab.hh"
+#line 191 "parser.tab.hh"
 
 
 
@@ -384,21 +385,24 @@ namespace yy {
     {
       // Goal
       // MainClass
-      // ClassDeclarationList
       // ClassDeclaration
-      // VarDeclarationList
-      // MethodDeclarationList
       // VarDeclaration
       // MethodDeclaration
+      // MethodBodyItem
       // Type
-      // ParameterList
-      // Parameter
-      // StatementList
       // Statement
       // Expression
-      // ExpressionList
       // Identifier
-      char dummy1[sizeof (Node *)];
+      char dummy1[sizeof (Node*)];
+
+      // ClassDeclarationList
+      // VarDeclarationList
+      // MethodDeclarationList
+      // MethodBody
+      // ParameterList
+      // StatementList
+      // ExpressionList
+      char dummy2[sizeof (std::list<Node*>)];
 
       // PUBLIC
       // CLASS
@@ -441,9 +445,10 @@ namespace yy {
       // STATIC
       // RETURN
       // SYSTEM_OUT_PRINTLN
+      // EXTENDS
       // COMMENT
       // ERROR
-      char dummy2[sizeof (std::string)];
+      char dummy3[sizeof (std::string)];
     };
 
     /// The size of the largest semantic type.
@@ -528,8 +533,9 @@ namespace yy {
     STATIC = 296,                  // STATIC
     RETURN = 297,                  // RETURN
     SYSTEM_OUT_PRINTLN = 298,      // SYSTEM_OUT_PRINTLN
-    COMMENT = 299,                 // COMMENT
-    ERROR = 300                    // ERROR
+    EXTENDS = 299,                 // EXTENDS
+    COMMENT = 300,                 // COMMENT
+    ERROR = 301                    // ERROR
       };
       /// Backward compatibility alias (Bison 3.6).
       typedef token_kind_type yytokentype;
@@ -546,7 +552,7 @@ namespace yy {
     {
       enum symbol_kind_type
       {
-        YYNTOKENS = 46, ///< Number of tokens.
+        YYNTOKENS = 47, ///< Number of tokens.
         S_YYEMPTY = -2,
         S_YYEOF = 0,                             // "end of file"
         S_YYerror = 1,                           // error
@@ -592,25 +598,27 @@ namespace yy {
         S_STATIC = 41,                           // STATIC
         S_RETURN = 42,                           // RETURN
         S_SYSTEM_OUT_PRINTLN = 43,               // SYSTEM_OUT_PRINTLN
-        S_COMMENT = 44,                          // COMMENT
-        S_ERROR = 45,                            // ERROR
-        S_YYACCEPT = 46,                         // $accept
-        S_Goal = 47,                             // Goal
-        S_MainClass = 48,                        // MainClass
-        S_ClassDeclarationList = 49,             // ClassDeclarationList
-        S_ClassDeclaration = 50,                 // ClassDeclaration
-        S_VarDeclarationList = 51,               // VarDeclarationList
-        S_MethodDeclarationList = 52,            // MethodDeclarationList
+        S_EXTENDS = 44,                          // EXTENDS
+        S_COMMENT = 45,                          // COMMENT
+        S_ERROR = 46,                            // ERROR
+        S_YYACCEPT = 47,                         // $accept
+        S_Goal = 48,                             // Goal
+        S_MainClass = 49,                        // MainClass
+        S_ClassDeclarationList = 50,             // ClassDeclarationList
+        S_ClassDeclaration = 51,                 // ClassDeclaration
+        S_VarDeclarationList = 52,               // VarDeclarationList
         S_VarDeclaration = 53,                   // VarDeclaration
-        S_MethodDeclaration = 54,                // MethodDeclaration
-        S_Type = 55,                             // Type
-        S_ParameterList = 56,                    // ParameterList
-        S_Parameter = 57,                        // Parameter
-        S_StatementList = 58,                    // StatementList
-        S_Statement = 59,                        // Statement
-        S_Expression = 60,                       // Expression
-        S_ExpressionList = 61,                   // ExpressionList
-        S_Identifier = 62                        // Identifier
+        S_MethodDeclarationList = 54,            // MethodDeclarationList
+        S_MethodDeclaration = 55,                // MethodDeclaration
+        S_MethodBody = 56,                       // MethodBody
+        S_MethodBodyItem = 57,                   // MethodBodyItem
+        S_ParameterList = 58,                    // ParameterList
+        S_Type = 59,                             // Type
+        S_StatementList = 60,                    // StatementList
+        S_Statement = 61,                        // Statement
+        S_ExpressionList = 62,                   // ExpressionList
+        S_Expression = 63,                       // Expression
+        S_Identifier = 64                        // Identifier
       };
     };
 
@@ -647,21 +655,25 @@ namespace yy {
     {
       case symbol_kind::S_Goal: // Goal
       case symbol_kind::S_MainClass: // MainClass
-      case symbol_kind::S_ClassDeclarationList: // ClassDeclarationList
       case symbol_kind::S_ClassDeclaration: // ClassDeclaration
-      case symbol_kind::S_VarDeclarationList: // VarDeclarationList
-      case symbol_kind::S_MethodDeclarationList: // MethodDeclarationList
       case symbol_kind::S_VarDeclaration: // VarDeclaration
       case symbol_kind::S_MethodDeclaration: // MethodDeclaration
+      case symbol_kind::S_MethodBodyItem: // MethodBodyItem
       case symbol_kind::S_Type: // Type
-      case symbol_kind::S_ParameterList: // ParameterList
-      case symbol_kind::S_Parameter: // Parameter
-      case symbol_kind::S_StatementList: // StatementList
       case symbol_kind::S_Statement: // Statement
       case symbol_kind::S_Expression: // Expression
-      case symbol_kind::S_ExpressionList: // ExpressionList
       case symbol_kind::S_Identifier: // Identifier
-        value.move< Node * > (std::move (that.value));
+        value.move< Node* > (std::move (that.value));
+        break;
+
+      case symbol_kind::S_ClassDeclarationList: // ClassDeclarationList
+      case symbol_kind::S_VarDeclarationList: // VarDeclarationList
+      case symbol_kind::S_MethodDeclarationList: // MethodDeclarationList
+      case symbol_kind::S_MethodBody: // MethodBody
+      case symbol_kind::S_ParameterList: // ParameterList
+      case symbol_kind::S_StatementList: // StatementList
+      case symbol_kind::S_ExpressionList: // ExpressionList
+        value.move< std::list<Node*> > (std::move (that.value));
         break;
 
       case symbol_kind::S_PUBLIC: // PUBLIC
@@ -705,6 +717,7 @@ namespace yy {
       case symbol_kind::S_STATIC: // STATIC
       case symbol_kind::S_RETURN: // RETURN
       case symbol_kind::S_SYSTEM_OUT_PRINTLN: // SYSTEM_OUT_PRINTLN
+      case symbol_kind::S_EXTENDS: // EXTENDS
       case symbol_kind::S_COMMENT: // COMMENT
       case symbol_kind::S_ERROR: // ERROR
         value.move< std::string > (std::move (that.value));
@@ -732,12 +745,24 @@ namespace yy {
 #endif
 
 #if 201103L <= YY_CPLUSPLUS
-      basic_symbol (typename Base::kind_type t, Node *&& v)
+      basic_symbol (typename Base::kind_type t, Node*&& v)
         : Base (t)
         , value (std::move (v))
       {}
 #else
-      basic_symbol (typename Base::kind_type t, const Node *& v)
+      basic_symbol (typename Base::kind_type t, const Node*& v)
+        : Base (t)
+        , value (v)
+      {}
+#endif
+
+#if 201103L <= YY_CPLUSPLUS
+      basic_symbol (typename Base::kind_type t, std::list<Node*>&& v)
+        : Base (t)
+        , value (std::move (v))
+      {}
+#else
+      basic_symbol (typename Base::kind_type t, const std::list<Node*>& v)
         : Base (t)
         , value (v)
       {}
@@ -781,21 +806,25 @@ switch (yykind)
     {
       case symbol_kind::S_Goal: // Goal
       case symbol_kind::S_MainClass: // MainClass
-      case symbol_kind::S_ClassDeclarationList: // ClassDeclarationList
       case symbol_kind::S_ClassDeclaration: // ClassDeclaration
-      case symbol_kind::S_VarDeclarationList: // VarDeclarationList
-      case symbol_kind::S_MethodDeclarationList: // MethodDeclarationList
       case symbol_kind::S_VarDeclaration: // VarDeclaration
       case symbol_kind::S_MethodDeclaration: // MethodDeclaration
+      case symbol_kind::S_MethodBodyItem: // MethodBodyItem
       case symbol_kind::S_Type: // Type
-      case symbol_kind::S_ParameterList: // ParameterList
-      case symbol_kind::S_Parameter: // Parameter
-      case symbol_kind::S_StatementList: // StatementList
       case symbol_kind::S_Statement: // Statement
       case symbol_kind::S_Expression: // Expression
-      case symbol_kind::S_ExpressionList: // ExpressionList
       case symbol_kind::S_Identifier: // Identifier
-        value.template destroy< Node * > ();
+        value.template destroy< Node* > ();
+        break;
+
+      case symbol_kind::S_ClassDeclarationList: // ClassDeclarationList
+      case symbol_kind::S_VarDeclarationList: // VarDeclarationList
+      case symbol_kind::S_MethodDeclarationList: // MethodDeclarationList
+      case symbol_kind::S_MethodBody: // MethodBody
+      case symbol_kind::S_ParameterList: // ParameterList
+      case symbol_kind::S_StatementList: // StatementList
+      case symbol_kind::S_ExpressionList: // ExpressionList
+        value.template destroy< std::list<Node*> > ();
         break;
 
       case symbol_kind::S_PUBLIC: // PUBLIC
@@ -839,6 +868,7 @@ switch (yykind)
       case symbol_kind::S_STATIC: // STATIC
       case symbol_kind::S_RETURN: // RETURN
       case symbol_kind::S_SYSTEM_OUT_PRINTLN: // SYSTEM_OUT_PRINTLN
+      case symbol_kind::S_EXTENDS: // EXTENDS
       case symbol_kind::S_COMMENT: // COMMENT
       case symbol_kind::S_ERROR: // ERROR
         value.template destroy< std::string > ();
@@ -1655,6 +1685,21 @@ switch (yykind)
 #if 201103L <= YY_CPLUSPLUS
       static
       symbol_type
+      make_EXTENDS (std::string v)
+      {
+        return symbol_type (token::EXTENDS, std::move (v));
+      }
+#else
+      static
+      symbol_type
+      make_EXTENDS (const std::string& v)
+      {
+        return symbol_type (token::EXTENDS, v);
+      }
+#endif
+#if 201103L <= YY_CPLUSPLUS
+      static
+      symbol_type
       make_COMMENT (std::string v)
       {
         return symbol_type (token::COMMENT, std::move (v));
@@ -1758,10 +1803,10 @@ switch (yykind)
     static const signed char yydefact_[];
 
     // YYPGOTO[NTERM-NUM].
-    static const signed char yypgoto_[];
+    static const short yypgoto_[];
 
     // YYDEFGOTO[NTERM-NUM].
-    static const unsigned char yydefgoto_[];
+    static const signed char yydefgoto_[];
 
     // YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
     // positive, shift that token.  If negative, reduce the rule whose
@@ -1783,7 +1828,7 @@ switch (yykind)
 
 #if YYDEBUG
     // YYRLINE[YYN] -- Source line where rule number YYN was defined.
-    static const unsigned char yyrline_[];
+    static const short yyrline_[];
     /// Report on the debug stream that the rule \a r is going to be reduced.
     virtual void yy_reduce_print_ (int r) const;
     /// Print the state stack on the debug stream.
@@ -2010,8 +2055,8 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 368,     ///< Last index in yytable_.
-      yynnts_ = 17,  ///< Number of nonterminal symbols.
+      yylast_ = 327,     ///< Last index in yytable_.
+      yynnts_ = 18,  ///< Number of nonterminal symbols.
       yyfinal_ = 5 ///< Termination state number.
     };
 
@@ -2059,10 +2104,10 @@ switch (yykind)
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
-      45
+      45,    46
     };
     // Last valid token kind.
-    const int code_max = 300;
+    const int code_max = 301;
 
     if (t <= 0)
       return symbol_kind::S_YYEOF;
@@ -2082,21 +2127,25 @@ switch (yykind)
     {
       case symbol_kind::S_Goal: // Goal
       case symbol_kind::S_MainClass: // MainClass
-      case symbol_kind::S_ClassDeclarationList: // ClassDeclarationList
       case symbol_kind::S_ClassDeclaration: // ClassDeclaration
-      case symbol_kind::S_VarDeclarationList: // VarDeclarationList
-      case symbol_kind::S_MethodDeclarationList: // MethodDeclarationList
       case symbol_kind::S_VarDeclaration: // VarDeclaration
       case symbol_kind::S_MethodDeclaration: // MethodDeclaration
+      case symbol_kind::S_MethodBodyItem: // MethodBodyItem
       case symbol_kind::S_Type: // Type
-      case symbol_kind::S_ParameterList: // ParameterList
-      case symbol_kind::S_Parameter: // Parameter
-      case symbol_kind::S_StatementList: // StatementList
       case symbol_kind::S_Statement: // Statement
       case symbol_kind::S_Expression: // Expression
-      case symbol_kind::S_ExpressionList: // ExpressionList
       case symbol_kind::S_Identifier: // Identifier
-        value.copy< Node * > (YY_MOVE (that.value));
+        value.copy< Node* > (YY_MOVE (that.value));
+        break;
+
+      case symbol_kind::S_ClassDeclarationList: // ClassDeclarationList
+      case symbol_kind::S_VarDeclarationList: // VarDeclarationList
+      case symbol_kind::S_MethodDeclarationList: // MethodDeclarationList
+      case symbol_kind::S_MethodBody: // MethodBody
+      case symbol_kind::S_ParameterList: // ParameterList
+      case symbol_kind::S_StatementList: // StatementList
+      case symbol_kind::S_ExpressionList: // ExpressionList
+        value.copy< std::list<Node*> > (YY_MOVE (that.value));
         break;
 
       case symbol_kind::S_PUBLIC: // PUBLIC
@@ -2140,6 +2189,7 @@ switch (yykind)
       case symbol_kind::S_STATIC: // STATIC
       case symbol_kind::S_RETURN: // RETURN
       case symbol_kind::S_SYSTEM_OUT_PRINTLN: // SYSTEM_OUT_PRINTLN
+      case symbol_kind::S_EXTENDS: // EXTENDS
       case symbol_kind::S_COMMENT: // COMMENT
       case symbol_kind::S_ERROR: // ERROR
         value.copy< std::string > (YY_MOVE (that.value));
@@ -2178,21 +2228,25 @@ switch (yykind)
     {
       case symbol_kind::S_Goal: // Goal
       case symbol_kind::S_MainClass: // MainClass
-      case symbol_kind::S_ClassDeclarationList: // ClassDeclarationList
       case symbol_kind::S_ClassDeclaration: // ClassDeclaration
-      case symbol_kind::S_VarDeclarationList: // VarDeclarationList
-      case symbol_kind::S_MethodDeclarationList: // MethodDeclarationList
       case symbol_kind::S_VarDeclaration: // VarDeclaration
       case symbol_kind::S_MethodDeclaration: // MethodDeclaration
+      case symbol_kind::S_MethodBodyItem: // MethodBodyItem
       case symbol_kind::S_Type: // Type
-      case symbol_kind::S_ParameterList: // ParameterList
-      case symbol_kind::S_Parameter: // Parameter
-      case symbol_kind::S_StatementList: // StatementList
       case symbol_kind::S_Statement: // Statement
       case symbol_kind::S_Expression: // Expression
-      case symbol_kind::S_ExpressionList: // ExpressionList
       case symbol_kind::S_Identifier: // Identifier
-        value.move< Node * > (YY_MOVE (s.value));
+        value.move< Node* > (YY_MOVE (s.value));
+        break;
+
+      case symbol_kind::S_ClassDeclarationList: // ClassDeclarationList
+      case symbol_kind::S_VarDeclarationList: // VarDeclarationList
+      case symbol_kind::S_MethodDeclarationList: // MethodDeclarationList
+      case symbol_kind::S_MethodBody: // MethodBody
+      case symbol_kind::S_ParameterList: // ParameterList
+      case symbol_kind::S_StatementList: // StatementList
+      case symbol_kind::S_ExpressionList: // ExpressionList
+        value.move< std::list<Node*> > (YY_MOVE (s.value));
         break;
 
       case symbol_kind::S_PUBLIC: // PUBLIC
@@ -2236,6 +2290,7 @@ switch (yykind)
       case symbol_kind::S_STATIC: // STATIC
       case symbol_kind::S_RETURN: // RETURN
       case symbol_kind::S_SYSTEM_OUT_PRINTLN: // SYSTEM_OUT_PRINTLN
+      case symbol_kind::S_EXTENDS: // EXTENDS
       case symbol_kind::S_COMMENT: // COMMENT
       case symbol_kind::S_ERROR: // ERROR
         value.move< std::string > (YY_MOVE (s.value));
@@ -2306,7 +2361,7 @@ switch (yykind)
 
 
 } // yy
-#line 2310 "parser.tab.hh"
+#line 2365 "parser.tab.hh"
 
 
 

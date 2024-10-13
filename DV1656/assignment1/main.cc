@@ -1,10 +1,9 @@
 #include<iostream>
 #include "parser.tab.hh"
-
+#include "global.h"
 extern Node* root;
 extern FILE* yyin;
 extern int yylineno;
-extern int lexical_errors;
 extern yy::parser::symbol_type yylex();
 
 void yy::parser::error(std::string const&err)

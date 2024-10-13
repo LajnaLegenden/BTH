@@ -3,9 +3,9 @@ compiler: lex.yy.c parser.tab.o main.cc
 parser.tab.o: parser.tab.cc
 		g++ -g -w -c parser.tab.cc -std=c++14
 parser.tab.cc: parser.yy
-		bison parser.yy
+		bison -t parser.yy
 lex.yy.c: lexer.flex parser.tab.cc
-		flex lexer.flex
+		flex -d lexer.flex
 tree: 
 		 dot -Tpdf tree.dot -otree.pdf
 clean:

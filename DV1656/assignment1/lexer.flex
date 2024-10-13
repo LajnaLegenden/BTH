@@ -1,14 +1,17 @@
 %{
 #include "parser.tab.hh"
 #define YY_DECL yy::parser::symbol_type yylex()
+#include "global.h"
+int lexical_errors = 0;
 %}
 
+%option yylineno
+
 %%
-
-"//".*            { /* Ignore comments */ }
-[ \t\r\f]+        { /* Ignore whitespace */ }
-\n                { yylineno++; }
-
+"//".*"\n"                        { /* Comment */ }
+"/*"(.|"\n")*"*/"                 { /* Multiline Comment */ }
+[ \t\r]                           { /* Ignore whitespace */ }
+\n                                { /* Newline */ }
 "public"          { return yy::parser::make_PUBLIC(yytext); }
 "class"           { return yy::parser::make_CLASS(yytext); }
 "static"          { return yy::parser::make_STATIC(yytext); }
@@ -17,6 +20,7 @@
 "String"          { return yy::parser::make_STRING(yytext); }
 "return"          { return yy::parser::make_RETURN(yytext); }
 "int"             { return yy::parser::make_INT(yytext); }
+"extends"         { return yy::parser::make_EXTENDS(yytext); }
 "boolean"         { return yy::parser::make_BOOLEAN(yytext); }
 "if"              { return yy::parser::make_IF(yytext); }
 "else"            { return yy::parser::make_ELSE(yytext); }
@@ -27,7 +31,6 @@
 "false"           { return yy::parser::make_FALSE(yytext); }
 "this"            { return yy::parser::make_THIS(yytext); }
 "new"             { return yy::parser::make_NEW(yytext); }
-
 "&&"              { return yy::parser::make_AND(yytext); }
 "||"              { return yy::parser::make_OR(yytext); }
 "<"               { return yy::parser::make_LESS_THAN(yytext); }
@@ -48,11 +51,13 @@
 "]"               { return yy::parser::make_RIGHT_BRACKET(yytext); }
 "{"               { return yy::parser::make_LEFT_BRACE(yytext); }
 "}"               { return yy::parser::make_RIGHT_BRACE(yytext); }
-
 [a-zA-Z][a-zA-Z0-9_]* { return yy::parser::make_IDENTIFIER(yytext); }
 [0-9]+            { return yy::parser::make_INTEGER_LITERAL(yytext); }
-
-.                 { return yy::parser::make_ERROR(yytext); }
+.                 {
+    fprintf(stderr, "Error: Unknown character '%c' (ASCII: %d) at line %d\n", yytext[0], (int)yytext[0], yylineno);
+    lexical_errors++;
+    return yy::parser::make_YYUNDEF();
+}
 
 %%
 
