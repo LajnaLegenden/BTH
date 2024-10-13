@@ -9,7 +9,6 @@ int lexical_errors = 0;
 
 %%
 "//".*"\n"                        { /* Comment */ }
-"/*"(.|"\n")*"*/"                 { /* Multiline Comment */ }
 [ \t\r]                           { /* Ignore whitespace */ }
 \n                                { /* Newline */ }
 "public"          { return yy::parser::make_PUBLIC(yytext); }

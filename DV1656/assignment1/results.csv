@@ -1,0 +1,25 @@
+Category,File,Return Code,Result
+tree_validation,dangling_else.java,0,PASSED
+tree_validation,operatorpriority.java,0,PASSED
+valid,linkedlist.java,0,PASSED
+valid,quicksort.java,0,PASSED
+valid,linearsearch.java,0,PASSED
+valid,factorial.java,0,PASSED
+valid,bubblesort.java,0,PASSED
+valid,binarysearch.java,0,PASSED
+valid,binarytree.java,0,PASSED
+lexical_errors,unsupported_comments.java,0,FAILED (error in output)
+lexical_errors,special_characters.java,0,FAILED (error in output)
+syntax_errors,illegal_print.java,0,FAILED (error in output)
+syntax_errors,statement_after_return.java,0,FAILED (error in output)
+syntax_errors,illegal_if_in_if_condition.java,0,FAILED (error in output)
+syntax_errors,method_missing_closing_bracket.java,0,FAILED (error in output)
+syntax_errors,method_missing_return.java,0,FAILED (error in output)
+syntax_errors,invalid_class_signature.java,0,FAILED (error in output)
+syntax_errors,no_main_func.java,0,FAILED (error in output)
+syntax_errors,invalid_method_call_2.java,0,FAILED (error in output)
+syntax_errors,littletest.java,0,FAILED (error in output)
+syntax_errors,invalid_method_call.java,0,FAILED (error in output)
+syntax_errors,illegal_type_declaration.java,0,FAILED (error in output)
+syntax_errors,illegal_class_name.java,0,FAILED (error in output)
+syntax_errors,class_missing_closing_bracket.java,0,FAILED (error in output)

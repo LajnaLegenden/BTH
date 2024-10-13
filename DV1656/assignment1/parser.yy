@@ -29,21 +29,30 @@
 }
 
 // Token definitions
-%token <std::string> PUBLIC CLASS VOID MAIN STRING INT BOOLEAN IF ELSE WHILE PRINT
+%token <std::string> PUBLIC CLASS VOID MAIN STRING INT BOOLEAN IF ELSE WHILE
 %token <std::string> TRUE FALSE THIS NEW NOT AND OR LESS_THAN GREATER_THAN EQUAL
 %token <std::string> ADD SUBTRACT MULTIPLY DIVIDE LENGTH LEFT_BRACE RIGHT_BRACE
 %token <std::string> LEFT_PARENTHESIS RIGHT_PARENTHESIS LEFT_BRACKET RIGHT_BRACKET
 %token <std::string> DOT COMMA SEMICOLON ASSIGN IDENTIFIER INTEGER_LITERAL
 %token <std::string> STATIC RETURN SYSTEM_OUT_PRINTLN EXTENDS
-%token <std::string> COMMENT ERROR
 %token END 0 "end of file"
 
 // Non-terminal type definitions
-%type <Node*> Goal MainClass ClassDeclaration VarDeclaration MethodDeclaration Type MethodBodyItem
+%type <Node*> Goal MainClass ClassDeclaration VarDeclaration MethodDeclaration Type MethodBodyItem ClassBodyItem
 %type <Node*> Statement Expression Identifier
-%type <std::list<Node*>> ClassDeclarationList MethodDeclarationList VarDeclarationList
-%type <std::list<Node*>> StatementList ExpressionList ParameterList MethodBody
+%type <std::list<Node*>> ClassDeclarationList 
+%type <std::list<Node*>> StatementList ExpressionList ParameterList MethodBody ClassBody
 
+%left OR
+%left AND
+%nonassoc LESS_THAN GREATER_THAN
+%left ADD SUBTRACT
+%left MULTIPLY DIVIDE
+%right NOT
+%left DOT
+%left LEFT_BRACKET
+%nonassoc LOWER_THAN_ELSE
+%nonassoc ELSE
 %start Goal
 
 %%
@@ -75,24 +84,17 @@ ClassDeclarationList
   ;
 
 ClassDeclaration
-  : CLASS Identifier LEFT_BRACE VarDeclarationList MethodDeclarationList RIGHT_BRACE {
+  : CLASS Identifier LEFT_BRACE ClassBody RIGHT_BRACE {
     $$ = new Node("ClassDeclaration", "", yylineno);
     add_child($$, $2);
     add_children($$, $4);
-    add_children($$, $5);
   }
-  | CLASS Identifier EXTENDS Identifier LEFT_BRACE VarDeclarationList MethodDeclarationList RIGHT_BRACE {
+  | CLASS Identifier EXTENDS Identifier LEFT_BRACE ClassBody RIGHT_BRACE {
     $$ = new Node("ClassDeclaration", "", yylineno);
     add_child($$, $2);
     add_child($$, $4);
     add_children($$, $6);
-    add_children($$, $7);
   }
-  ;
-
-VarDeclarationList
-  : VarDeclaration { $$ = std::list<Node*>{$1}; }
-  | VarDeclarationList VarDeclaration { $$ = $1; $$.push_back($2); }
   ;
 
 
@@ -103,7 +105,7 @@ VarDeclaration
     add_child($$, $1);
     add_child($$, $2);
   }
-  | Type Identifier EQUAL Expression SEMICOLON {
+  | Type Identifier ASSIGN Expression SEMICOLON {
         $$ = new Node("VarDeclaration", $2->value, yylineno);
         add_child($$, $1);
         add_child($$, $2);
@@ -111,10 +113,7 @@ VarDeclaration
       }
   ;
 
-MethodDeclarationList
-  : MethodDeclaration MethodDeclarationList { $$ = $2; $$.push_front($1); }
-  | /* empty */ { $$ = std::list<Node*>(); }
-  ;
+
 
 MethodDeclaration
   : PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE {
@@ -140,6 +139,18 @@ MethodBodyItem
   | Statement { $$ = $1; }
   ;
 
+ClassBody
+  : ClassBodyItem ClassBody {
+      $$ = $2;
+      $$.push_front($1);
+    }
+  | /* empty */ { $$ = std::list<Node*>(); }
+  ;
+
+ClassBodyItem
+  : VarDeclaration { $$ = $1; }
+  | MethodDeclaration { $$ = $1; }
+  ;
 
 ParameterList
   : Type Identifier { $$ = std::list<Node*>{$1, $2}; }
@@ -161,20 +172,20 @@ StatementList
 
 Statement
   : LEFT_BRACE StatementList RIGHT_BRACE {
-    $$ = new Node("Statement", "", yylineno);
+    $$ = new Node("Statement", "Block", yylineno);
     add_children($$, $2);
   }
-  | IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement ELSE Statement {
+  | IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement %prec LOWER_THAN_ELSE {
     $$ = new Node("Statement", "If", yylineno);
+    add_child($$, $3);
+    add_child($$, $5);
+  }
+  | IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement ELSE Statement {
+    $$ = new Node("Statement", "IfElse", yylineno);
     add_child($$, $3);
     add_child($$, $5);
     add_child($$, $7);
   }
-  | IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement {
-      $$ = new Node("Statement", "If", yylineno);
-      add_child($$, $3);
-      add_child($$, $5);
-    }
   | WHILE LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement {
     $$ = new Node("Statement", "While", yylineno);
     add_child($$, $3);
@@ -209,8 +220,18 @@ Expression
     add_child($$, $1);
     add_child($$, $3);
   }
+  | Expression OR Expression {
+    $$ = new Node("Expression", "Or", yylineno);
+    add_child($$, $1);
+    add_child($$, $3);
+  }
   | Expression LESS_THAN Expression {
     $$ = new Node("Expression", "LessThan", yylineno);
+    add_child($$, $1);
+    add_child($$, $3);
+  }
+  | Expression GREATER_THAN Expression {
+    $$ = new Node("Expression", "GreaterThan", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
@@ -226,6 +247,16 @@ Expression
   }
   | Expression MULTIPLY Expression {
     $$ = new Node("Expression", "Multiply", yylineno);
+    add_child($$, $1);
+    add_child($$, $3);
+  }
+  | Expression EQUAL Expression {
+    $$ = new Node("Expression", "Equal", yylineno);
+    add_child($$, $1);
+    add_child($$, $3);
+  }
+  | Expression DIVIDE Expression {
+    $$ = new Node("Expression", "Devide", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
