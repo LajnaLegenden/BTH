@@ -1,0 +1,166 @@
+digraph SymbolTable {
+  node [shape=none];
+  edge [color="#666666"];
+  rankdir=TB;
+
+  scope_140724773767360 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: Main</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td>BinarySearch</td><td>ClassDeclaration</td></tr>
+  <tr><td>BS</td><td>ClassDeclaration</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_503347360 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: BinarySearch</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_140724773767360 -> scope_503347360 [label="child"];
+  scope_503347632 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: BS</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td>number</td><td>INT ARRAY</td></tr>
+  <tr><td>size</td><td>INT</td></tr>
+  <tr><td>Start</td><td>INT</td></tr>
+  <tr><td>Search</td><td>BOOLEAN</td></tr>
+  <tr><td>Div</td><td>INT</td></tr>
+  <tr><td>Compare</td><td>BOOLEAN</td></tr>
+  <tr><td>Print</td><td>INT</td></tr>
+  <tr><td>Init</td><td>INT</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_140724773767360 -> scope_503347632 [label="child"];
+  scope_503347456 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: main</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td>a</td><td>STRING ARRAY</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_503347360 -> scope_503347456 [label="child"];
+  scope_503347872 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: INT:Start</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td>Start</td><td>INT</td></tr>
+  <tr><td>sz</td><td>INT</td></tr>
+  <tr><td>aux01</td><td>INT</td></tr>
+  <tr><td>aux02</td><td>INT</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_503347632 -> scope_503347872 [label="child"];
+  scope_503348320 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: BOOLEAN:Search</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td>Search</td><td>BOOLEAN</td></tr>
+  <tr><td>num</td><td>INT</td></tr>
+  <tr><td>bs01</td><td>BOOLEAN</td></tr>
+  <tr><td>right</td><td>INT</td></tr>
+  <tr><td>left</td><td>INT</td></tr>
+  <tr><td>var_cont</td><td>BOOLEAN</td></tr>
+  <tr><td>medium</td><td>INT</td></tr>
+  <tr><td>aux01</td><td>INT</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_503347632 -> scope_503348320 [label="child"];
+  scope_503348720 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: INT:Div</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td>Div</td><td>INT</td></tr>
+  <tr><td>num</td><td>INT</td></tr>
+  <tr><td>count01</td><td>INT</td></tr>
+  <tr><td>count02</td><td>INT</td></tr>
+  <tr><td>aux03</td><td>INT</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_503347632 -> scope_503348720 [label="child"];
+  scope_503349920 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: BOOLEAN:Compare</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td>Compare</td><td>BOOLEAN</td></tr>
+  <tr><td>num1</td><td>INT</td></tr>
+  <tr><td>num2</td><td>INT</td></tr>
+  <tr><td>retval</td><td>BOOLEAN</td></tr>
+  <tr><td>aux02</td><td>INT</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_503347632 -> scope_503349920 [label="child"];
+  scope_503350544 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: INT:Print</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td>Print</td><td>INT</td></tr>
+  <tr><td>j</td><td>INT</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_503347632 -> scope_503350544 [label="child"];
+  scope_503350720 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: INT:Init</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td>Init</td><td>INT</td></tr>
+  <tr><td>sz</td><td>INT</td></tr>
+  <tr><td>j</td><td>INT</td></tr>
+  <tr><td>k</td><td>INT</td></tr>
+  <tr><td>aux02</td><td>INT</td></tr>
+  <tr><td>aux01</td><td>INT</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_503347632 -> scope_503350720 [label="child"];
+}

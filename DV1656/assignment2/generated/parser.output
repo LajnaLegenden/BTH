@@ -1,0 +1,2195 @@
+Terminals unused in grammar
+
+    EXTENDS
+    LOWER_THAN_ELSE
+
+
+State 57 conflicts: 1 shift/reduce
+State 78 conflicts: 1 shift/reduce
+State 79 conflicts: 1 shift/reduce
+State 80 conflicts: 1 shift/reduce
+State 81 conflicts: 1 shift/reduce
+State 82 conflicts: 11 shift/reduce
+State 83 conflicts: 1 shift/reduce
+State 84 conflicts: 1 shift/reduce
+State 85 conflicts: 1 shift/reduce
+State 86 conflicts: 1 shift/reduce
+State 140 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: Goal "end of file"
+
+    1 Goal: MainClass ClassDeclarationList
+
+    2 MainClass: PUBLIC CLASS Identifier LEFT_BRACE ClassBody RIGHT_BRACE
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+
+    4 ClassDeclarationList: ClassDeclaration ClassDeclarationList
+    5                     | ε
+
+    6 ClassDeclaration: CLASS Identifier LEFT_BRACE ClassBody RIGHT_BRACE
+
+    7 VarDeclaration: Type Identifier SEMICOLON
+    8               | Type Identifier ASSIGN Expression SEMICOLON
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE
+
+   10 MethodBody: MethodBodyItem MethodBody
+   11           | ε
+
+   12 MethodBodyItem: VarDeclaration
+   13               | Statement
+
+   14 ClassBody: ClassBodyItem ClassBody
+   15          | ε
+
+   16 ClassBodyItem: VarDeclaration
+   17              | MethodDeclaration
+   18              | MainMethod
+
+   19 ParameterList: Parameter
+   20              | Parameter COMMA ParameterList
+   21              | ε
+
+   22 Parameter: Type Identifier
+
+   23 Type: INT LEFT_BRACKET RIGHT_BRACKET
+   24     | BOOLEAN
+   25     | INT
+   26     | STRING LEFT_BRACKET RIGHT_BRACKET
+
+   27 StatementList: Statement StatementList
+   28              | ε
+
+   29 Statement: LEFT_BRACE StatementList RIGHT_BRACE
+   30          | IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement
+   31          | IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement ELSE Statement
+   32          | WHILE LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement
+   33          | SYSTEM_OUT_PRINTLN LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS SEMICOLON
+   34          | Identifier ASSIGN Expression SEMICOLON
+   35          | Identifier LEFT_BRACKET Expression RIGHT_BRACKET ASSIGN Expression SEMICOLON
+
+   36 ExpressionList: Expression
+   37               | Expression COMMA ExpressionList
+   38               | ε
+
+   39 Expression: Expression AND Expression
+   40           | Expression OR Expression
+   41           | Expression LESS_THAN Expression
+   42           | Expression GREATER_THAN Expression
+   43           | Expression ADD Expression
+   44           | Expression SUBTRACT Expression
+   45           | Expression MULTIPLY Expression
+   46           | Expression EQUAL Expression
+   47           | Expression DIVIDE Expression
+   48           | Expression LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression DOT LENGTH
+   50           | Expression DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+   51           | INTEGER_LITERAL
+   52           | TRUE
+   53           | FALSE
+   54           | Identifier
+   55           | THIS
+   56           | NEW INT LEFT_BRACKET Expression RIGHT_BRACKET
+   57           | NEW Identifier LEFT_PARENTHESIS RIGHT_PARENTHESIS
+   58           | NOT Expression
+   59           | LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS
+
+   60 Identifier: IDENTIFIER
+
+
+Terminals, with rules where they appear
+
+    "end of file" (0) 0
+    error (256)
+    PUBLIC <std::string> (258) 2 3 9
+    CLASS <std::string> (259) 2 6
+    VOID <std::string> (260) 3
+    MAIN <std::string> (261) 3
+    STRING <std::string> (262) 3 26
+    INT <std::string> (263) 23 25 56
+    BOOLEAN <std::string> (264) 24
+    IF <std::string> (265) 30 31
+    ELSE <std::string> (266) 31
+    WHILE <std::string> (267) 32
+    TRUE <std::string> (268) 52
+    FALSE <std::string> (269) 53
+    THIS <std::string> (270) 55
+    NEW <std::string> (271) 56 57
+    NOT <std::string> (272) 58
+    AND <std::string> (273) 39
+    OR <std::string> (274) 40
+    LESS_THAN <std::string> (275) 41
+    GREATER_THAN <std::string> (276) 42
+    EQUAL <std::string> (277) 46
+    ADD <std::string> (278) 43
+    SUBTRACT <std::string> (279) 44
+    MULTIPLY <std::string> (280) 45
+    DIVIDE <std::string> (281) 47
+    LENGTH <std::string> (282) 49
+    LEFT_BRACE <std::string> (283) 2 3 6 9 29
+    RIGHT_BRACE <std::string> (284) 2 3 6 9 29
+    LEFT_PARENTHESIS <std::string> (285) 3 9 30 31 32 33 50 57 59
+    RIGHT_PARENTHESIS <std::string> (286) 3 9 30 31 32 33 50 57 59
+    LEFT_BRACKET <std::string> (287) 3 23 26 35 48 56
+    RIGHT_BRACKET <std::string> (288) 3 23 26 35 48 56
+    DOT <std::string> (289) 49 50
+    COMMA <std::string> (290) 20 37
+    SEMICOLON <std::string> (291) 7 8 9 33 34 35
+    ASSIGN <std::string> (292) 8 34 35
+    IDENTIFIER <std::string> (293) 60
+    INTEGER_LITERAL <std::string> (294) 51
+    STATIC <std::string> (295) 3
+    RETURN <std::string> (296) 9
+    SYSTEM_OUT_PRINTLN <std::string> (297) 33
+    EXTENDS <std::string> (298)
+    LOWER_THAN_ELSE (299)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (45)
+        on left: 0
+    Goal <Node*> (46)
+        on left: 1
+        on right: 0
+    MainClass <Node*> (47)
+        on left: 2
+        on right: 1
+    MainMethod <Node*> (48)
+        on left: 3
+        on right: 18
+    ClassDeclarationList <std::list<Node*>> (49)
+        on left: 4 5
+        on right: 1 4
+    ClassDeclaration <Node*> (50)
+        on left: 6
+        on right: 4
+    VarDeclaration <Node*> (51)
+        on left: 7 8
+        on right: 12 16
+    MethodDeclaration <Node*> (52)
+        on left: 9
+        on right: 17
+    MethodBody <std::list<Node*>> (53)
+        on left: 10 11
+        on right: 3 9 10
+    MethodBodyItem <Node*> (54)
+        on left: 12 13
+        on right: 10
+    ClassBody <std::list<Node*>> (55)
+        on left: 14 15
+        on right: 2 6 14
+    ClassBodyItem <Node*> (56)
+        on left: 16 17 18
+        on right: 14
+    ParameterList <std::list<Node*>> (57)
+        on left: 19 20 21
+        on right: 9 20
+    Parameter <Node*> (58)
+        on left: 22
+        on right: 19 20
+    Type <std::string> (59)
+        on left: 23 24 25 26
+        on right: 7 8 9 22
+    StatementList <std::list<Node*>> (60)
+        on left: 27 28
+        on right: 27 29
+    Statement <Node*> (61)
+        on left: 29 30 31 32 33 34 35
+        on right: 13 27 30 31 32
+    ExpressionList <std::list<Node*>> (62)
+        on left: 36 37 38
+        on right: 37 50
+    Expression <Node*> (63)
+        on left: 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59
+        on right: 8 9 30 31 32 33 34 35 36 37 39 40 41 42 43 44 45 46 47 48 49 50 56 58 59
+    Identifier <std::string> (64)
+        on left: 60
+        on right: 2 3 6 7 8 9 22 34 35 50 54 57
+
+
+State 0
+
+    0 $accept: • Goal "end of file"
+
+    PUBLIC  shift, and go to state 1
+
+    Goal       go to state 2
+    MainClass  go to state 3
+
+
+State 1
+
+    2 MainClass: PUBLIC • CLASS Identifier LEFT_BRACE ClassBody RIGHT_BRACE
+
+    CLASS  shift, and go to state 4
+
+
+State 2
+
+    0 $accept: Goal • "end of file"
+
+    "end of file"  shift, and go to state 5
+
+
+State 3
+
+    1 Goal: MainClass • ClassDeclarationList
+
+    CLASS  shift, and go to state 6
+
+    $default  reduce using rule 5 (ClassDeclarationList)
+
+    ClassDeclarationList  go to state 7
+    ClassDeclaration      go to state 8
+
+
+State 4
+
+    2 MainClass: PUBLIC CLASS • Identifier LEFT_BRACE ClassBody RIGHT_BRACE
+
+    IDENTIFIER  shift, and go to state 9
+
+    Identifier  go to state 10
+
+
+State 5
+
+    0 $accept: Goal "end of file" •
+
+    $default  accept
+
+
+State 6
+
+    6 ClassDeclaration: CLASS • Identifier LEFT_BRACE ClassBody RIGHT_BRACE
+
+    IDENTIFIER  shift, and go to state 9
+
+    Identifier  go to state 11
+
+
+State 7
+
+    1 Goal: MainClass ClassDeclarationList •
+
+    $default  reduce using rule 1 (Goal)
+
+
+State 8
+
+    4 ClassDeclarationList: ClassDeclaration • ClassDeclarationList
+
+    CLASS  shift, and go to state 6
+
+    $default  reduce using rule 5 (ClassDeclarationList)
+
+    ClassDeclarationList  go to state 12
+    ClassDeclaration      go to state 8
+
+
+State 9
+
+   60 Identifier: IDENTIFIER •
+
+    $default  reduce using rule 60 (Identifier)
+
+
+State 10
+
+    2 MainClass: PUBLIC CLASS Identifier • LEFT_BRACE ClassBody RIGHT_BRACE
+
+    LEFT_BRACE  shift, and go to state 13
+
+
+State 11
+
+    6 ClassDeclaration: CLASS Identifier • LEFT_BRACE ClassBody RIGHT_BRACE
+
+    LEFT_BRACE  shift, and go to state 14
+
+
+State 12
+
+    4 ClassDeclarationList: ClassDeclaration ClassDeclarationList •
+
+    $default  reduce using rule 4 (ClassDeclarationList)
+
+
+State 13
+
+    2 MainClass: PUBLIC CLASS Identifier LEFT_BRACE • ClassBody RIGHT_BRACE
+
+    PUBLIC   shift, and go to state 15
+    STRING   shift, and go to state 16
+    INT      shift, and go to state 17
+    BOOLEAN  shift, and go to state 18
+
+    $default  reduce using rule 15 (ClassBody)
+
+    MainMethod         go to state 19
+    VarDeclaration     go to state 20
+    MethodDeclaration  go to state 21
+    ClassBody          go to state 22
+    ClassBodyItem      go to state 23
+    Type               go to state 24
+
+
+State 14
+
+    6 ClassDeclaration: CLASS Identifier LEFT_BRACE • ClassBody RIGHT_BRACE
+
+    PUBLIC   shift, and go to state 15
+    STRING   shift, and go to state 16
+    INT      shift, and go to state 17
+    BOOLEAN  shift, and go to state 18
+
+    $default  reduce using rule 15 (ClassBody)
+
+    MainMethod         go to state 19
+    VarDeclaration     go to state 20
+    MethodDeclaration  go to state 21
+    ClassBody          go to state 25
+    ClassBodyItem      go to state 23
+    Type               go to state 24
+
+
+State 15
+
+    3 MainMethod: PUBLIC • STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+    9 MethodDeclaration: PUBLIC • Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE
+
+    STRING   shift, and go to state 16
+    INT      shift, and go to state 17
+    BOOLEAN  shift, and go to state 18
+    STATIC   shift, and go to state 26
+
+    Type  go to state 27
+
+
+State 16
+
+   26 Type: STRING • LEFT_BRACKET RIGHT_BRACKET
+
+    LEFT_BRACKET  shift, and go to state 28
+
+
+State 17
+
+   23 Type: INT • LEFT_BRACKET RIGHT_BRACKET
+   25     | INT •
+
+    LEFT_BRACKET  shift, and go to state 29
+
+    $default  reduce using rule 25 (Type)
+
+
+State 18
+
+   24 Type: BOOLEAN •
+
+    $default  reduce using rule 24 (Type)
+
+
+State 19
+
+   18 ClassBodyItem: MainMethod •
+
+    $default  reduce using rule 18 (ClassBodyItem)
+
+
+State 20
+
+   16 ClassBodyItem: VarDeclaration •
+
+    $default  reduce using rule 16 (ClassBodyItem)
+
+
+State 21
+
+   17 ClassBodyItem: MethodDeclaration •
+
+    $default  reduce using rule 17 (ClassBodyItem)
+
+
+State 22
+
+    2 MainClass: PUBLIC CLASS Identifier LEFT_BRACE ClassBody • RIGHT_BRACE
+
+    RIGHT_BRACE  shift, and go to state 30
+
+
+State 23
+
+   14 ClassBody: ClassBodyItem • ClassBody
+
+    PUBLIC   shift, and go to state 15
+    STRING   shift, and go to state 16
+    INT      shift, and go to state 17
+    BOOLEAN  shift, and go to state 18
+
+    $default  reduce using rule 15 (ClassBody)
+
+    MainMethod         go to state 19
+    VarDeclaration     go to state 20
+    MethodDeclaration  go to state 21
+    ClassBody          go to state 31
+    ClassBodyItem      go to state 23
+    Type               go to state 24
+
+
+State 24
+
+    7 VarDeclaration: Type • Identifier SEMICOLON
+    8               | Type • Identifier ASSIGN Expression SEMICOLON
+
+    IDENTIFIER  shift, and go to state 9
+
+    Identifier  go to state 32
+
+
+State 25
+
+    6 ClassDeclaration: CLASS Identifier LEFT_BRACE ClassBody • RIGHT_BRACE
+
+    RIGHT_BRACE  shift, and go to state 33
+
+
+State 26
+
+    3 MainMethod: PUBLIC STATIC • VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+
+    VOID  shift, and go to state 34
+
+
+State 27
+
+    9 MethodDeclaration: PUBLIC Type • Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE
+
+    IDENTIFIER  shift, and go to state 9
+
+    Identifier  go to state 35
+
+
+State 28
+
+   26 Type: STRING LEFT_BRACKET • RIGHT_BRACKET
+
+    RIGHT_BRACKET  shift, and go to state 36
+
+
+State 29
+
+   23 Type: INT LEFT_BRACKET • RIGHT_BRACKET
+
+    RIGHT_BRACKET  shift, and go to state 37
+
+
+State 30
+
+    2 MainClass: PUBLIC CLASS Identifier LEFT_BRACE ClassBody RIGHT_BRACE •
+
+    $default  reduce using rule 2 (MainClass)
+
+
+State 31
+
+   14 ClassBody: ClassBodyItem ClassBody •
+
+    $default  reduce using rule 14 (ClassBody)
+
+
+State 32
+
+    7 VarDeclaration: Type Identifier • SEMICOLON
+    8               | Type Identifier • ASSIGN Expression SEMICOLON
+
+    SEMICOLON  shift, and go to state 38
+    ASSIGN     shift, and go to state 39
+
+
+State 33
+
+    6 ClassDeclaration: CLASS Identifier LEFT_BRACE ClassBody RIGHT_BRACE •
+
+    $default  reduce using rule 6 (ClassDeclaration)
+
+
+State 34
+
+    3 MainMethod: PUBLIC STATIC VOID • MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+
+    MAIN  shift, and go to state 40
+
+
+State 35
+
+    9 MethodDeclaration: PUBLIC Type Identifier • LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE
+
+    LEFT_PARENTHESIS  shift, and go to state 41
+
+
+State 36
+
+   26 Type: STRING LEFT_BRACKET RIGHT_BRACKET •
+
+    $default  reduce using rule 26 (Type)
+
+
+State 37
+
+   23 Type: INT LEFT_BRACKET RIGHT_BRACKET •
+
+    $default  reduce using rule 23 (Type)
+
+
+State 38
+
+    7 VarDeclaration: Type Identifier SEMICOLON •
+
+    $default  reduce using rule 7 (VarDeclaration)
+
+
+State 39
+
+    8 VarDeclaration: Type Identifier ASSIGN • Expression SEMICOLON
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 49
+    Identifier  go to state 50
+
+
+State 40
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN • LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+
+    LEFT_PARENTHESIS  shift, and go to state 51
+
+
+State 41
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS • ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE
+
+    STRING   shift, and go to state 16
+    INT      shift, and go to state 17
+    BOOLEAN  shift, and go to state 18
+
+    $default  reduce using rule 21 (ParameterList)
+
+    ParameterList  go to state 52
+    Parameter      go to state 53
+    Type           go to state 54
+
+
+State 42
+
+   52 Expression: TRUE •
+
+    $default  reduce using rule 52 (Expression)
+
+
+State 43
+
+   53 Expression: FALSE •
+
+    $default  reduce using rule 53 (Expression)
+
+
+State 44
+
+   55 Expression: THIS •
+
+    $default  reduce using rule 55 (Expression)
+
+
+State 45
+
+   56 Expression: NEW • INT LEFT_BRACKET Expression RIGHT_BRACKET
+   57           | NEW • Identifier LEFT_PARENTHESIS RIGHT_PARENTHESIS
+
+    INT         shift, and go to state 55
+    IDENTIFIER  shift, and go to state 9
+
+    Identifier  go to state 56
+
+
+State 46
+
+   58 Expression: NOT • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 57
+    Identifier  go to state 50
+
+
+State 47
+
+   59 Expression: LEFT_PARENTHESIS • Expression RIGHT_PARENTHESIS
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 58
+    Identifier  go to state 50
+
+
+State 48
+
+   51 Expression: INTEGER_LITERAL •
+
+    $default  reduce using rule 51 (Expression)
+
+
+State 49
+
+    8 VarDeclaration: Type Identifier ASSIGN Expression • SEMICOLON
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND           shift, and go to state 59
+    OR            shift, and go to state 60
+    LESS_THAN     shift, and go to state 61
+    GREATER_THAN  shift, and go to state 62
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+    SEMICOLON     shift, and go to state 70
+
+
+State 50
+
+   54 Expression: Identifier •
+
+    $default  reduce using rule 54 (Expression)
+
+
+State 51
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS • STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+
+    STRING  shift, and go to state 71
+
+
+State 52
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList • RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE
+
+    RIGHT_PARENTHESIS  shift, and go to state 72
+
+
+State 53
+
+   19 ParameterList: Parameter •
+   20              | Parameter • COMMA ParameterList
+
+    COMMA  shift, and go to state 73
+
+    $default  reduce using rule 19 (ParameterList)
+
+
+State 54
+
+   22 Parameter: Type • Identifier
+
+    IDENTIFIER  shift, and go to state 9
+
+    Identifier  go to state 74
+
+
+State 55
+
+   56 Expression: NEW INT • LEFT_BRACKET Expression RIGHT_BRACKET
+
+    LEFT_BRACKET  shift, and go to state 75
+
+
+State 56
+
+   57 Expression: NEW Identifier • LEFT_PARENTHESIS RIGHT_PARENTHESIS
+
+    LEFT_PARENTHESIS  shift, and go to state 76
+
+
+State 57
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+   58           | NOT Expression •
+
+    EQUAL         shift, and go to state 63
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    EQUAL     [reduce using rule 58 (Expression)]
+    $default  reduce using rule 58 (Expression)
+
+
+State 58
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+   59           | LEFT_PARENTHESIS Expression • RIGHT_PARENTHESIS
+
+    AND                shift, and go to state 59
+    OR                 shift, and go to state 60
+    LESS_THAN          shift, and go to state 61
+    GREATER_THAN       shift, and go to state 62
+    EQUAL              shift, and go to state 63
+    ADD                shift, and go to state 64
+    SUBTRACT           shift, and go to state 65
+    MULTIPLY           shift, and go to state 66
+    DIVIDE             shift, and go to state 67
+    RIGHT_PARENTHESIS  shift, and go to state 77
+    LEFT_BRACKET       shift, and go to state 68
+    DOT                shift, and go to state 69
+
+
+State 59
+
+   39 Expression: Expression AND • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 78
+    Identifier  go to state 50
+
+
+State 60
+
+   40 Expression: Expression OR • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 79
+    Identifier  go to state 50
+
+
+State 61
+
+   41 Expression: Expression LESS_THAN • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 80
+    Identifier  go to state 50
+
+
+State 62
+
+   42 Expression: Expression GREATER_THAN • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 81
+    Identifier  go to state 50
+
+
+State 63
+
+   46 Expression: Expression EQUAL • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 82
+    Identifier  go to state 50
+
+
+State 64
+
+   43 Expression: Expression ADD • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 83
+    Identifier  go to state 50
+
+
+State 65
+
+   44 Expression: Expression SUBTRACT • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 84
+    Identifier  go to state 50
+
+
+State 66
+
+   45 Expression: Expression MULTIPLY • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 85
+    Identifier  go to state 50
+
+
+State 67
+
+   47 Expression: Expression DIVIDE • Expression
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 86
+    Identifier  go to state 50
+
+
+State 68
+
+   48 Expression: Expression LEFT_BRACKET • Expression RIGHT_BRACKET
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 87
+    Identifier  go to state 50
+
+
+State 69
+
+   49 Expression: Expression DOT • LENGTH
+   50           | Expression DOT • Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    LENGTH      shift, and go to state 88
+    IDENTIFIER  shift, and go to state 9
+
+    Identifier  go to state 89
+
+
+State 70
+
+    8 VarDeclaration: Type Identifier ASSIGN Expression SEMICOLON •
+
+    $default  reduce using rule 8 (VarDeclaration)
+
+
+State 71
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING • LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+
+    LEFT_BRACKET  shift, and go to state 90
+
+
+State 72
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS • LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE
+
+    LEFT_BRACE  shift, and go to state 91
+
+
+State 73
+
+   20 ParameterList: Parameter COMMA • ParameterList
+
+    STRING   shift, and go to state 16
+    INT      shift, and go to state 17
+    BOOLEAN  shift, and go to state 18
+
+    $default  reduce using rule 21 (ParameterList)
+
+    ParameterList  go to state 92
+    Parameter      go to state 53
+    Type           go to state 54
+
+
+State 74
+
+   22 Parameter: Type Identifier •
+
+    $default  reduce using rule 22 (Parameter)
+
+
+State 75
+
+   56 Expression: NEW INT LEFT_BRACKET • Expression RIGHT_BRACKET
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 93
+    Identifier  go to state 50
+
+
+State 76
+
+   57 Expression: NEW Identifier LEFT_PARENTHESIS • RIGHT_PARENTHESIS
+
+    RIGHT_PARENTHESIS  shift, and go to state 94
+
+
+State 77
+
+   59 Expression: LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS •
+
+    $default  reduce using rule 59 (Expression)
+
+
+State 78
+
+   39 Expression: Expression • AND Expression
+   39           | Expression AND Expression •
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    LESS_THAN     shift, and go to state 61
+    GREATER_THAN  shift, and go to state 62
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    EQUAL     [reduce using rule 39 (Expression)]
+    $default  reduce using rule 39 (Expression)
+
+
+State 79
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   40           | Expression OR Expression •
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND           shift, and go to state 59
+    LESS_THAN     shift, and go to state 61
+    GREATER_THAN  shift, and go to state 62
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    EQUAL     [reduce using rule 40 (Expression)]
+    $default  reduce using rule 40 (Expression)
+
+
+State 80
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   41           | Expression LESS_THAN Expression •
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    LESS_THAN     error (nonassociative)
+    GREATER_THAN  error (nonassociative)
+
+    EQUAL     [reduce using rule 41 (Expression)]
+    $default  reduce using rule 41 (Expression)
+
+
+State 81
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   42           | Expression GREATER_THAN Expression •
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    LESS_THAN     error (nonassociative)
+    GREATER_THAN  error (nonassociative)
+
+    EQUAL     [reduce using rule 42 (Expression)]
+    $default  reduce using rule 42 (Expression)
+
+
+State 82
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   46           | Expression EQUAL Expression •
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND           shift, and go to state 59
+    OR            shift, and go to state 60
+    LESS_THAN     shift, and go to state 61
+    GREATER_THAN  shift, and go to state 62
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    AND           [reduce using rule 46 (Expression)]
+    OR            [reduce using rule 46 (Expression)]
+    LESS_THAN     [reduce using rule 46 (Expression)]
+    GREATER_THAN  [reduce using rule 46 (Expression)]
+    EQUAL         [reduce using rule 46 (Expression)]
+    ADD           [reduce using rule 46 (Expression)]
+    SUBTRACT      [reduce using rule 46 (Expression)]
+    MULTIPLY      [reduce using rule 46 (Expression)]
+    DIVIDE        [reduce using rule 46 (Expression)]
+    LEFT_BRACKET  [reduce using rule 46 (Expression)]
+    DOT           [reduce using rule 46 (Expression)]
+    $default      reduce using rule 46 (Expression)
+
+
+State 83
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   43           | Expression ADD Expression •
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    EQUAL         shift, and go to state 63
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    EQUAL     [reduce using rule 43 (Expression)]
+    $default  reduce using rule 43 (Expression)
+
+
+State 84
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   44           | Expression SUBTRACT Expression •
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    EQUAL         shift, and go to state 63
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    EQUAL     [reduce using rule 44 (Expression)]
+    $default  reduce using rule 44 (Expression)
+
+
+State 85
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   45           | Expression MULTIPLY Expression •
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    EQUAL         shift, and go to state 63
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    EQUAL     [reduce using rule 45 (Expression)]
+    $default  reduce using rule 45 (Expression)
+
+
+State 86
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   47           | Expression DIVIDE Expression •
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    EQUAL         shift, and go to state 63
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+
+    EQUAL     [reduce using rule 47 (Expression)]
+    $default  reduce using rule 47 (Expression)
+
+
+State 87
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   48           | Expression LEFT_BRACKET Expression • RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND            shift, and go to state 59
+    OR             shift, and go to state 60
+    LESS_THAN      shift, and go to state 61
+    GREATER_THAN   shift, and go to state 62
+    EQUAL          shift, and go to state 63
+    ADD            shift, and go to state 64
+    SUBTRACT       shift, and go to state 65
+    MULTIPLY       shift, and go to state 66
+    DIVIDE         shift, and go to state 67
+    LEFT_BRACKET   shift, and go to state 68
+    RIGHT_BRACKET  shift, and go to state 95
+    DOT            shift, and go to state 69
+
+
+State 88
+
+   49 Expression: Expression DOT LENGTH •
+
+    $default  reduce using rule 49 (Expression)
+
+
+State 89
+
+   50 Expression: Expression DOT Identifier • LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    LEFT_PARENTHESIS  shift, and go to state 96
+
+
+State 90
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET • RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+
+    RIGHT_BRACKET  shift, and go to state 97
+
+
+State 91
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE • MethodBody RETURN Expression SEMICOLON RIGHT_BRACE
+
+    STRING              shift, and go to state 16
+    INT                 shift, and go to state 17
+    BOOLEAN             shift, and go to state 18
+    IF                  shift, and go to state 98
+    WHILE               shift, and go to state 99
+    LEFT_BRACE          shift, and go to state 100
+    IDENTIFIER          shift, and go to state 9
+    SYSTEM_OUT_PRINTLN  shift, and go to state 101
+
+    $default  reduce using rule 11 (MethodBody)
+
+    VarDeclaration  go to state 102
+    MethodBody      go to state 103
+    MethodBodyItem  go to state 104
+    Type            go to state 24
+    Statement       go to state 105
+    Identifier      go to state 106
+
+
+State 92
+
+   20 ParameterList: Parameter COMMA ParameterList •
+
+    $default  reduce using rule 20 (ParameterList)
+
+
+State 93
+
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+   56           | NEW INT LEFT_BRACKET Expression • RIGHT_BRACKET
+
+    AND            shift, and go to state 59
+    OR             shift, and go to state 60
+    LESS_THAN      shift, and go to state 61
+    GREATER_THAN   shift, and go to state 62
+    EQUAL          shift, and go to state 63
+    ADD            shift, and go to state 64
+    SUBTRACT       shift, and go to state 65
+    MULTIPLY       shift, and go to state 66
+    DIVIDE         shift, and go to state 67
+    LEFT_BRACKET   shift, and go to state 68
+    RIGHT_BRACKET  shift, and go to state 107
+    DOT            shift, and go to state 69
+
+
+State 94
+
+   57 Expression: NEW Identifier LEFT_PARENTHESIS RIGHT_PARENTHESIS •
+
+    $default  reduce using rule 57 (Expression)
+
+
+State 95
+
+   48 Expression: Expression LEFT_BRACKET Expression RIGHT_BRACKET •
+
+    $default  reduce using rule 48 (Expression)
+
+
+State 96
+
+   50 Expression: Expression DOT Identifier LEFT_PARENTHESIS • ExpressionList RIGHT_PARENTHESIS
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    $default  reduce using rule 38 (ExpressionList)
+
+    ExpressionList  go to state 108
+    Expression      go to state 109
+    Identifier      go to state 50
+
+
+State 97
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET • Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+
+    IDENTIFIER  shift, and go to state 9
+
+    Identifier  go to state 110
+
+
+State 98
+
+   30 Statement: IF • LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement
+   31          | IF • LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement ELSE Statement
+
+    LEFT_PARENTHESIS  shift, and go to state 111
+
+
+State 99
+
+   32 Statement: WHILE • LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement
+
+    LEFT_PARENTHESIS  shift, and go to state 112
+
+
+State 100
+
+   29 Statement: LEFT_BRACE • StatementList RIGHT_BRACE
+
+    IF                  shift, and go to state 98
+    WHILE               shift, and go to state 99
+    LEFT_BRACE          shift, and go to state 100
+    IDENTIFIER          shift, and go to state 9
+    SYSTEM_OUT_PRINTLN  shift, and go to state 101
+
+    $default  reduce using rule 28 (StatementList)
+
+    StatementList  go to state 113
+    Statement      go to state 114
+    Identifier     go to state 106
+
+
+State 101
+
+   33 Statement: SYSTEM_OUT_PRINTLN • LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS SEMICOLON
+
+    LEFT_PARENTHESIS  shift, and go to state 115
+
+
+State 102
+
+   12 MethodBodyItem: VarDeclaration •
+
+    $default  reduce using rule 12 (MethodBodyItem)
+
+
+State 103
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody • RETURN Expression SEMICOLON RIGHT_BRACE
+
+    RETURN  shift, and go to state 116
+
+
+State 104
+
+   10 MethodBody: MethodBodyItem • MethodBody
+
+    STRING              shift, and go to state 16
+    INT                 shift, and go to state 17
+    BOOLEAN             shift, and go to state 18
+    IF                  shift, and go to state 98
+    WHILE               shift, and go to state 99
+    LEFT_BRACE          shift, and go to state 100
+    IDENTIFIER          shift, and go to state 9
+    SYSTEM_OUT_PRINTLN  shift, and go to state 101
+
+    $default  reduce using rule 11 (MethodBody)
+
+    VarDeclaration  go to state 102
+    MethodBody      go to state 117
+    MethodBodyItem  go to state 104
+    Type            go to state 24
+    Statement       go to state 105
+    Identifier      go to state 106
+
+
+State 105
+
+   13 MethodBodyItem: Statement •
+
+    $default  reduce using rule 13 (MethodBodyItem)
+
+
+State 106
+
+   34 Statement: Identifier • ASSIGN Expression SEMICOLON
+   35          | Identifier • LEFT_BRACKET Expression RIGHT_BRACKET ASSIGN Expression SEMICOLON
+
+    LEFT_BRACKET  shift, and go to state 118
+    ASSIGN        shift, and go to state 119
+
+
+State 107
+
+   56 Expression: NEW INT LEFT_BRACKET Expression RIGHT_BRACKET •
+
+    $default  reduce using rule 56 (Expression)
+
+
+State 108
+
+   50 Expression: Expression DOT Identifier LEFT_PARENTHESIS ExpressionList • RIGHT_PARENTHESIS
+
+    RIGHT_PARENTHESIS  shift, and go to state 120
+
+
+State 109
+
+   36 ExpressionList: Expression •
+   37               | Expression • COMMA ExpressionList
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND           shift, and go to state 59
+    OR            shift, and go to state 60
+    LESS_THAN     shift, and go to state 61
+    GREATER_THAN  shift, and go to state 62
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+    COMMA         shift, and go to state 121
+
+    $default  reduce using rule 36 (ExpressionList)
+
+
+State 110
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier • RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE
+
+    RIGHT_PARENTHESIS  shift, and go to state 122
+
+
+State 111
+
+   30 Statement: IF LEFT_PARENTHESIS • Expression RIGHT_PARENTHESIS Statement
+   31          | IF LEFT_PARENTHESIS • Expression RIGHT_PARENTHESIS Statement ELSE Statement
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 123
+    Identifier  go to state 50
+
+
+State 112
+
+   32 Statement: WHILE LEFT_PARENTHESIS • Expression RIGHT_PARENTHESIS Statement
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 124
+    Identifier  go to state 50
+
+
+State 113
+
+   29 Statement: LEFT_BRACE StatementList • RIGHT_BRACE
+
+    RIGHT_BRACE  shift, and go to state 125
+
+
+State 114
+
+   27 StatementList: Statement • StatementList
+
+    IF                  shift, and go to state 98
+    WHILE               shift, and go to state 99
+    LEFT_BRACE          shift, and go to state 100
+    IDENTIFIER          shift, and go to state 9
+    SYSTEM_OUT_PRINTLN  shift, and go to state 101
+
+    $default  reduce using rule 28 (StatementList)
+
+    StatementList  go to state 126
+    Statement      go to state 114
+    Identifier     go to state 106
+
+
+State 115
+
+   33 Statement: SYSTEM_OUT_PRINTLN LEFT_PARENTHESIS • Expression RIGHT_PARENTHESIS SEMICOLON
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 127
+    Identifier  go to state 50
+
+
+State 116
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN • Expression SEMICOLON RIGHT_BRACE
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 128
+    Identifier  go to state 50
+
+
+State 117
+
+   10 MethodBody: MethodBodyItem MethodBody •
+
+    $default  reduce using rule 10 (MethodBody)
+
+
+State 118
+
+   35 Statement: Identifier LEFT_BRACKET • Expression RIGHT_BRACKET ASSIGN Expression SEMICOLON
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 129
+    Identifier  go to state 50
+
+
+State 119
+
+   34 Statement: Identifier ASSIGN • Expression SEMICOLON
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 130
+    Identifier  go to state 50
+
+
+State 120
+
+   50 Expression: Expression DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS •
+
+    $default  reduce using rule 50 (Expression)
+
+
+State 121
+
+   37 ExpressionList: Expression COMMA • ExpressionList
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    $default  reduce using rule 38 (ExpressionList)
+
+    ExpressionList  go to state 131
+    Expression      go to state 109
+    Identifier      go to state 50
+
+
+State 122
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS • LEFT_BRACE MethodBody RIGHT_BRACE
+
+    LEFT_BRACE  shift, and go to state 132
+
+
+State 123
+
+   30 Statement: IF LEFT_PARENTHESIS Expression • RIGHT_PARENTHESIS Statement
+   31          | IF LEFT_PARENTHESIS Expression • RIGHT_PARENTHESIS Statement ELSE Statement
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND                shift, and go to state 59
+    OR                 shift, and go to state 60
+    LESS_THAN          shift, and go to state 61
+    GREATER_THAN       shift, and go to state 62
+    EQUAL              shift, and go to state 63
+    ADD                shift, and go to state 64
+    SUBTRACT           shift, and go to state 65
+    MULTIPLY           shift, and go to state 66
+    DIVIDE             shift, and go to state 67
+    RIGHT_PARENTHESIS  shift, and go to state 133
+    LEFT_BRACKET       shift, and go to state 68
+    DOT                shift, and go to state 69
+
+
+State 124
+
+   32 Statement: WHILE LEFT_PARENTHESIS Expression • RIGHT_PARENTHESIS Statement
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND                shift, and go to state 59
+    OR                 shift, and go to state 60
+    LESS_THAN          shift, and go to state 61
+    GREATER_THAN       shift, and go to state 62
+    EQUAL              shift, and go to state 63
+    ADD                shift, and go to state 64
+    SUBTRACT           shift, and go to state 65
+    MULTIPLY           shift, and go to state 66
+    DIVIDE             shift, and go to state 67
+    RIGHT_PARENTHESIS  shift, and go to state 134
+    LEFT_BRACKET       shift, and go to state 68
+    DOT                shift, and go to state 69
+
+
+State 125
+
+   29 Statement: LEFT_BRACE StatementList RIGHT_BRACE •
+
+    $default  reduce using rule 29 (Statement)
+
+
+State 126
+
+   27 StatementList: Statement StatementList •
+
+    $default  reduce using rule 27 (StatementList)
+
+
+State 127
+
+   33 Statement: SYSTEM_OUT_PRINTLN LEFT_PARENTHESIS Expression • RIGHT_PARENTHESIS SEMICOLON
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND                shift, and go to state 59
+    OR                 shift, and go to state 60
+    LESS_THAN          shift, and go to state 61
+    GREATER_THAN       shift, and go to state 62
+    EQUAL              shift, and go to state 63
+    ADD                shift, and go to state 64
+    SUBTRACT           shift, and go to state 65
+    MULTIPLY           shift, and go to state 66
+    DIVIDE             shift, and go to state 67
+    RIGHT_PARENTHESIS  shift, and go to state 135
+    LEFT_BRACKET       shift, and go to state 68
+    DOT                shift, and go to state 69
+
+
+State 128
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression • SEMICOLON RIGHT_BRACE
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND           shift, and go to state 59
+    OR            shift, and go to state 60
+    LESS_THAN     shift, and go to state 61
+    GREATER_THAN  shift, and go to state 62
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+    SEMICOLON     shift, and go to state 136
+
+
+State 129
+
+   35 Statement: Identifier LEFT_BRACKET Expression • RIGHT_BRACKET ASSIGN Expression SEMICOLON
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND            shift, and go to state 59
+    OR             shift, and go to state 60
+    LESS_THAN      shift, and go to state 61
+    GREATER_THAN   shift, and go to state 62
+    EQUAL          shift, and go to state 63
+    ADD            shift, and go to state 64
+    SUBTRACT       shift, and go to state 65
+    MULTIPLY       shift, and go to state 66
+    DIVIDE         shift, and go to state 67
+    LEFT_BRACKET   shift, and go to state 68
+    RIGHT_BRACKET  shift, and go to state 137
+    DOT            shift, and go to state 69
+
+
+State 130
+
+   34 Statement: Identifier ASSIGN Expression • SEMICOLON
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND           shift, and go to state 59
+    OR            shift, and go to state 60
+    LESS_THAN     shift, and go to state 61
+    GREATER_THAN  shift, and go to state 62
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+    SEMICOLON     shift, and go to state 138
+
+
+State 131
+
+   37 ExpressionList: Expression COMMA ExpressionList •
+
+    $default  reduce using rule 37 (ExpressionList)
+
+
+State 132
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE • MethodBody RIGHT_BRACE
+
+    STRING              shift, and go to state 16
+    INT                 shift, and go to state 17
+    BOOLEAN             shift, and go to state 18
+    IF                  shift, and go to state 98
+    WHILE               shift, and go to state 99
+    LEFT_BRACE          shift, and go to state 100
+    IDENTIFIER          shift, and go to state 9
+    SYSTEM_OUT_PRINTLN  shift, and go to state 101
+
+    $default  reduce using rule 11 (MethodBody)
+
+    VarDeclaration  go to state 102
+    MethodBody      go to state 139
+    MethodBodyItem  go to state 104
+    Type            go to state 24
+    Statement       go to state 105
+    Identifier      go to state 106
+
+
+State 133
+
+   30 Statement: IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS • Statement
+   31          | IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS • Statement ELSE Statement
+
+    IF                  shift, and go to state 98
+    WHILE               shift, and go to state 99
+    LEFT_BRACE          shift, and go to state 100
+    IDENTIFIER          shift, and go to state 9
+    SYSTEM_OUT_PRINTLN  shift, and go to state 101
+
+    Statement   go to state 140
+    Identifier  go to state 106
+
+
+State 134
+
+   32 Statement: WHILE LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS • Statement
+
+    IF                  shift, and go to state 98
+    WHILE               shift, and go to state 99
+    LEFT_BRACE          shift, and go to state 100
+    IDENTIFIER          shift, and go to state 9
+    SYSTEM_OUT_PRINTLN  shift, and go to state 101
+
+    Statement   go to state 141
+    Identifier  go to state 106
+
+
+State 135
+
+   33 Statement: SYSTEM_OUT_PRINTLN LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS • SEMICOLON
+
+    SEMICOLON  shift, and go to state 142
+
+
+State 136
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON • RIGHT_BRACE
+
+    RIGHT_BRACE  shift, and go to state 143
+
+
+State 137
+
+   35 Statement: Identifier LEFT_BRACKET Expression RIGHT_BRACKET • ASSIGN Expression SEMICOLON
+
+    ASSIGN  shift, and go to state 144
+
+
+State 138
+
+   34 Statement: Identifier ASSIGN Expression SEMICOLON •
+
+    $default  reduce using rule 34 (Statement)
+
+
+State 139
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody • RIGHT_BRACE
+
+    RIGHT_BRACE  shift, and go to state 145
+
+
+State 140
+
+   30 Statement: IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement •
+   31          | IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement • ELSE Statement
+
+    ELSE  shift, and go to state 146
+
+    ELSE      [reduce using rule 30 (Statement)]
+    $default  reduce using rule 30 (Statement)
+
+
+State 141
+
+   32 Statement: WHILE LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement •
+
+    $default  reduce using rule 32 (Statement)
+
+
+State 142
+
+   33 Statement: SYSTEM_OUT_PRINTLN LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS SEMICOLON •
+
+    $default  reduce using rule 33 (Statement)
+
+
+State 143
+
+    9 MethodDeclaration: PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE •
+
+    $default  reduce using rule 9 (MethodDeclaration)
+
+
+State 144
+
+   35 Statement: Identifier LEFT_BRACKET Expression RIGHT_BRACKET ASSIGN • Expression SEMICOLON
+
+    TRUE              shift, and go to state 42
+    FALSE             shift, and go to state 43
+    THIS              shift, and go to state 44
+    NEW               shift, and go to state 45
+    NOT               shift, and go to state 46
+    LEFT_PARENTHESIS  shift, and go to state 47
+    IDENTIFIER        shift, and go to state 9
+    INTEGER_LITERAL   shift, and go to state 48
+
+    Expression  go to state 147
+    Identifier  go to state 50
+
+
+State 145
+
+    3 MainMethod: PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE •
+
+    $default  reduce using rule 3 (MainMethod)
+
+
+State 146
+
+   31 Statement: IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement ELSE • Statement
+
+    IF                  shift, and go to state 98
+    WHILE               shift, and go to state 99
+    LEFT_BRACE          shift, and go to state 100
+    IDENTIFIER          shift, and go to state 9
+    SYSTEM_OUT_PRINTLN  shift, and go to state 101
+
+    Statement   go to state 148
+    Identifier  go to state 106
+
+
+State 147
+
+   35 Statement: Identifier LEFT_BRACKET Expression RIGHT_BRACKET ASSIGN Expression • SEMICOLON
+   39 Expression: Expression • AND Expression
+   40           | Expression • OR Expression
+   41           | Expression • LESS_THAN Expression
+   42           | Expression • GREATER_THAN Expression
+   43           | Expression • ADD Expression
+   44           | Expression • SUBTRACT Expression
+   45           | Expression • MULTIPLY Expression
+   46           | Expression • EQUAL Expression
+   47           | Expression • DIVIDE Expression
+   48           | Expression • LEFT_BRACKET Expression RIGHT_BRACKET
+   49           | Expression • DOT LENGTH
+   50           | Expression • DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS
+
+    AND           shift, and go to state 59
+    OR            shift, and go to state 60
+    LESS_THAN     shift, and go to state 61
+    GREATER_THAN  shift, and go to state 62
+    EQUAL         shift, and go to state 63
+    ADD           shift, and go to state 64
+    SUBTRACT      shift, and go to state 65
+    MULTIPLY      shift, and go to state 66
+    DIVIDE        shift, and go to state 67
+    LEFT_BRACKET  shift, and go to state 68
+    DOT           shift, and go to state 69
+    SEMICOLON     shift, and go to state 149
+
+
+State 148
+
+   31 Statement: IF LEFT_PARENTHESIS Expression RIGHT_PARENTHESIS Statement ELSE Statement •
+
+    $default  reduce using rule 31 (Statement)
+
+
+State 149
+
+   35 Statement: Identifier LEFT_BRACKET Expression RIGHT_BRACKET ASSIGN Expression SEMICOLON •
+
+    $default  reduce using rule 35 (Statement)
