@@ -1,0 +1,629 @@
+digraph {
+n0 [label="Goal:"];
+n1 [label="MainClass:BinarySearch"];
+n2 [label="void:main"];
+n3 [label="string[]:a"];
+n2 -> n3
+n4 [label="Statement:PrintLn"];
+n5 [label="Expression:Start"];
+n6 [label="NewInstance:BS"];
+n5 -> n6
+n7 [label="Number:20"];
+n5 -> n7
+n4 -> n5
+n2 -> n4
+n8 [label="Statement:PrintLn"];
+n9 [label="Expression:Start"];
+n10 [label="NewInstance:BS"];
+n9 -> n10
+n11 [label="Number:20"];
+n9 -> n11
+n8 -> n9
+n2 -> n8
+n12 [label="Statement:PrintLn"];
+n13 [label="Expression:Start"];
+n14 [label="NewInstance:BS"];
+n13 -> n14
+n15 [label="Number:20"];
+n13 -> n15
+n12 -> n13
+n2 -> n12
+n1 -> n2
+n0 -> n1
+n16 [label="ClassDeclaration:BS"];
+n17 [label="VarDeclaration:number"];
+n18 [label="int[]:number"];
+n17 -> n18
+n16 -> n17
+n19 [label="VarDeclaration:size"];
+n20 [label="int:size"];
+n19 -> n20
+n16 -> n19
+n21 [label="MethodDeclaration:int:Start"];
+n22 [label="ParameterList:Start"];
+n23 [label="int:sz"];
+n22 -> n23
+n21 -> n22
+n24 [label="VarDeclaration:aux01"];
+n25 [label="int:aux01"];
+n24 -> n25
+n21 -> n24
+n26 [label="Assignment:aux01"];
+n27 [label="Expression:Init"];
+n28 [label="This:this"];
+n27 -> n28
+n29 [label="Expression:sz"];
+n27 -> n29
+n26 -> n27
+n21 -> n26
+n30 [label="VarDeclaration:aux02"];
+n31 [label="int:aux02"];
+n30 -> n31
+n21 -> n30
+n32 [label="Assignment:aux02"];
+n33 [label="Expression:Print"];
+n34 [label="This:this"];
+n33 -> n34
+n32 -> n33
+n21 -> n32
+n35 [label="IfElseStatement:TMP"];
+n36 [label="Expression:Search"];
+n37 [label="This:this"];
+n36 -> n37
+n38 [label="Number:8"];
+n36 -> n38
+n35 -> n36
+n39 [label="Statement:PrintLn"];
+n40 [label="Number:1"];
+n39 -> n40
+n35 -> n39
+n41 [label="Statement:PrintLn"];
+n42 [label="Number:0"];
+n41 -> n42
+n35 -> n41
+n21 -> n35
+n43 [label="IfElseStatement:TMP"];
+n44 [label="Expression:Search"];
+n45 [label="This:this"];
+n44 -> n45
+n46 [label="Number:19"];
+n44 -> n46
+n43 -> n44
+n47 [label="Statement:PrintLn"];
+n48 [label="Number:1"];
+n47 -> n48
+n43 -> n47
+n49 [label="Statement:PrintLn"];
+n50 [label="Number:0"];
+n49 -> n50
+n43 -> n49
+n21 -> n43
+n51 [label="IfElseStatement:TMP"];
+n52 [label="Expression:Search"];
+n53 [label="This:this"];
+n52 -> n53
+n54 [label="Number:20"];
+n52 -> n54
+n51 -> n52
+n55 [label="Statement:PrintLn"];
+n56 [label="Number:1"];
+n55 -> n56
+n51 -> n55
+n57 [label="Statement:PrintLn"];
+n58 [label="Number:0"];
+n57 -> n58
+n51 -> n57
+n21 -> n51
+n59 [label="IfElseStatement:TMP"];
+n60 [label="Expression:Search"];
+n61 [label="This:this"];
+n60 -> n61
+n62 [label="Number:21"];
+n60 -> n62
+n59 -> n60
+n63 [label="Statement:PrintLn"];
+n64 [label="Number:1"];
+n63 -> n64
+n59 -> n63
+n65 [label="Statement:PrintLn"];
+n66 [label="Number:0"];
+n65 -> n66
+n59 -> n65
+n21 -> n59
+n67 [label="IfElseStatement:TMP"];
+n68 [label="Expression:Search"];
+n69 [label="This:this"];
+n68 -> n69
+n70 [label="Number:37"];
+n68 -> n70
+n67 -> n68
+n71 [label="Statement:PrintLn"];
+n72 [label="Number:1"];
+n71 -> n72
+n67 -> n71
+n73 [label="Statement:PrintLn"];
+n74 [label="Number:0"];
+n73 -> n74
+n67 -> n73
+n21 -> n67
+n75 [label="IfElseStatement:TMP"];
+n76 [label="Expression:Search"];
+n77 [label="This:this"];
+n76 -> n77
+n78 [label="Number:38"];
+n76 -> n78
+n75 -> n76
+n79 [label="Statement:PrintLn"];
+n80 [label="Number:1"];
+n79 -> n80
+n75 -> n79
+n81 [label="Statement:PrintLn"];
+n82 [label="Number:0"];
+n81 -> n82
+n75 -> n81
+n21 -> n75
+n83 [label="IfElseStatement:TMP"];
+n84 [label="Expression:Search"];
+n85 [label="This:this"];
+n84 -> n85
+n86 [label="Number:39"];
+n84 -> n86
+n83 -> n84
+n87 [label="Statement:PrintLn"];
+n88 [label="Number:1"];
+n87 -> n88
+n83 -> n87
+n89 [label="Statement:PrintLn"];
+n90 [label="Number:0"];
+n89 -> n90
+n83 -> n89
+n21 -> n83
+n91 [label="IfElseStatement:TMP"];
+n92 [label="Expression:Search"];
+n93 [label="This:this"];
+n92 -> n93
+n94 [label="Number:50"];
+n92 -> n94
+n91 -> n92
+n95 [label="Statement:PrintLn"];
+n96 [label="Number:1"];
+n95 -> n96
+n91 -> n95
+n97 [label="Statement:PrintLn"];
+n98 [label="Number:0"];
+n97 -> n98
+n91 -> n97
+n21 -> n91
+n99 [label="Number:999"];
+n21 -> n99
+n16 -> n21
+n100 [label="MethodDeclaration:bool:Search"];
+n101 [label="ParameterList:Search"];
+n102 [label="int:num"];
+n101 -> n102
+n100 -> n101
+n103 [label="VarDeclaration:bs01"];
+n104 [label="bool:bs01"];
+n103 -> n104
+n100 -> n103
+n105 [label="Assignment:bs01"];
+n106 [label="TrueOrFalse:False"];
+n105 -> n106
+n100 -> n105
+n107 [label="VarDeclaration:right"];
+n108 [label="int:right"];
+n107 -> n108
+n100 -> n107
+n109 [label="Assignment:right"];
+n110 [label="Operation:ArrayLength"];
+n111 [label="Expression:number"];
+n110 -> n111
+n109 -> n110
+n100 -> n109
+n112 [label="Assignment:right"];
+n113 [label="Operation:Subtract"];
+n114 [label="Expression:right"];
+n113 -> n114
+n115 [label="Number:1"];
+n113 -> n115
+n112 -> n113
+n100 -> n112
+n116 [label="VarDeclaration:left"];
+n117 [label="int:left"];
+n116 -> n117
+n100 -> n116
+n118 [label="Assignment:left"];
+n119 [label="Number:0"];
+n118 -> n119
+n100 -> n118
+n120 [label="VarDeclaration:var_cont"];
+n121 [label="bool:var_cont"];
+n120 -> n121
+n100 -> n120
+n122 [label="Assignment:var_cont"];
+n123 [label="TrueOrFalse:True"];
+n122 -> n123
+n100 -> n122
+n124 [label="VarDeclaration:medium"];
+n125 [label="int:medium"];
+n124 -> n125
+n100 -> n124
+n126 [label="VarDeclaration:aux01"];
+n127 [label="int:aux01"];
+n126 -> n127
+n100 -> n126
+n128 [label="Assignment:aux01"];
+n129 [label="Number:0"];
+n128 -> n129
+n100 -> n128
+n130 [label="WhileStatement:PrintLn"];
+n131 [label="Expression:var_cont"];
+n130 -> n131
+n132 [label="BlockStatement:Block"];
+n133 [label="Assignment:medium"];
+n134 [label="Operation:Add"];
+n135 [label="Expression:left"];
+n134 -> n135
+n136 [label="Expression:right"];
+n134 -> n136
+n133 -> n134
+n132 -> n133
+n137 [label="Assignment:medium"];
+n138 [label="Expression:Div"];
+n139 [label="This:this"];
+n138 -> n139
+n140 [label="Expression:medium"];
+n138 -> n140
+n137 -> n138
+n132 -> n137
+n141 [label="Assignment:aux01"];
+n142 [label="Operation:ArrayLookup"];
+n143 [label="Expression:number"];
+n142 -> n143
+n144 [label="Expression:medium"];
+n142 -> n144
+n141 -> n142
+n132 -> n141
+n145 [label="IfElseStatement:TMP"];
+n146 [label="Comparison:LessThan"];
+n147 [label="Expression:num"];
+n146 -> n147
+n148 [label="Expression:aux01"];
+n146 -> n148
+n145 -> n146
+n149 [label="Assignment:right"];
+n150 [label="Operation:Subtract"];
+n151 [label="Expression:medium"];
+n150 -> n151
+n152 [label="Number:1"];
+n150 -> n152
+n149 -> n150
+n145 -> n149
+n153 [label="Assignment:left"];
+n154 [label="Operation:Add"];
+n155 [label="Expression:medium"];
+n154 -> n155
+n156 [label="Number:1"];
+n154 -> n156
+n153 -> n154
+n145 -> n153
+n132 -> n145
+n157 [label="IfElseStatement:TMP"];
+n158 [label="Expression:Compare"];
+n159 [label="This:this"];
+n158 -> n159
+n160 [label="Expression:aux01"];
+n158 -> n160
+n161 [label="Expression:num"];
+n158 -> n161
+n157 -> n158
+n162 [label="Assignment:var_cont"];
+n163 [label="TrueOrFalse:False"];
+n162 -> n163
+n157 -> n162
+n164 [label="Assignment:var_cont"];
+n165 [label="TrueOrFalse:True"];
+n164 -> n165
+n157 -> n164
+n132 -> n157
+n166 [label="IfStatement:TMP"];
+n167 [label="Comparison:LessThan"];
+n168 [label="Expression:right"];
+n167 -> n168
+n169 [label="Expression:left"];
+n167 -> n169
+n166 -> n167
+n170 [label="Assignment:var_cont"];
+n171 [label="TrueOrFalse:False"];
+n170 -> n171
+n166 -> n170
+n132 -> n166
+n130 -> n132
+n100 -> n130
+n172 [label="IfElseStatement:TMP"];
+n173 [label="Expression:Compare"];
+n174 [label="This:this"];
+n173 -> n174
+n175 [label="Expression:aux01"];
+n173 -> n175
+n176 [label="Expression:num"];
+n173 -> n176
+n172 -> n173
+n177 [label="Assignment:bs01"];
+n178 [label="TrueOrFalse:True"];
+n177 -> n178
+n172 -> n177
+n179 [label="Assignment:bs01"];
+n180 [label="TrueOrFalse:False"];
+n179 -> n180
+n172 -> n179
+n100 -> n172
+n181 [label="Expression:bs01"];
+n100 -> n181
+n16 -> n100
+n182 [label="MethodDeclaration:int:Div"];
+n183 [label="ParameterList:Div"];
+n184 [label="int:num"];
+n183 -> n184
+n182 -> n183
+n185 [label="VarDeclaration:count01"];
+n186 [label="int:count01"];
+n185 -> n186
+n182 -> n185
+n187 [label="Assignment:count01"];
+n188 [label="Number:0"];
+n187 -> n188
+n182 -> n187
+n189 [label="VarDeclaration:count02"];
+n190 [label="int:count02"];
+n189 -> n190
+n182 -> n189
+n191 [label="Assignment:count02"];
+n192 [label="Number:0"];
+n191 -> n192
+n182 -> n191
+n193 [label="VarDeclaration:aux03"];
+n194 [label="int:aux03"];
+n193 -> n194
+n182 -> n193
+n195 [label="Assignment:aux03"];
+n196 [label="Operation:Subtract"];
+n197 [label="Expression:num"];
+n196 -> n197
+n198 [label="Number:1"];
+n196 -> n198
+n195 -> n196
+n182 -> n195
+n199 [label="WhileStatement:PrintLn"];
+n200 [label="Comparison:LessThan"];
+n201 [label="Expression:count02"];
+n200 -> n201
+n202 [label="Expression:aux03"];
+n200 -> n202
+n199 -> n200
+n203 [label="BlockStatement:Block"];
+n204 [label="Assignment:count01"];
+n205 [label="Operation:Add"];
+n206 [label="Expression:count01"];
+n205 -> n206
+n207 [label="Number:1"];
+n205 -> n207
+n204 -> n205
+n203 -> n204
+n208 [label="Assignment:count02"];
+n209 [label="Operation:Add"];
+n210 [label="Expression:count02"];
+n209 -> n210
+n211 [label="Number:2"];
+n209 -> n211
+n208 -> n209
+n203 -> n208
+n199 -> n203
+n182 -> n199
+n212 [label="Expression:count01"];
+n182 -> n212
+n16 -> n182
+n213 [label="MethodDeclaration:bool:Compare"];
+n214 [label="ParameterList:Compare"];
+n215 [label="int:num1"];
+n214 -> n215
+n216 [label="int:num2"];
+n214 -> n216
+n213 -> n214
+n217 [label="VarDeclaration:retval"];
+n218 [label="bool:retval"];
+n217 -> n218
+n213 -> n217
+n219 [label="Assignment:retval"];
+n220 [label="TrueOrFalse:False"];
+n219 -> n220
+n213 -> n219
+n221 [label="VarDeclaration:aux02"];
+n222 [label="int:aux02"];
+n221 -> n222
+n213 -> n221
+n223 [label="Assignment:aux02"];
+n224 [label="Operation:Add"];
+n225 [label="Expression:num2"];
+n224 -> n225
+n226 [label="Number:1"];
+n224 -> n226
+n223 -> n224
+n213 -> n223
+n227 [label="IfElseStatement:TMP"];
+n228 [label="Comparison:LessThan"];
+n229 [label="Expression:num1"];
+n228 -> n229
+n230 [label="Expression:num2"];
+n228 -> n230
+n227 -> n228
+n231 [label="Assignment:retval"];
+n232 [label="TrueOrFalse:False"];
+n231 -> n232
+n227 -> n231
+n233 [label="IfElseStatement:TMP"];
+n234 [label="Not:TMP"];
+n235 [label="Comparison:LessThan"];
+n236 [label="Expression:num1"];
+n235 -> n236
+n237 [label="Expression:aux02"];
+n235 -> n237
+n234 -> n235
+n233 -> n234
+n238 [label="Assignment:retval"];
+n239 [label="TrueOrFalse:False"];
+n238 -> n239
+n233 -> n238
+n240 [label="Assignment:retval"];
+n241 [label="TrueOrFalse:True"];
+n240 -> n241
+n233 -> n240
+n227 -> n233
+n213 -> n227
+n242 [label="Expression:retval"];
+n213 -> n242
+n16 -> n213
+n243 [label="MethodDeclaration:int:Print"];
+n244 [label="ParameterList:Print"];
+n243 -> n244
+n245 [label="VarDeclaration:j"];
+n246 [label="int:j"];
+n245 -> n246
+n243 -> n245
+n247 [label="Assignment:j"];
+n248 [label="Number:1"];
+n247 -> n248
+n243 -> n247
+n249 [label="WhileStatement:PrintLn"];
+n250 [label="Comparison:LessThan"];
+n251 [label="Expression:j"];
+n250 -> n251
+n252 [label="Expression:size"];
+n250 -> n252
+n249 -> n250
+n253 [label="BlockStatement:Block"];
+n254 [label="Statement:PrintLn"];
+n255 [label="Operation:ArrayLookup"];
+n256 [label="Expression:number"];
+n255 -> n256
+n257 [label="Expression:j"];
+n255 -> n257
+n254 -> n255
+n253 -> n254
+n258 [label="Assignment:j"];
+n259 [label="Operation:Add"];
+n260 [label="Expression:j"];
+n259 -> n260
+n261 [label="Number:1"];
+n259 -> n261
+n258 -> n259
+n253 -> n258
+n249 -> n253
+n243 -> n249
+n262 [label="Statement:PrintLn"];
+n263 [label="Number:99999"];
+n262 -> n263
+n243 -> n262
+n264 [label="Number:0"];
+n243 -> n264
+n16 -> n243
+n265 [label="MethodDeclaration:int:Init"];
+n266 [label="ParameterList:Init"];
+n267 [label="int:sz"];
+n266 -> n267
+n265 -> n266
+n268 [label="VarDeclaration:j"];
+n269 [label="int:j"];
+n268 -> n269
+n265 -> n268
+n270 [label="Assignment:j"];
+n271 [label="Number:1"];
+n270 -> n271
+n265 -> n270
+n272 [label="VarDeclaration:k"];
+n273 [label="int:k"];
+n272 -> n273
+n265 -> n272
+n274 [label="VarDeclaration:aux02"];
+n275 [label="int:aux02"];
+n274 -> n275
+n265 -> n274
+n276 [label="VarDeclaration:aux01"];
+n277 [label="int:aux01"];
+n276 -> n277
+n265 -> n276
+n278 [label="Assignment:size"];
+n279 [label="Expression:sz"];
+n278 -> n279
+n265 -> n278
+n280 [label="Assignment:number"];
+n281 [label="NewIntArray:TMP"];
+n282 [label="Expression:sz"];
+n281 -> n282
+n280 -> n281
+n265 -> n280
+n283 [label="Assignment:k"];
+n284 [label="Operation:Add"];
+n285 [label="Expression:size"];
+n284 -> n285
+n286 [label="Number:1"];
+n284 -> n286
+n283 -> n284
+n265 -> n283
+n287 [label="WhileStatement:PrintLn"];
+n288 [label="Comparison:LessThan"];
+n289 [label="Expression:j"];
+n288 -> n289
+n290 [label="Expression:size"];
+n288 -> n290
+n287 -> n288
+n291 [label="BlockStatement:Block"];
+n292 [label="Assignment:aux01"];
+n293 [label="Operation:Multiply"];
+n294 [label="Number:2"];
+n293 -> n294
+n295 [label="Expression:j"];
+n293 -> n295
+n292 -> n293
+n291 -> n292
+n296 [label="Assignment:aux02"];
+n297 [label="Operation:Subtract"];
+n298 [label="Expression:k"];
+n297 -> n298
+n299 [label="Number:3"];
+n297 -> n299
+n296 -> n297
+n291 -> n296
+n300 [label="ArrayAssignment:number"];
+n301 [label="Expression:j"];
+n300 -> n301
+n302 [label="Operation:Add"];
+n303 [label="Expression:aux01"];
+n302 -> n303
+n304 [label="Expression:aux02"];
+n302 -> n304
+n300 -> n302
+n291 -> n300
+n305 [label="Assignment:j"];
+n306 [label="Operation:Add"];
+n307 [label="Expression:j"];
+n306 -> n307
+n308 [label="Number:1"];
+n306 -> n308
+n305 -> n306
+n291 -> n305
+n309 [label="Assignment:k"];
+n310 [label="Operation:Subtract"];
+n311 [label="Expression:k"];
+n310 -> n311
+n312 [label="Number:1"];
+n310 -> n312
+n309 -> n310
+n291 -> n309
+n287 -> n291
+n265 -> n287
+n313 [label="Number:0"];
+n265 -> n313
+n16 -> n265
+n0 -> n16
+}

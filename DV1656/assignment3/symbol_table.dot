@@ -1,0 +1,197 @@
+digraph SymbolTable {
+  node [shape=none];
+  edge [color="#666666"];
+  rankdir=TB;
+
+  scope_140736529532496 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: root</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>BinarySearch</td>  <td>Class</td>
+<td>BinarySearch</td></tr>
+  <tr><td>BS</td>  <td>Class</td>
+<td>BS</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_329201440 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: BinarySearch</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>main</td>  <td>Method</td>
+<td>void</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_140736529532496 -> scope_329201440;
+  scope_329202000 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: BS</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>number</td>  <td>Variable</td>
+<td>int[]</td></tr>
+  <tr><td>size</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>Start</td>  <td>Method</td>
+<td>int</td></tr>
+  <tr><td>Search</td>  <td>Method</td>
+<td>bool</td></tr>
+  <tr><td>Div</td>  <td>Method</td>
+<td>int</td></tr>
+  <tr><td>Compare</td>  <td>Method</td>
+<td>bool</td></tr>
+  <tr><td>Print</td>  <td>Method</td>
+<td>int</td></tr>
+  <tr><td>Init</td>  <td>Method</td>
+<td>int</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_140736529532496 -> scope_329202000;
+  scope_329201664 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: main</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>a</td>  <td>Variable</td>
+<td>string[]</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_329201440 -> scope_329201664;
+  scope_329201552 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: int:Start</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>sz</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux01</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux02</td>  <td>Variable</td>
+<td>int</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_329202000 -> scope_329201552;
+  scope_329202976 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: bool:Search</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>num</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>bs01</td>  <td>Variable</td>
+<td>bool</td></tr>
+  <tr><td>right</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>left</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>var_cont</td>  <td>Variable</td>
+<td>bool</td></tr>
+  <tr><td>medium</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux01</td>  <td>Variable</td>
+<td>int</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_329202000 -> scope_329202976;
+  scope_329203488 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: int:Div</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>num</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>count01</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>count02</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux03</td>  <td>Variable</td>
+<td>int</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_329202000 -> scope_329203488;
+  scope_329205616 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: bool:Compare</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>num1</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>num2</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>retval</td>  <td>Variable</td>
+<td>bool</td></tr>
+  <tr><td>aux02</td>  <td>Variable</td>
+<td>int</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_329202000 -> scope_329205616;
+  scope_329205728 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: int:Print</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>j</td>  <td>Variable</td>
+<td>int</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_329202000 -> scope_329205728;
+  scope_329206032 [label=<
+    <table border='0' cellborder='1' cellspacing='0'>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: int:Init</b></td></tr>
+      <tr><td>
+<table border='0' cellborder='1' cellspacing='0'>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>sz</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>j</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>k</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux02</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux01</td>  <td>Variable</td>
+<td>int</td></tr>
+</table>      </td></tr>
+    </table>
+  >];
+
+  scope_329202000 -> scope_329206032;
+}
