@@ -17,7 +17,7 @@ private:
     static string escapeDot(const string& str) {
         string result = str;
         size_t pos = 0;
-        while ((pos = result.find("\"", pos)) != string::npos) {
+        while ((pos = result.find('\"', pos)) != string::npos) {
             result.replace(pos, 1, "\\\"");
             pos += 2;
         }
@@ -35,11 +35,12 @@ private:
     static string generateSymbolTableHtml(const vector<SymbolTableEntry>& entries) {
         stringstream ss;
         ss << "<table border='0' cellborder='1' cellspacing='0'>\n";
-        ss << "  <tr><td colspan='2'><b>Symbol Table</b></td></tr>\n";
-        ss << "  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>\n";
+        ss << "  <tr><td colspan='3'><b>Symbol Table</b></td></tr>\n";
+        ss << "  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>\n";
 
         for (const auto& entry : entries) {
             ss << "  <tr><td>" << escapeDot(entry.id) << "</td>";
+            ss << "  <td>" << escapeDot(entry.dataType) << "</td>\n";
             ss << "<td>" << escapeDot(entry.type) << "</td></tr>\n";
         }
         ss << "</table>";
@@ -48,7 +49,8 @@ private:
 
 public:
     static string generateDot(const Scope* root) {
-        if (!root) return "";
+        if (root == nullptr) { return "";
+}
 
         stringstream dot;
         // Start DOT file
@@ -66,7 +68,7 @@ public:
             scopeQueue.pop();
 
             // Add node for current scope
-            string nodeId = getNodeId(currentScope);
+            string const nodeId = getNodeId(currentScope);
             dot << "  " << nodeId << " [label=<\n";
             dot << "    <table border='0' cellborder='1' cellspacing='0'>\n";
             dot << "      <tr><td bgcolor=\"#E0E0E0\"><b>Scope: "
@@ -78,9 +80,9 @@ public:
             dot << "  >];\n\n";
 
             // Add edges for parent-child relationships
-            if (currentScope->parent) {
+            if (currentScope->parent != nullptr) {
                 dot << "  " << getNodeId(currentScope->parent) << " -> "
-                    << nodeId << " [label=\"child\"];\n";
+                    << nodeId << ";\n";
             }
 
             // Add children to queue
@@ -97,10 +99,12 @@ public:
     // Utility method to save to file
     static bool saveToFile(const Scope* root, const string& filename) {
         ofstream outFile(filename);
-        if (!outFile.is_open()) return false;
+        if (!outFile.is_open()) { return false;
+}
 
         outFile << generateDot(root);
         outFile.close();
+        cout << "\nBuilt a parse-tree at " << filename << "." << '\n';
         return true;
     }
 };

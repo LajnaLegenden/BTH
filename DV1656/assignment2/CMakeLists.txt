@@ -70,7 +70,6 @@ target_include_directories(compiler PRIVATE
 target_compile_definitions(compiler PRIVATE
         YY_NO_UNISTD_H=1
         YY_FLEX_SUBMINOR_VERSION=2
-        YYDEBUG=1          # Enable Bison debugging
 )
 
 # Ensure lex.yy.c is compiled as C++
@@ -96,10 +95,10 @@ if(DOT_EXECUTABLE)
             COMMENT "Generating tree PDF"
     )
 
-    add_custom_target(symbol_table
+    add_custom_target(st
             COMMAND ${DOT_EXECUTABLE} -Tpdf ${CMAKE_CURRENT_BINARY_DIR}/symbol_table.dot -o${CMAKE_CURRENT_BINARY_DIR}/symbol_table.pdf
-            COMMAND ${CMAKE_CURRENT_BINARY_DIR}/compiler
-            DEPENDS compiler
+            COMMAND chmod 777 ${CMAKE_CURRENT_BINARY_DIR}/symbol_table.dot
+            COMMAND ${CMAKE_CURRENT_BINARY_DIR}/symbol_table.dot
             COMMENT "Generating symbol table PDF"
     )
 endif()

@@ -39,7 +39,7 @@
 %token END 0 "end of file"
 
 // Non-terminal type definitions
-%type <std::string> Type Identifier
+%type <std::string> Type Identifier TypeOrIdentifier
 %type <Node*> Goal MainClass ClassDeclaration VarDeclaration MethodDeclaration MethodBodyItem ClassBodyItem MainMethod
 %type <Node*> Statement Expression Parameter
 %type <std::list<Node*>> ClassDeclarationList
@@ -77,8 +77,8 @@ MainClass
 
 MainMethod
   : PUBLIC STATIC VOID MAIN LEFT_PARENTHESIS STRING LEFT_BRACKET RIGHT_BRACKET Identifier RIGHT_PARENTHESIS LEFT_BRACE MethodBody RIGHT_BRACE {
-    $$ = new Node("MainMethod", "main", yylineno);
-    add_child($$, new Node("STRING ARRAY", $9, yylineno));  // $9 is the Identifier
+    $$ = new Node("void", "main", yylineno);
+    add_child($$, new Node("string[]", $9, yylineno));
     add_children($$, $12);  // $12 is MethodBody
   }
   ;
@@ -101,25 +101,27 @@ ClassDeclaration
   ;
 
 
+
 VarDeclaration
-  : Type Identifier SEMICOLON {
+  : TypeOrIdentifier Identifier SEMICOLON {
     $$ = new Node("VarDeclaration", $2, yylineno);
     add_child($$, new Node($1, $2, yylineno));
   }
-  | Type Identifier ASSIGN Expression SEMICOLON {
+  | TypeOrIdentifier Identifier ASSIGN Expression SEMICOLON {
         $$ = new Node("VarDeclaration", $2, yylineno);
         add_child($$, new Node($1, $2, yylineno));
       }
-  ;
+ ;
 
-
+TypeOrIdentifier
+  : Type { $$ = $1; }
+  | Identifier { $$ = $1; }
 
 MethodDeclaration
-  : PUBLIC Type Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE {
+  : PUBLIC TypeOrIdentifier Identifier LEFT_PARENTHESIS ParameterList RIGHT_PARENTHESIS LEFT_BRACE MethodBody RETURN Expression SEMICOLON RIGHT_BRACE {
 
     std::vector<std::string> typeName = {$2,$3};
     $$ = new Node("MethodDeclaration", StringUtils::join(typeName, ":"), yylineno);
-    add_child($$, new Node($2, $3, yylineno));
     Node* params = new Node("ParameterList", $3, yylineno);
     add_children(params, $5);
     add_child($$, params);
@@ -167,12 +169,15 @@ Parameter
     : Type Identifier {
     $$ = new Node($1,$2, yylineno);
     }
+    | Identifier Identifier {
+    $$ = new Node($1,$2, yylineno);
+    }
 
 Type
-  : INT LEFT_BRACKET RIGHT_BRACKET { $$ = "INT ARRAY"; }
-  | BOOLEAN { $$ = "BOOLEAN"; }
-  | INT { $$ = "INT" ;}
-  | STRING LEFT_BRACKET RIGHT_BRACKET  { $$ = "STRING ARRAY"; }
+  : INT LEFT_BRACKET RIGHT_BRACKET { $$ = "int[]"; }
+  | BOOLEAN { $$ = "bool"; }
+  | INT { $$ = "int" ;}
+  | STRING LEFT_BRACKET RIGHT_BRACKET  { $$ = "string[]"; }
   ;
 
 StatementList
@@ -224,61 +229,61 @@ ExpressionList
 
 Expression
   : Expression AND Expression {
-    $$ = new Node("Expression", "And", yylineno);
+    $$ = new Node("Comparison", "And", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression OR Expression {
-    $$ = new Node("Expression", "Or", yylineno);
+    $$ = new Node("Comparison", "Or", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression LESS_THAN Expression {
-    $$ = new Node("Expression", "LessThan", yylineno);
+    $$ = new Node("Comparison", "LessThan", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression GREATER_THAN Expression {
-    $$ = new Node("Expression", "GreaterThan", yylineno);
+    $$ = new Node("Comparison", "GreaterThan", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression ADD Expression {
-    $$ = new Node("Expression", "Add", yylineno);
+    $$ = new Node("Operation", "Add", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression SUBTRACT Expression {
-    $$ = new Node("Expression", "Subtract", yylineno);
+    $$ = new Node("Operation", "Subtract", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression MULTIPLY Expression {
-    $$ = new Node("Expression", "Multiply", yylineno);
+    $$ = new Node("Operation", "Multiply", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression EQUAL Expression {
-    $$ = new Node("Expression", "Equal", yylineno);
+    $$ = new Node("Comparison", "Equal", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression DIVIDE Expression {
-    $$ = new Node("Expression", "Devide", yylineno);
+    $$ = new Node("Operation", "Devide", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression LEFT_BRACKET Expression RIGHT_BRACKET {
-    $$ = new Node("Expression", "ArrayLookup", yylineno);
+    $$ = new Node("Operation", "ArrayLookup", yylineno);
     add_child($$, $1);
     add_child($$, $3);
   }
   | Expression DOT LENGTH {
-    $$ = new Node("Expression", "ArrayLength", yylineno);
+    $$ = new Node("Operation", "ArrayLength", yylineno);
     add_child($$, $1);
   }
   | Expression DOT Identifier LEFT_PARENTHESIS ExpressionList RIGHT_PARENTHESIS {
-    $$ = new Node("Expression", $2, yylineno);
+    $$ = new Node("Expression", $3, yylineno);
     add_child($$, $1);
     add_children($$, $5);
   }
@@ -286,10 +291,10 @@ Expression
     $$ = new Node("Number", $1, yylineno);
   }
   | TRUE {
-    $$ = new Node("BOOLEAN", "True", yylineno);
+    $$ = new Node("TrueOrFalse", "True", yylineno);
   }
   | FALSE {
-    $$ = new Node("BOOLEAN", "False", yylineno);
+    $$ = new Node("TrueOrFalse", "False", yylineno);
   }
   | Identifier {
     $$ = new Node("Expression", $1, yylineno);

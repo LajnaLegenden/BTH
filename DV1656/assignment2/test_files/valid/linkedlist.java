@@ -222,6 +222,7 @@ class LL{
 		Element el02 ;
 		Element el03 ;
 
+
 		last_elem = new List();
 		aux01 = last_elem.Init();
 		head = last_elem ;

@@ -25,7 +25,7 @@ public:
 	void print_tree(int depth=0) {
 		for(int i=0; i<depth; i++)
 		cout << "  ";
-		cout << type << ":" << value << endl; //<< " @line: "<< lineno << endl;
+		cout << type << ":" << value << '\n'; //<< " @line: "<< lineno << endl;
 		for(auto i=children.begin(); i!=children.end(); i++)
 		(*i)->print_tree(depth+1);
 	}
@@ -36,9 +36,9 @@ public:
 	  	outStream.open(filename);
 
 		int count = 0;
-		outStream << "digraph {" << std::endl;
+		outStream << "digraph {" << '\n';
 		generate_tree_content(count, &outStream);
-		outStream << "}" << std::endl;
+		outStream << "}" << '\n';
 		outStream.close();
 
 		printf("\nBuilt a parse-tree at %s. Use 'make tree' to generate the pdf version.", filename);
@@ -46,12 +46,12 @@ public:
 
   	void generate_tree_content(int &count, ofstream *outStream) {
 	  id = count++;
-	  *outStream << "n" << id << " [label=\"" << type << ":" << value << "\"];" << endl;
+	  *outStream << "n" << id << " [label=\"" << type << ":" << value << "\"];" << '\n';
 
 	  for (auto i = children.begin(); i != children.end(); i++)
 	  {
 		  (*i)->generate_tree_content(count, outStream);
-		  *outStream << "n" << id << " -> n" << (*i)->id << endl;
+		  *outStream << "n" << id << " -> n" << (*i)->id << '\n';
 	  }
   }
 

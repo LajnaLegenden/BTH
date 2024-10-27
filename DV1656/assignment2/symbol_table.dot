@@ -3,164 +3,195 @@ digraph SymbolTable {
   edge [color="#666666"];
   rankdir=TB;
 
-  scope_140724773767360 [label=<
+  scope_140725719652480 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
-      <tr><td bgcolor="#E0E0E0"><b>Scope: Main</b></td></tr>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: root</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
-  <tr><td>BinarySearch</td><td>ClassDeclaration</td></tr>
-  <tr><td>BS</td><td>ClassDeclaration</td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>BinarySearch</td>  <td>Class</td>
+<td>BinarySearch</td></tr>
+  <tr><td>BS</td>  <td>Class</td>
+<td>BS</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_503347360 [label=<
+  scope_127239968 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
       <tr><td bgcolor="#E0E0E0"><b>Scope: BinarySearch</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>main</td>  <td>Method</td>
+<td>void</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_140724773767360 -> scope_503347360 [label="child"];
-  scope_503347632 [label=<
+  scope_140725719652480 -> scope_127239968;
+  scope_127240528 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
       <tr><td bgcolor="#E0E0E0"><b>Scope: BS</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
-  <tr><td>number</td><td>INT ARRAY</td></tr>
-  <tr><td>size</td><td>INT</td></tr>
-  <tr><td>Start</td><td>INT</td></tr>
-  <tr><td>Search</td><td>BOOLEAN</td></tr>
-  <tr><td>Div</td><td>INT</td></tr>
-  <tr><td>Compare</td><td>BOOLEAN</td></tr>
-  <tr><td>Print</td><td>INT</td></tr>
-  <tr><td>Init</td><td>INT</td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>number</td>  <td>Variable</td>
+<td>int[]</td></tr>
+  <tr><td>size</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>Start</td>  <td>Method</td>
+<td>int</td></tr>
+  <tr><td>Search</td>  <td>Method</td>
+<td>bool</td></tr>
+  <tr><td>Div</td>  <td>Method</td>
+<td>int</td></tr>
+  <tr><td>Compare</td>  <td>Method</td>
+<td>bool</td></tr>
+  <tr><td>Print</td>  <td>Method</td>
+<td>int</td></tr>
+  <tr><td>Init</td>  <td>Method</td>
+<td>int</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_140724773767360 -> scope_503347632 [label="child"];
-  scope_503347456 [label=<
+  scope_140725719652480 -> scope_127240528;
+  scope_127240192 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
       <tr><td bgcolor="#E0E0E0"><b>Scope: main</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
-  <tr><td>a</td><td>STRING ARRAY</td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>a</td>  <td>Variable</td>
+<td>string[]</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_503347360 -> scope_503347456 [label="child"];
-  scope_503347872 [label=<
+  scope_127239968 -> scope_127240192;
+  scope_127240080 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
-      <tr><td bgcolor="#E0E0E0"><b>Scope: INT:Start</b></td></tr>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: int:Start</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
-  <tr><td>Start</td><td>INT</td></tr>
-  <tr><td>sz</td><td>INT</td></tr>
-  <tr><td>aux01</td><td>INT</td></tr>
-  <tr><td>aux02</td><td>INT</td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>sz</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux01</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux02</td>  <td>Variable</td>
+<td>int</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_503347632 -> scope_503347872 [label="child"];
-  scope_503348320 [label=<
+  scope_127240528 -> scope_127240080;
+  scope_127241504 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
-      <tr><td bgcolor="#E0E0E0"><b>Scope: BOOLEAN:Search</b></td></tr>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: bool:Search</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
-  <tr><td>Search</td><td>BOOLEAN</td></tr>
-  <tr><td>num</td><td>INT</td></tr>
-  <tr><td>bs01</td><td>BOOLEAN</td></tr>
-  <tr><td>right</td><td>INT</td></tr>
-  <tr><td>left</td><td>INT</td></tr>
-  <tr><td>var_cont</td><td>BOOLEAN</td></tr>
-  <tr><td>medium</td><td>INT</td></tr>
-  <tr><td>aux01</td><td>INT</td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>num</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>bs01</td>  <td>Variable</td>
+<td>bool</td></tr>
+  <tr><td>right</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>left</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>var_cont</td>  <td>Variable</td>
+<td>bool</td></tr>
+  <tr><td>medium</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux01</td>  <td>Variable</td>
+<td>int</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_503347632 -> scope_503348320 [label="child"];
-  scope_503348720 [label=<
+  scope_127240528 -> scope_127241504;
+  scope_127242016 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
-      <tr><td bgcolor="#E0E0E0"><b>Scope: INT:Div</b></td></tr>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: int:Div</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
-  <tr><td>Div</td><td>INT</td></tr>
-  <tr><td>num</td><td>INT</td></tr>
-  <tr><td>count01</td><td>INT</td></tr>
-  <tr><td>count02</td><td>INT</td></tr>
-  <tr><td>aux03</td><td>INT</td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>num</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>count01</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>count02</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux03</td>  <td>Variable</td>
+<td>int</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_503347632 -> scope_503348720 [label="child"];
-  scope_503349920 [label=<
+  scope_127240528 -> scope_127242016;
+  scope_127244144 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
-      <tr><td bgcolor="#E0E0E0"><b>Scope: BOOLEAN:Compare</b></td></tr>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: bool:Compare</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
-  <tr><td>Compare</td><td>BOOLEAN</td></tr>
-  <tr><td>num1</td><td>INT</td></tr>
-  <tr><td>num2</td><td>INT</td></tr>
-  <tr><td>retval</td><td>BOOLEAN</td></tr>
-  <tr><td>aux02</td><td>INT</td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>num1</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>num2</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>retval</td>  <td>Variable</td>
+<td>bool</td></tr>
+  <tr><td>aux02</td>  <td>Variable</td>
+<td>int</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_503347632 -> scope_503349920 [label="child"];
-  scope_503350544 [label=<
+  scope_127240528 -> scope_127244144;
+  scope_127244256 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
-      <tr><td bgcolor="#E0E0E0"><b>Scope: INT:Print</b></td></tr>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: int:Print</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
-  <tr><td>Print</td><td>INT</td></tr>
-  <tr><td>j</td><td>INT</td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>j</td>  <td>Variable</td>
+<td>int</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_503347632 -> scope_503350544 [label="child"];
-  scope_503350720 [label=<
+  scope_127240528 -> scope_127244256;
+  scope_127244560 [label=<
     <table border='0' cellborder='1' cellspacing='0'>
-      <tr><td bgcolor="#E0E0E0"><b>Scope: INT:Init</b></td></tr>
+      <tr><td bgcolor="#E0E0E0"><b>Scope: int:Init</b></td></tr>
       <tr><td>
 <table border='0' cellborder='1' cellspacing='0'>
-  <tr><td colspan='2'><b>Symbol Table</b></td></tr>
-  <tr><td><b>ID</b></td><td><b>Type</b></td></tr>
-  <tr><td>Init</td><td>INT</td></tr>
-  <tr><td>sz</td><td>INT</td></tr>
-  <tr><td>j</td><td>INT</td></tr>
-  <tr><td>k</td><td>INT</td></tr>
-  <tr><td>aux02</td><td>INT</td></tr>
-  <tr><td>aux01</td><td>INT</td></tr>
+  <tr><td colspan='3'><b>Symbol Table</b></td></tr>
+  <tr><td><b>ID</b></td><td><b>Data type</b></td><td><b>Type</b></td></tr>
+  <tr><td>sz</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>j</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>k</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux02</td>  <td>Variable</td>
+<td>int</td></tr>
+  <tr><td>aux01</td>  <td>Variable</td>
+<td>int</td></tr>
 </table>      </td></tr>
     </table>
   >];
 
-  scope_503347632 -> scope_503350720 [label="child"];
+  scope_127240528 -> scope_127244560;
 }

@@ -16,6 +16,7 @@ class BS{
     int[] number ;
     int size ;
 
+
     // Invoke methods to initialize, print and search
     // for elements on the array
     public int Start(int sz){
@@ -139,6 +140,7 @@ class BS{
 
 		int k ;
 		int aux02 ;
+
 		int aux01 ;
 
 		size = sz ;

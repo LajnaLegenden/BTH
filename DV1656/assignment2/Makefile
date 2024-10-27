@@ -143,17 +143,17 @@ tree/fast:
 .PHONY : tree/fast
 
 #=============================================================================
-# Target rules for targets named symbol_table
+# Target rules for targets named st
 
 # Build rule for target.
-symbol_table: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 symbol_table
-.PHONY : symbol_table
+st: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 st
+.PHONY : st
 
 # fast build rule for target.
-symbol_table/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/symbol_table.dir/build.make CMakeFiles/symbol_table.dir/build
-.PHONY : symbol_table/fast
+st/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/st.dir/build.make CMakeFiles/st.dir/build
+.PHONY : st/fast
 
 #=============================================================================
 # Target rules for targets named parser_debug
@@ -263,7 +263,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... cleanall"
 	@echo "... parser_debug"
-	@echo "... symbol_table"
+	@echo "... st"
 	@echo "... tree"
 	@echo "... compiler"
 	@echo "... generated/lex.yy.o"

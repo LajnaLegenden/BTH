@@ -5,6 +5,7 @@
 #include "parser.tab.hh"
 #include "global.h"
 #include "generateSymbolTree.c"
+#include "syntaxChecker.c"
 #include "Viz.h"
 extern Node* root;
 extern FILE* yyin;
@@ -21,10 +22,10 @@ void read_source_file(const char* filename) {
     }
 }
 
-void yy::parser::error(std::string const&err)
+void yy::parser::error(std::string const&msg)
 {
     std::cout << "Syntax errors found! See the logs below: \n";
-    std::cerr << "@error at line " << yylineno << ". Cannot generate a syntax for this input: " << err << std::endl;
+    std::cerr << "@error at line " << yylineno << ". Cannot generate a syntax for this input: " << msg << std::endl;
 
     if (yylineno > 0 && yylineno <= source_lines.size()) {
         std::cerr << "Line " << yylineno << ": " << source_lines[yylineno - 1] << std::endl;
@@ -33,11 +34,11 @@ void yy::parser::error(std::string const&err)
 }
 
 
-int main(int argc, char **argv)
+int main(const int argc, char **argv)
 {
     if(argc > 1) {
         read_source_file(argv[1]);  // Read the entire source file
-        if(!(yyin = fopen(argv[1], "r"))) {
+        if((yyin = fopen(argv[1], "r")) == nullptr) {
             perror(argv[1]);
             return 1;
         }
@@ -47,22 +48,22 @@ int main(int argc, char **argv)
         yylex();
     else {
         yy::parser parser;
-        if(!parser.parse() && !lexical_errors) {
+        if(!parser.parse() && (lexical_errors == 0)) {
             std::cout << "\nThe compiler successfully generated a syntax tree for the given input! \n";
-            std::cout << "\nPrint Tree: \n";
-            //root->print_tree();
-            //root->generate_tree();
+            root->generate_tree();
             Scope scope;
-            scope.id = "Main";
+            scope.source = root;
+            scope.id = "root";
             generateSymbolTree(&scope, root);
-            cout << "\n\nSymbol Table: \n";
-            for (auto const &currentNode : scope.table)
-            {
-                cout << currentNode.id << " : " << currentNode.type << endl;
+            Viz::saveToFile(&scope, "symbol_table.dot");
+            if (checkForDuplicateIdentifiers(&scope)) {
+                exit(1);
+            }
+            if (checkForUnusedIdentifiers(&scope, &scope)) {
+                exit(1);
             }
 
-            Viz::saveToFile(&scope, "symbol_table.dot");
-            
+            exit(0);
         }
         else {
           return lexical_errors;
