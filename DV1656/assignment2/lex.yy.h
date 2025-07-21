@@ -1,5 +1,3 @@
-#ifndef yyHEADER_H
-#define yyHEADER_H 1
 #define yyIN_HEADER 1
 
 #line 5 "/home/lajna/code/BTH/DV1656/assignment2/lex.yy.h"

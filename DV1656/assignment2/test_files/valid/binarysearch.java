@@ -21,7 +21,7 @@ class BS{
     // for elements on the array
     public int Start(int sz){
 		int aux01 ;
-		aux01 = this.Init(sz);
+		aaux01 = this.Init(sz);
 
 		int aux02 ;
 		aux02 = this.Print();
@@ -65,7 +65,7 @@ class BS{
 
 		int medium ;
 		int aux01 ;
-		aux01 = 0 ;	
+		aux01 = 0 ;
 		while (var_cont){
 			medium = left + right ;
 			medium = this.Div(medium);
@@ -98,10 +98,10 @@ class BS{
 			count01 = count01 + 1 ;
 			count02 = count02 + 2 ;
 		}
-		return count01 ;	
+		return count01 ;
 	}
 
-    
+
     // This method compares two integers and
     // returns true if they are equal and false
     // otherwise
@@ -131,7 +131,7 @@ class BS{
 		System.out.println(99999);
 		return 0 ;
     }
-    
+
 
     // Initialize the integer array
     public int Init(int sz){
@@ -145,7 +145,7 @@ class BS{
 
 		size = sz ;
 		number = new int[sz] ;
-		
+
 		k = size + 1 ;
 		while (j < (size)) {
 			aux01 = 2 * j ;
@@ -154,7 +154,7 @@ class BS{
 			j = j + 1 ;
 			k = k - 1 ;
 		}
-		return 0 ;	
+		return 0 ;
     }
 
 }

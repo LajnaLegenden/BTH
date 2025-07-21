@@ -1,0 +1,227 @@
+digraph {
+n0 [label="Goal:"];
+n1 [label="MainClass:"];
+n2 [label="Identifier:OperatorPriority"];
+n1 -> n2
+n3 [label="Identifier:a"];
+n1 -> n3
+n4 [label="Statement:Println"];
+n5 [label="Expression:Call"];
+n6 [label="Expression:NewObject"];
+n7 [label="Identifier:OP"];
+n6 -> n7
+n5 -> n6
+n8 [label="Identifier:arithmetic"];
+n5 -> n8
+n4 -> n5
+n1 -> n4
+n0 -> n1
+n9 [label="ClassDeclaration:"];
+n10 [label="Identifier:OP"];
+n9 -> n10
+n11 [label="MethodDeclaration:"];
+n12 [label="Type:Int"];
+n11 -> n12
+n13 [label="Identifier:arithmetic"];
+n11 -> n13
+n14 [label="VarDeclaration:b"];
+n15 [label="Type:Int"];
+n14 -> n15
+n16 [label="Identifier:b"];
+n14 -> n16
+n11 -> n14
+n17 [label="Statement:Assign"];
+n18 [label="Identifier:b"];
+n17 -> n18
+n19 [label="Expression:4"];
+n17 -> n19
+n11 -> n17
+n20 [label="VarDeclaration:c"];
+n21 [label="Type:Int"];
+n20 -> n21
+n22 [label="Identifier:c"];
+n20 -> n22
+n11 -> n20
+n23 [label="Statement:Assign"];
+n24 [label="Identifier:c"];
+n23 -> n24
+n25 [label="Expression:8"];
+n23 -> n25
+n11 -> n23
+n26 [label="VarDeclaration:ret"];
+n27 [label="Type:Int"];
+n26 -> n27
+n28 [label="Identifier:ret"];
+n26 -> n28
+n11 -> n26
+n29 [label="Statement:Assign"];
+n30 [label="Identifier:ret"];
+n29 -> n30
+n31 [label="Expression:Add"];
+n32 [label="Expression:Subtract"];
+n33 [label="Expression:Add"];
+n34 [label="Expression:1"];
+n33 -> n34
+n35 [label="Expression:Devide"];
+n36 [label="Expression:18"];
+n35 -> n36
+n37 [label="Expression:3"];
+n35 -> n37
+n33 -> n35
+n32 -> n33
+n38 [label="Expression:b"];
+n32 -> n38
+n31 -> n32
+n39 [label="Expression:Multiply"];
+n40 [label="Expression:c"];
+n39 -> n40
+n41 [label="Expression:9"];
+n39 -> n41
+n31 -> n39
+n29 -> n31
+n11 -> n29
+n42 [label="Statement:Assign"];
+n43 [label="Identifier:ret"];
+n42 -> n43
+n44 [label="Expression:Add"];
+n45 [label="Expression:Subtract"];
+n46 [label="Expression:Add"];
+n47 [label="Expression:1"];
+n46 -> n47
+n48 [label="Expression:Devide"];
+n49 [label="Expression:18"];
+n48 -> n49
+n50 [label="Expression:3"];
+n48 -> n50
+n46 -> n48
+n45 -> n46
+n51 [label="Expression:b"];
+n45 -> n51
+n44 -> n45
+n52 [label="Expression:Multiply"];
+n53 [label="Expression:c"];
+n52 -> n53
+n54 [label="Expression:9"];
+n52 -> n54
+n44 -> n52
+n42 -> n44
+n11 -> n42
+n55 [label="Expression:ret"];
+n11 -> n55
+n9 -> n11
+n56 [label="MethodDeclaration:"];
+n57 [label="Type:Boolean"];
+n56 -> n57
+n58 [label="Identifier:relational"];
+n56 -> n58
+n59 [label="VarDeclaration:a"];
+n60 [label="Type:Int"];
+n59 -> n60
+n61 [label="Identifier:a"];
+n59 -> n61
+n56 -> n59
+n62 [label="VarDeclaration:b"];
+n63 [label="Type:Int"];
+n62 -> n63
+n64 [label="Identifier:b"];
+n62 -> n64
+n56 -> n62
+n65 [label="VarDeclaration:c"];
+n66 [label="Type:Boolean"];
+n65 -> n66
+n67 [label="Identifier:c"];
+n65 -> n67
+n56 -> n65
+n68 [label="VarDeclaration:d"];
+n69 [label="Type:Boolean"];
+n68 -> n69
+n70 [label="Identifier:d"];
+n68 -> n70
+n56 -> n68
+n71 [label="Statement:Assign"];
+n72 [label="Identifier:a"];
+n71 -> n72
+n73 [label="Expression:10"];
+n71 -> n73
+n56 -> n71
+n74 [label="Statement:Assign"];
+n75 [label="Identifier:b"];
+n74 -> n75
+n76 [label="Expression:12"];
+n74 -> n76
+n56 -> n74
+n77 [label="Statement:Assign"];
+n78 [label="Identifier:d"];
+n77 -> n78
+n79 [label="Expression:False"];
+n77 -> n79
+n56 -> n77
+n80 [label="Statement:Assign"];
+n81 [label="Identifier:c"];
+n80 -> n81
+n82 [label="Expression:True"];
+n80 -> n82
+n56 -> n80
+n83 [label="VarDeclaration:ret"];
+n84 [label="Type:booleat"];
+n83 -> n84
+n85 [label="Identifier:ret"];
+n83 -> n85
+n56 -> n83
+n86 [label="Statement:Assign"];
+n87 [label="Identifier:ret"];
+n86 -> n87
+n88 [label="Expression:Or"];
+n89 [label="Expression:And"];
+n90 [label="Expression:LessThan"];
+n91 [label="Expression:a"];
+n90 -> n91
+n92 [label="Expression:b"];
+n90 -> n92
+n89 -> n90
+n93 [label="Expression:Not"];
+n94 [label="Expression:d"];
+n93 -> n94
+n89 -> n93
+n88 -> n89
+n95 [label="Expression:Equal"];
+n96 [label="Expression:d"];
+n95 -> n96
+n97 [label="Expression:Not"];
+n98 [label="Expression:c"];
+n97 -> n98
+n95 -> n97
+n88 -> n95
+n86 -> n88
+n56 -> n86
+n99 [label="Statement:Assign"];
+n100 [label="Identifier:ret"];
+n99 -> n100
+n101 [label="Expression:Or"];
+n102 [label="Expression:And"];
+n103 [label="Expression:LessThan"];
+n104 [label="Expression:a"];
+n103 -> n104
+n105 [label="Expression:b"];
+n103 -> n105
+n102 -> n103
+n106 [label="Expression:Not"];
+n107 [label="Expression:d"];
+n106 -> n107
+n102 -> n106
+n101 -> n102
+n108 [label="Expression:Equal"];
+n109 [label="Expression:d"];
+n108 -> n109
+n110 [label="Expression:Not"];
+n111 [label="Expression:c"];
+n110 -> n111
+n108 -> n110
+n101 -> n108
+n99 -> n101
+n56 -> n99
+n112 [label="Expression:ret"];
+n56 -> n112
+n9 -> n56
+n0 -> n9
+}

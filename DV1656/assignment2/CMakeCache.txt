@@ -204,9 +204,6 @@ FLEX_INCLUDE_DIR:PATH=FLEX_INCLUDE_DIR-NOTFOUND
 //Path to the fl library
 FL_LIBRARY:FILEPATH=FL_LIBRARY-NOTFOUND
 
-//The directory containing a CMake configuration file for Graphviz.
-Graphviz_DIR:PATH=Graphviz_DIR-NOTFOUND
-
 //Value Computed by CMake
 compiler_BINARY_DIR:STATIC=/home/lajna/code/BTH/DV1656/assignment2
 
@@ -349,7 +346,7 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_TAPI
 CMAKE_TAPI-ADVANCED:INTERNAL=1
 //uname command
-CMAKE_UNAME:INTERNAL=/nix/store/0kg70swgpg45ipcz3pr2siidq9fn6d77-coreutils-9.5/bin/uname
+CMAKE_UNAME:INTERNAL=/etc/profiles/per-user/lajna/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding BISON
